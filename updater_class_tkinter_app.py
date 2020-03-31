@@ -14,15 +14,22 @@ __status__		= 'Beta'
 __AppName__		= 'JIAS Automation Assistant'
 
 
+#LOCATION OF NEW RELEASE AND VERSION CHECK FILEs####################################################################################
+location_version_check = "http://raw.githubusercontent.com/JBB-eng/TestingAutoUpdate/master/Version"
+location_updated_release = "https://github.com/JBB-eng/TestingAutoUpdate/releases/download/0.2/JIAS-Automation_build0_1.exe"
+####################################################################################################################################
+
+
 #imports
 import tkinter as tk
 from tkinter import ttk, font, scrolledtext, filedialog, messagebox
 from PIL import ImageTk, Image, ImageOps
 from urllib.request import urlopen
 from MessageBox import *
-import os, webbrowser, cgi, threading, ctypes
+import os, webbrowser, cgi, threading, ctypes, subprocess, time
 from ctypes import c_int, WINFUNCTYPE, windll
 from ctypes.wintypes import HWND, LPCWSTR, UINT
+
 
 
 prototype = WINFUNCTYPE(c_int, HWND, LPCWSTR, LPCWSTR, UINT)
@@ -38,7 +45,7 @@ class Main:
 		def CheckUpdates():
 			#check if __version__ is lower than latest release
 			try:
-				url_data = urlopen("http://raw.githubusercontent.com/JBB-eng/TestingAutoUpdate/master/Version")
+				url_data = urlopen(location_version_check)
 				latest_version = str(url_data.read(), 'utf-8')
 				if __version__ < latest_version:
 					mb = MessageBox(None,__AppName__+' '+ str(__version__)+' needs to update to version '+str(latest_version),'Update Available',flags.MB_YESNO | flags.MB_ICONQUESTION)
@@ -166,6 +173,10 @@ class UpdateManager(tk.Toplevel):
 			#also, all of the app binary files will have the following format:
 			#[name of application]_v[version number].exe
 			#for example: "JIASAutomationAssistant_v0.3.exe"
+			OpenNewVersion = subprocess.Popen([self.tempdir+'\\'+self.appname])
+			time.sleep(5)
+			parent.destroy()
+
 			pass
 
 		#params = cgi.parse_header(self.data.headers.get('Content-Disposition', ''))
@@ -175,7 +186,7 @@ class UpdateManager(tk.Toplevel):
 		#self.chunk = 1048576
 
 		try:
-			self.data = urlopen("https://github.com/JBB-eng/TestingAutoUpdate/releases/download/0.2/JIAS-Automation_build0_1.exe")
+			self.data = urlopen(location_updated_release)
 			self.filesize = cgi.parse_header(self.data.headers.get('Content-Length', ''))[0]
 
 			params = cgi.parse_header(self.data.headers.get('Content-Disposition', ''))
