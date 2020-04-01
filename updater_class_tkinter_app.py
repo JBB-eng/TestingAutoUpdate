@@ -6,13 +6,12 @@ __author__		= 'Jacob Bursavich'
 __copyright__	= 'Copyright (C) 2020, Jacob Bursavich'
 __credits__		= ['Jacob Bursavich']
 __license__		= 'The MIT License (MIT)'
-__version__		= '0.1'
 __maintainer__	= 'Jacob Bursavich'
 __email__		= 'jbursavich@gmail.com'
 __status__		= 'Beta'
 
 __AppName__		= 'JIAS Automation Assistant'
-
+__version__		= '0.1'
 
 #LOCATION OF NEW RELEASE AND VERSION CHECK FILEs####################################################################################
 location_version_check = "http://raw.githubusercontent.com/JBB-eng/TestingAutoUpdate/master/Version"
