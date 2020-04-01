@@ -83,10 +83,18 @@ class Main:
 			filemenu = tk.Menu(menubar, tearoff=0)
 			filemenu.add_command(label='Exit', command=parent.destroy)
 			menubar.add_cascade(label='File', menu=filemenu)
+			
+			toolsmenu = tk.Menu(menubar, tearoff=0)
+			toolsmenu.add_command(label='Weekly S1/SP MS Check', command=runBinary)
+			menubar.add_cascade(label='Tools', menu=toolsmenu)
+
+
 			helpmenu = tk.Menu(menubar, tearoff=0)
 			helpmenu.add_command(label='Check For Updates', command=CheckUpdates)
 			helpmenu.add_command(label='About', command=AboutMe)
 			menubar.add_cascade(label='Help', menu=helpmenu)
+			
+
 			parent.config(menu=menubar)
 
 			rows = 0
@@ -130,11 +138,11 @@ class UpdateManager(tk.Toplevel):
 		self.title('Update Manager')
 		self.wm_iconbitmap('robot.ico')
 
-		image = Image.open('update.png')
-		photo = ImageTk.PhotoImage(image)
-		label = tk.Label(self, image=photo)
-		label.image = photo
-		label.pack()
+		#image = Image.open('update.png')
+		#photo = ImageTk.PhotoImage(image)
+		#label = tk.Label(self, image=photo)
+		#label.image = photo
+		#label.pack()
 		#label.grid(column=0, row=0)
 
 		def StartUpdateManager():
@@ -143,15 +151,12 @@ class UpdateManager(tk.Toplevel):
 				f=open(self.tempdir+'/'+self.appname,'wb')
 				while True:
 					self.newdata = self.data.read(self.chunk)
-					#print("self.newdata:", self.newdata)
-					#self.str_newdata = self.newdata.format(self.newdata).encode()
 					if self.newdata:
-						#print('1')
 						f.write(self.newdata)
-						#print('2')
 						self.downloadeddata += self.newdata
-						#print('3')
 						self.progressbar['value'] = len(self.downloadeddata)
+						display_in_MBs = (self.progressbar['value'] * 0.0000001)
+						self.label0.config(text=str("{:.2f}".format(self.progressbar['value'] * 0.000001)) + '/' + str("{:.2f}".format(self.filesize_text * 0.001))+' MBs')
 					else:
 						break
 			except Exception as e:
@@ -159,8 +164,10 @@ class UpdateManager(tk.Toplevel):
 				self.destroy()
 			else:
 				f.close()
-				self.button1.config(text='Update App!', state=tk.NORMAL)
+				self.label0.config(text=str(str("{:.2f}".format(self.progressbar['value'] * 0.000001)) + '/' + str("{:.2f}".format(self.filesize_text * 0.001))+' MBs'))
+				self.label2.config(text='Please wait a moment while application is updated...')
 				self.label1.config(text='Success!')
+				InstallUpdate()
 							
 
 		def InstallUpdate():
@@ -201,23 +208,26 @@ class UpdateManager(tk.Toplevel):
 			messagebox.showerror('Error', str(e))
 			self.destroy()
 		else:
-			#self.downloadeddata = ''
 			self.downloadeddata = b''
 			self.progressbar = ttk.Progressbar(self,
 									orient='horizontal',
 									length=200,
 									mode='determinate',
 									value=0,
-									#maximum=self.data.info().getheader('Content-Length').strip())len(data.read())
-									#maximum=len(self.data))
 									maximum=self.filesize)
-			self.label1 = ttk.Label(self, text="Please wait while update is downloaded")
-			self.label1.place(relx=0.5, rely=0.5, anchor=tk.CENTER)
-			self.progressbar.place(relx=0.5, rely=0.4, anchor=tk.CENTER)
-			self.button1 = ttk.Button(self, text='Update App', state=tk.DISABLED, command=InstallUpdate)
-			self.button1.place(relx=0.50, rely=0.8, anchor=tk.CENTER)
-		
+			self.filesize_text = int(int(self.filesize) / 1000)
+			self.label0 = ttk.Label(self, text="0 / "+str("{:.2f}".format(self.filesize_text * 0.001))+' MBs')
+			self.label0.place(relx=0.5, rely=0.25, anchor=tk.CENTER)
 
+			self.label1 = ttk.Label(self, text="Update download in progress...")
+			self.label1.place(relx=0.5, rely=0.5, anchor=tk.CENTER)
+
+			self.progressbar.place(relx=0.5, rely=0.4, anchor=tk.CENTER)
+
+			self.label2 = ttk.Label(self, text="")
+			self.label2.place(relx=0.5, rely=0.8, anchor=tk.CENTER)
+
+			
 		self.t1 = threading.Thread(target=StartUpdateManager)
 		self.t1.start()	
 
