@@ -1,0 +1,691 @@
+ScholarOne Manuscripts™
+JIAS Editorial Office 
+Instructions & Forms
+Help
+Log Out
+
+ Home
+ Author
+ Review
+ Manage 
+Admin Dashboard / Awaiting Reviewer Selection / Details for JIAS-2020-03-0151 Search
+Manuscript ID  
+Search
+
+
+
+
+	This section of the manuscript details usually includes the Manuscript Checklist, the author-supplied metadata, and add additional data as needed to complete the check-in process. If a companion paper should accompany the review of this paper, you can search for and link the two papers by using the companion paper feature on the Details tab.   Read More ...
+ 
+	
+Previous Document	 1 / 39 	Next Document
+	
+Select Reviewers
+
+
+
+
+
+
+
+
+No Notes Added
+Add A Note
+ 
+
+	
+JIAS-2020-03-0151
+
+Submitted: 09-Mar-2020; Last Updated: 11-Mar-2020; 1 day, 20 hours in review
+	
+Meeting Report: South African Medical Research Council Standard of Care in Clinical Research in Low- And Middle-Income Settings Summit, November 2017
+
+	
+Miner, Maurine (proxy) (contact); Bekker, Linda-Gail; Kredo, Tamara; Bhagwandin, Niresh; Corey, Lawrence; Gray, Glenda
+
+	
+Commentary
+
+	
+Wiley - Manuscript id of previous submission:  
+
+	
+Select Reviewers (Due 16-Mar-2020)
+0 active selections; 0 invited; 0 agreed; 0 declined; 0 returned
+
+DE: Editorial Office, JIAS
+EIC: Editorial Office, JIAS
+ADM: Watson, Hannah (proxy)
+
+   HTML    PDF     Supplemental Files   Original Files     Abstract     Cover Letter     External Searches   
+
+ 
+
+ 
+	
+- Peer Review Milestones
+
+
+Date Submitted:
+
+09-Mar-2020
+ 
+Admin:
+
+Watson, Hannah  AU REV VIEW ADM PROD 
+proxy	
+Date to Admin:
+
+09-Mar-2020
+
+Admin:
+
+ Admin	
+Date to Admin:
+
+11-Mar-2020
+
+Editor-in-Chief:
+
+Editorial Office, JIAS  AU REV DE EIC ADM VIEW PROD 	
+Date to Editor-in-Chief:
+
+11-Mar-2020
+
+Deputy Editor:
+
+Editorial Office, JIAS  AU REV DE EIC ADM VIEW PROD 	
+Date to Deputy Editor:
+
+11-Mar-2020
+
+
+
+ 
+	
+- Duplicate Submission Check
+
+
+This feature searches other submissions to this site and displays a relevancy % on both the manuscript title and the full author list to help identify potential duplicate submissions. The manuscript with the highest relevancy % on both title and author list will be displayed first.
+
+
+
+ 
+	
+- Version History
+
+
+ 
+
+Manuscript ID
+
+Manuscript Title
+
+Date Submitted
+
+Decision Letter & Response
+
+Switch
+Details
+
+	
+JIAS-2020-03-0151
+
+Meeting Report: South African Medical Research Council Standard of Care in Clinical Research in Low- And Middle-Income Settings Summit, November 2017
+
+09-Mar-2020
+
+ 
+
+ 
+	
+- Author-Supplied Data
+
+
+Wiley - Manuscript type:
+
+Commentary
+
+Title:
+
+Meeting Report: South African Medical Research Council Standard of Care in Clinical Research in Low- And Middle-Income Settings Summit, November 2017
+
+Manuscript ID:
+
+JIAS-2020-03-0151
+
+Funding Information:
+
+Global Fund to Fight AIDS, Tuberculosis and Malaria
+The Social Impact Bond
+
+U.S. Department of Health and Human Services >
+National Institutes of Health >
+National Institute of Allergy and Infectious Diseases
+HIV Vaccine Trials Network / UM1 AI068614
+
+South African Medical Research Council
+N/A
+
+
+Submitting Author:
+
+		
+	Miner, Maurine D  (proxy)
+	
+primary affiliation
+Fred Hutchinson Cancer Research Center - Vaccine and Infectious Disease Division
+1100 Fairview Ave. N Mail-stop E3-300 Seattle Washington 98109-9024
+United States
+
+Authors & Institutions:
+
+ 
+
+Miner, Maurine D
+proxy
+ https://orcid.org/0000-0002-4637-1283
+
+ 		
+Fred Hutchinson Cancer Research Center Ringgold standard institution - Vaccine and Infectious Disease Division
+1100 Fairview Ave. N Mail-stop E3-300 , Seattle, Washington 98109-9024
+United States
+
+
+Bekker, Linda-Gail
+proxy	 		
+University of Cape Town Faculty of Health Sciences Ringgold standard institution - Desmond Tutu HIV Centre
+Institute of Infectious Disease and Molecular Medicine , Observatory 7925
+South Africa
+
+
+Kredo, Tamara
+proxy	 		
+South African Medical Research Council Ringgold standard institution
+Tygerberg 7505
+South Africa
+
+
+Bhagwandin, Niresh
+proxy	 		
+South African Medical Research Council Ringgold standard institution
+Tygerberg 7505
+South Africa
+
+
+Corey, Lawrence
+proxy
+ https://orcid.org/0000-0002-2179-2436
+
+ 		
+Fred Hutchinson Cancer Research Center Ringgold standard institution - Vaccine and Infectious Disease Division
+Seattle, Washington 98109-9024
+United States
+
+
+Gray, Glenda
+proxy
+Corresponding Author	 		
+Research Professor of Paediatrics
+University of the Witwatersrand Perinatal HIV Research Unit Ringgold standard institution
+Diepkloof 1864
+South Africa
+
+ 	 	
+President & CEO
+South African Medical Research Council Ringgold standard institution -
+Tygerberg 7505
+South Africa
+
+Contact Author (populates the ##PROLE_AUTHOR_..## e-mail tags):
+
+		 	
+Current Contact Author: Miner, Maurine D
+(proxy)
+
+Running Head:
+
+Standard of care for HIV clinical trials summit
+
+Discipline:
+
+Clinical Sciences
+
+Keywords:
+
+Adolescent girls and young women, Clinical trials, HIV prevention trials, Law and policy, LMIC, PrEP
+
+Additional Keywords:
+
+Author Recommended Reviewers:
+
+Francois Venter Wits University Ringgold standard institution - fventer@wrhi.ac.za
+Nesri Padayatchi Centre for the Aids Programme of Research in South Africa Ringgold standard institution - Nesri.Padayatchi@caprisa.org
+Sharon Hillier Magee-Womens Research Institute Ringgold standard institution - shillier@mwri.magee.edu
+Chris Beyrer Johns Hopkins University Bloomberg School of Public Health Ringgold standard institution - cbeyrer1@jhu.edu
+Nyaradzo Mgodi University of Zimbabwe College of Health Sciences Ringgold standard institution - nmgodi@uzchs-ctrc.org
+Audrey Pettifor University of North Carolina at Chapel Hill Ringgold standard institution - apettif@email.unc.edu
+
+Author Opposed Reviewers:
+
+Author's Cover Letter:
+
+February 26, 2020
+
+Editor
+Journal of the International AIDS Society
+
+Dear Editorial Team,
+
+On behalf of my co-authors, I am pleased to submit our manuscript, “Meeting Report: South African Medical Research Council Standard of Care in Clinical Research in Low- And Middle-Income Settings Summit, November 2017” for your consideration for publication in the Journal of the International AIDS Society.
+
+In 2017, the South African Medical Research Council (SAMRC) and HIV Vaccine Trials Network (HVTN) convened a summit to address the standard of care in HIV prevention clinical trials in lower- and middle-income countries such as South Africa. The overall objective of the meeting was through deliberation, and after engaging the regulatory, legal and ethical framework, to propose principals of standard of care of clinical trials of both treatment and prevention in settings such as South Africa. These principles needed to consider the perspectives of government, community organisations and advocates, and the funders of research, as well as the issues of delivery and equity.
+
+This report summarizes the summit presentations, panel discussions and final recommendations on how to apply standards of care, specifically pre-exposure prophylaxis (PrEP), to HIV prevention clinical trials. Participants involved in the execution of care and the scale-up of new interventions, in particular, the roll out of PrEP, presented the opportunities and challenges when it comes to scaling up interventions, and their experience with demonstration projects of PrEP. Advocates and community members propagated the need to make interventions that could avert HIV infection available as soon as possible. Experts in evidence-based guideline development discussed the nuances in evaluating evidence for policy and the mechanisms for getting medicines on the Essential Medicine List in South Africa. Given the variability in efficacy in PrEP amongst different populations, scientists and statisticians discussed the various biological, virological and immunological reasons for this heterogeneity. Input was given as to the impact of introducing PrEP in other HIV prevention trials, and the considerations for the design of both antiretroviral-based and non-antiretroviral-based HIV prevention trials.
+
+Given that PrEP availability was limited in South Africa, and that this intervention was not available on the Essential Medicines List in South Africa or in the public sector, after deliberation, the following conclusions and recommendations were made for the use of PrEP in HIV prevention research:
+
+• The proposal to establish a SAMRC-initiated PrEP fund that will be supported by partners such as the HVTN, to make available the provision of PrEP and the support of HIV testing to trial sites.
+• That the manner in which the provision of PrEP occurs be left to the trial sites together with the community.
+
+
+
+• That the SAMRC immediately make provision for the procurement of PrEP and disbursement to sites as an interim measure.
+• That the investigators interact with the National Department of Health PrEP Technical Working Group to motivate support of demonstration projects close to the sites.
+• That information is developed to optimise the efficacy of PrEP.
+
+The SAMRC and HVTN together in a leading fashion developed a PrEP access program that has shown remarkable success. We think the issues raised at this summit will be of immense interest to the readers of JIAS.
+
+This manuscript has not been submitted for publication elsewhere. All persons listed as authors have contributed to preparing the manuscript and no person or persons other than the authors listed have contributed significantly to its preparation. All authors have contributed to, seen, and approved the final, submitted version of the manuscript. Thank you for your consideration of this manuscript.
+
+Sincerely,
+
+Prof Glenda E. Gray MBBCH, FCPaed(SA), DSc (honoris causa)
+President & CEO South African Medical Research Council
+Principal Investigator, HIV Vaccine Trials Network
+If you have been invited to submit an article for a supplement, please select the title of the supplement:
+
+ 
+Manuscript Details - Metadata (Please use numbers only)
+Content Information
+ Number of words (excluding the title page, abstract, references, acknowledgements, and wording for tables and figures):	
+3008
+
+ Number of manuscript pages:	
+10
+
+ Number of tables (use 0 for none):	
+1
+
+Illustration Information
+ Total number of figures (use 0 for none):	
+0
+
+ Number of colour figures (use 0 for none):	
+0
+
+
+ 
+Publication Charge
+ All articles published by Journal of the International AIDS Society are fully open access: immediately freely available to read, download and share. To cover the cost of publishing, Journal of the International AIDS Society charges a publication fee.
+
+The Journal of the International AIDS Society standard publication charge is $2,400/£1850/€2200, except for Letters to the Editor, Viewpoints and Editorials for which there is no charge.
+Supplement articles: please select the option "I believe a third-party will pay..." below, and enter JSS as the code (stands for "JIAS Supplement Sponsor").
+
+If your manuscript is accepted, you will be given the option of paying by credit card or invoice. If you believe that payment for your article is covered by a society, institutional or funding agency arrangement, please let us know using the form below.
+
+Not sure if payment for your article could be covered by your institution or funding agency? Use our Institute/Funder Policy Finder tool to check: http://exchanges.wiley.com/authors/oa-policies-by-funder_272.html
+
+Who Will Pay
+
+
+I accept responsibility for paying the publication charge on this article.
+
+If your manuscript is accepted, you will be able to pay by credit card, invoice, or pro forma.
+
+(Please see the “Discounts That May Apply” section for a list of institutions and funding agencies that have agreed to cover a portion of the publication fees.)
+ 
+
+I believe a third-party will pay the publication charge for this article.
+
+Some institutions and funding agencies have agreed to be invoiced directly and pay the Wiley Open Access article publication charge (APC) for their affiliated researchers. To check your eligibility, go to http://www.wileyauthors.com/accountcodes and find the affiliated institution or funder of the corresponding author, then copy the code and paste it here.
+ 	Please enter institution code here:
+ 	
+ 	Please enter your funder and grant / project number if your institution requires this information in order to pay the APC:
+ 	
+ 
+
+I request a waiver of the publication charge for this article.
+
+We offer a complete or partial fee waiver on a case-by-case basis for individual authors or author groups from countries on the Wiley Open Access Waiver and Discount Country List.. Editorial office comments (internal use)
+ 	
+Discounts That May Apply
+
+Please select from the drop-down menus below for all discounts you wish to claim. Please note that the single, highest discount will apply.
+Society Membership Discount
+If the Corresponding Author is a member of the International AIDS Society (IAS) and wishes to request a discount (as applicable), please select it from the list below.
+If the Corresponding Author is not an IAS member but wishes to apply before submitting, the membership application form is available at: www.iasociety.org/membership. To qualify for the discount, please supply your membership number during original submission. The discount will not be applied if you become a member after original submission, or if you suspend your membership before acceptance of your manuscript.
+Please enter the society membership ID number of the corresponding author so we can verify your membership. If you don't know your membership ID you can request this from memberservice@iasociety.org:
+For office use only: Society Discount Code
+Institutional Discount
+The institutions or funding agencies listed below have agreed to cover a portion of the article publication charges in Wiley Open Access Journals for their affiliated researchers. If you are a corresponding author affiliated with one of the organizations listed, please select it from the list below:
+Other Discount
+If you have received another type of discount code, such as a promotional discount code via e-mail or brochure, please enter it below:
+Eligibility for institutional payment via Wiley Open Access account/partnership is based on the date of submission of an article. If your institution ceases to have an active account/partnership arrangement prior to completion of the article submission process, your article will not be eligible for institutional/funder payment.
+
+ 
+Submission Information - Confirm the following:
+ Confirm that the manuscript has been submitted solely to this journal and is not published, in press, or submitted elsewhere.	
+
+
+
+ 
+Conflict of Interest
+Journal of the International AIDS Society requires that all authors disclose any potential sources of conflict of interest. Any interest or relationship, financial or otherwise, that might be perceived as influencing an author’s objectivity is considered a potential source of conflict of interest. These must be disclosed when directly relevant or indirectly related to the work that the authors describe in their manuscript. Potential sources of conflict of interest include but are not limited to patent or stock ownership, membership of a company board of directors, membership of an advisory board or committee for a company, and consultancy for or receipt of speaker’s fees from a company. The existence of a conflict of interest does not preclude publication in this journal.
+
+If the authors have no conflict of interest to declare, they must also state this at submission. It is the responsibility of the corresponding author to review this policy with all authors and to collectively list in the cover letter (if applicable) to the Editor-in-Chief, in the manuscript (in the footnotes, Conflict of Interest or Acknowledgments section), and in the online submission system ALL pertinent commercial and other relationships.
+ Do you or any of your co-authors have a conflict of interest to declare?
+Yes
+
+Confirm that you have stated this conflict of interest in the footnotes, Conflict of Interest or Acknowledgments section of your manuscript as required by the Journal (see the Instructions to Authors).
+(Confirmed)
+
+Provide details and include this information below.
+TK is a Member of the National Essential Medicines List Committee and a Guideline Methodologist for WHO. All other authors declare no conflicts of interest.
+
+
+ 
+Previously Submitted to Journal of the International AIDS Society
+ Has this manuscript previously
+- been submitted via Journal of the International AIDS Society's previous submission site and is now being submitted either for final acceptance or after revision
+- been submitted via the Journal of the International AIDS Society ScholarOne Manuscripts submission website and received a revision decision [revised papers should be submitted as “revisions” and not as “new” papers]
+- been submitted to Journal of the International AIDS Society and been rejected?
+If either of the above is true please answer "Yes".	
+No
+
+If yes, please state previous Journal of the International AIDS Society Manuscript ID:
+
+ 
+Open Access Agreement
+ Confirm that all authors of this submission have read and understood the journal's policy concerning the completion of the Open Access Agreement. This form will be requested if your paper is accepted. Further information can be found in the journal's Author Guidelines.	
+
+
+
+ 
+Supporting Information
+ We allow submission of "Supporting Information". Go to https://authorservices.wiley.com/author-resources/Journal-Authors/Prepare/supporting-information.html to access the Wiley guidelines for the submission of Supporting Information. If you wish to submit Supporting Information, please select the file designation “Supporting Information for review and publication” when uploading your files. Please note that we would encourage you, where possible and appropriate, to include such information in an Appendix in your main document instead of designating it as Supporting Information.
+
+Does your submission include any supporting information files for publication?
+ 
+
+Yes
+
+
+
+No
+
+
+ 
+ 
+
+ 
+	
+- Plagiarism Check iThenticate User Guide
+
+
+Crossref Similarity Check logo	
+Overall Similarity Index Percentage:16%
+
+Report complete. View the Originality Report.
+
+ 
+
+ 
+	
+- Forward to Viewing
+
+
+Viewing
+
+ 
+	
+- Forward to Admin
+
+
+ Watson, Hannah  (assign a different person)
+
+ 
+	
+- Admin Checklist (Date Completed: 11-Mar-2020 )
+
+
+Is the submission complete, are all files submitted in an acceptable format and is the manuscript ready for review?	
+
+
+ Has the author requested a fee waiver?	
+
+
+Have all co-author names been uploaded by the submitting author?	
+
+
+Is the manuscript within the scope of/suitable for the journal?	
+
+
+Does the manuscript main document include keywords?	
+
+
+If the author has claimed a society membership discount, has membership been verified and society discount code provided (Manuscript Information tab>Author-Supplied Data>Edit This Information)?	
+
+
+Supplement articles only: Has author selected "JIAS Supplement Sponsor" as their funder? Is manuscript on list of expected supplemental articles? If yes, copy Supplement Title into "Comments to Payment Administrator" below. If no, unsubmit paper and ask author to select another payment option.	
+
+
+
+ 
+Comments to Payment Administrator:
+  
+
+
+ 
+
+ 
+	
+- Export History 
+
+
+Export Method
+
+Date Exported
+
+History
+
+Remove
+
+Batch:
+Submitted ms export
+
+11-Mar-2020
+
+Exported to file jias-2020-03-0151-20200311082135.zip
+Successfully uploaded jias-2020-03-0151-20200311082135.zip via FTP file to ftp.wiley.com.
+
+
+
+
+ 
+Assign to Batch:
+
+	
+Export Now:
+
+
+ 
+	
+- Editor-in-Chief List
+
+
+Order
+
+Name
+
+Status
+
+History
+
+Remove
+
+ 
+
+	
+ Editorial Office, JIAS
+(assign a different person)
+
+ 
+
+Assigned (11-Mar-2020)
+
+
+
+ 
+	
+- Deputy Editor List
+
+
+Order
+
+Name
+
+Status
+
+History
+
+Remove
+
+ 
+
+	
+ Editorial Office, JIAS
+(assign a different person)
+
+ 
+
+Assigned (11-Mar-2020)
+
+
+
+ 
+	
+- EIC Decision
+
+
+Make a Decision
+
+	
+Accept
+
+	
+Minor Revision
+
+	
+Major Revision
+
+	
+Reject
+
+	
+Reject without Review
+
+Decision comments (internal use only):
+
+		
+ 	
+Reviews
+
+# reviews required to make decision	
+3
+
+ 
+
+ 
+ 
+	
+- Assign to Issue
+
+
+Not assigned to issue.
+
+Assign to:
+
+
+
+
+ 
+	
+- Companion Papers
+
+
+Manuscript ID
+
+Manuscript Title
+
+Date Submitted
+
+Author
+
+Status
+
+Delete
+
+Type
+
+
+
+
+ 
+	
+- Flag This Manuscript
+
+
+	
+Leave this manuscript unflagged
+
+	  Accepted Manuscript	 		  Plagiarism check needed
+	  	 		  
+	  .R2	 		  
+	  	 		  Resubmission
+	  	 		  .R1
+	  TDA with Reports	 		  TDA without Reports
+	  	 		  
+	  	 
+
+
+ 
+	
+- Notes
+
+
+Note Title
+
+Updated By
+
+Updated On
+
+Edit
+
+Delete
+
+This document has no notes.
+
+
+
+Previous Document	 1 / 39 	Next Document
+
+
+ScholarOne logoClarivate Analytics logo
+© Clarivate Analytics |  © ScholarOne, Inc., 2020. All Rights Reserved.
+ScholarOne Manuscripts and ScholarOne are registered trademarks of ScholarOne, Inc.
+ScholarOne Manuscripts Patents #7,257,767 and #7,263,655.
+
+ @ScholarOneNews  |   System Requirements  |   Privacy Statement  |   Terms of Use
+
+ Admin: configure instructions | 

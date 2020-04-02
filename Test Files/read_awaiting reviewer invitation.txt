@@ -1,0 +1,890 @@
+ScholarOne Manuscripts™
+JIAS Editorial Office 
+Instructions & Forms
+Help
+Log Out
+
+ Home
+ Author
+ Review
+ Manage 
+Admin Dashboard / Awaiting Reviewer Invitation / Details for JIAS-2019-11-0612.R1 Search
+Manuscript ID  
+Search
+
+
+
+
+	This section of the manuscript details usually includes the Manuscript Checklist, the author-supplied metadata, and add additional data as needed to complete the check-in process. If a companion paper should accompany the review of this paper, you can search for and link the two papers by using the companion paper feature on the Details tab.   Read More ...
+ 
+	
+Previous Document	 1 / 10 	Next Document
+	
+Invite Reviewers
+
+
+
+
+
+
+
+
+No Notes Added
+Add A Note
+ 
+
+	
+JIAS-2019-11-0612.R1
+
+Submitted: 10-Mar-2020; Last Updated: 11-Mar-2020; 1 day, 10 hours in review
+	
+A review of HIV pre-exposure prophylaxis (PrEP) programs by delivery models in the Asia-Pacific through the healthcare accessibility framework
+
+	
+Lee, Shui-shan (proxy) (contact); Lau, Janice Y C; Hung, Chi Tim
+
+	
+Review
+
+	
+Wiley - Manuscript id of previous submission: JIAS-2019-11-0612 edit
+
+	
+Invite Reviewers (Due 14-Mar-2020)
+3 active selections; 0 invited; 0 agreed; 0 declined; 0 returned
+
+DE: Phanuphak, Nittaya (proxy)
+EIC: Editorial Office, JIAS
+ADM: Watson, Hannah (proxy)
+
+   HTML    PDF   Supplemental Files    Original Files     Abstract     Cover Letter     External Searches     Author's Response   
+
+R1
+
+ 	
+ 
+
+ 
+	
+- Peer Review Milestones
+
+
+Date Submitted:
+
+10-Mar-2020
+ 
+Admin:
+
+Watson, Hannah  AU REV VIEW ADM PROD 
+proxy	
+Date to Admin:
+
+10-Mar-2020
+
+Admin:
+
+ Admin	
+Date to Admin:
+
+11-Mar-2020
+
+Editor-in-Chief:
+
+Editorial Office, JIAS  AU REV DE EIC ADM VIEW PROD 	
+Date to Editor-in-Chief:
+
+11-Mar-2020
+
+Deputy Editor:
+
+Phanuphak, Nittaya  AU REV DE 
+proxy	
+Date to Deputy Editor:
+
+11-Mar-2020
+
+
+
+ 
+	
+- Duplicate Submission Check
+
+
+This feature searches other submissions to this site and displays a relevancy % on both the manuscript title and the full author list to help identify potential duplicate submissions. The manuscript with the highest relevancy % on both title and author list will be displayed first.
+
+
+
+ 
+	
+- Version History
+
+
+ 
+
+Manuscript ID
+
+Manuscript Title
+
+Date Submitted
+
+Decision Letter & Response
+
+Switch
+Details
+
+	
+JIAS-2019-11-0612.R1
+
+A review of HIV pre-exposure prophylaxis (PrEP) programs by delivery models in the Asia-Pacific through the healthcare accessibility framework 
+
+10-Mar-2020
+
+ 
+ 	
+JIAS-2019-11-0612
+
+A review of HIV pre-exposure prophylaxis (PrEP) programs by delivery models in the Asia-Pacific through the healthcare accessibility framework 
+
+01-Nov-2019
+
+ 	
+view author's response
+
+ 	 view the authors response to the decision letter for JIAS-2019-11-0612
+ 	
+view decision letter
+
+ 	 view the decision letter for JIAS-2019-11-0612
+
+
+ 
+	
+- Author-Supplied Data
+
+
+Wiley - Manuscript type:
+
+Review
+
+Title:
+
+A review of HIV pre-exposure prophylaxis (PrEP) programs by delivery models in the Asia-Pacific through the healthcare accessibility framework
+
+Manuscript ID:
+
+JIAS-2019-11-0612.R1
+
+Funding Information:
+
+There are no funders to report for this submission
+
+Submitting Author:
+
+		
+	Lau, Janice Y C  (proxy)
+	
+primary affiliation
+Dr
+Chinese University of Hong Kong - Stanley Ho Centre for Emerging Infectious Diseases
+2/F, School of Public Health Building Prince of Wales Hospital Hong Kong
+Hong Kong
+
+Authors & Institutions:
+
+ 
+
+Lau, Janice Y C
+proxy
+ https://orcid.org/0000-0003-0925-2012
+
+ 		
+Dr
+Chinese University of Hong Kong Ringgold standard institution - Stanley Ho Centre for Emerging Infectious Diseases
+2/F, School of Public Health Building Prince of Wales Hospital , Hong Kong
+Hong Kong
+
+
+Hung, Chi Tim
+proxy	 		
+Prof
+Chinese University of Hong Kong Ringgold standard institution - JC School of Public Health and Primary Care
+2/F, School of Public Health Building Prince of Wales Hospital, Hong Kong
+Hong Kong
+
+
+Lee, Shui-shan
+proxy
+Corresponding Author	 		
+Prof
+Chinese University of Hong Kong Ringgold standard institution - Stanley Ho Centre for Emerging Infectious Diseases
+2/F, School of Public Health Building, Prince of Wales Hospital, Shatin, Hong Kong , New Territories
+Hong Kong
+
+Contact Author (populates the ##PROLE_AUTHOR_..## e-mail tags):
+
+		 	
+Current Contact Author: Lee, Shui-shan
+(proxy)
+
+Running Head:
+
+A review of PrEP programs by delivery models
+
+Discipline:
+
+Operational and Implementation Sciences
+
+Keywords:
+
+HIV prevention, PrEP
+
+Additional Keywords:
+
+Implementation  , Delivery Model  , Accessibility  , Asia-Pacific  , Pre-exposure prophylaxis 
+
+Author Recommended Reviewers:
+
+Mark Boyd The University of Adelaide Faculty of Health and Medical Sciences Ringgold standard institution - mark.boyd@adelaide.edu.au, Prof Boyd is an internationally recognised infectious disease expert, with a focus in HIV research
+Chen-Seng Wong NUS Yong Loo Lin School of Medicine Ringgold standard institution - chen_seng_wong@ttsh.com.sg, Dr Wong is a Consultant Infectious Diseases Physician and actively involved in HIV care and research
+
+Author Opposed Reviewers:
+
+Author's Cover Letter:
+
+3 March 2020
+
+Editor-in-Chief
+Journal of the International AIDS Society
+
+
+Dear Editor,
+
+Re: A review of HIV pre-exposure prophylaxis (PrEP) programs by delivery models in the Asia-Pacific through the healthcare accessibility framework
+(Manuscript ID JIAS-2019-11-0612 [email ref: DL-SW-2-a])
+
+I am writing to submit the revised version of the above review article titled manuscript for consideration for publication in the Journal of the International AIDS Society. We appreciate much for the comments made by the editor and the reviewers, and we have made responses and revisions accordingly.
+
+This study identified PrEP programs reported in the Asia-Pacific, which were classified by delivery models and assessed with a healthcare accessibility framework. In this review, a typology of 4 PrEP delivery models was delineated: (a) fee-based public service model; (b) fee-based community setting model; (c) free public service model; and (d) free community setting model. These models were assessed using Levesque framework of healthcare accessibility that could benchmark best practices. We believe this work will add value in addressing a knowledge gap of best delivery models and strategies for broadening access of the vulnerable communities, and that provides references for effective models to be designed.
+
+We confirm that all authors, who have contributed significantly to the work, have read and approved the manuscript. The study has neither been published nor is being considered for publication elsewhere. We also confirm that the review reported in this manuscript is entirely original and no material submitted as part of the manuscript infringes existing copyrights or the rights of a third party. We have no conflicts of interest to disclose.
+
+
+
+Thank you so much for your kind consideration!
+
+
+Yours sincerely,
+
+SS Lee
+Corresponding author on behalf of all other authors
+Author's Response:
+
+RESPONSES TO COMMENTS
+Editorial Comments to Authors:
+• Please carefully address all the reviewers' and editors' comments.
+Response: All the comments from the editor and reviewers have been addressed.
+
+• Kindly add the time frame of your study to the methods section of the Abstract.
+Response: The time frame of the study has been added in the methods section of the Abstract: “We performed literature search on PubMed and Ovid MEDLINE using relevant search terms, hand searched gray literature by visiting relevant websites, examined reference lists, and contacted authors for clarification of included PrEP programs reported through April 2019.”
+(Line 11-12, page 2)
+
+• Please consider colour blind readers and black and white printing and revise the colours of the figures accordingly.
+Response: the figures have been changed to black and white
+(Figure 1, 2, and 3)
+
+• The editors suggest to avoid the term “articles” for the aggregated data sources.
+Response: the term “articles” have been revised to “publications”
+(Line 17-18, page 2, in the Abstract)
+(Line 75, 78, page 5; line 107, 110, page 6; line 129, 132, page 7 in the main text)
+
+Responses to Editor’s comments
+1. Methods: Please specify which search terms the authors used to select articles from the Asia-Pacific for this review.
+Response: The following search terms have been used and are now added in the manuscript: “(pre exposure prophylaxis OR prep) AND (service OR model OR program *' OR pilot OR package OR project OR intervention OR care adj3 model OR trial OR rollout OR scale up OR evaluate *' OR implemented *' OR delivery *') AND (risk behavior OR adherence OR condom OR access OR awareness) AND HIV”. Limit was set to English language publications and human studies and date from 1 January 2010 to the end of March 2019.
+(Line 78-83, page 5)
+
+2. Methods: Many references are invited presentations (Refs # 35, 37, 49, and 51) and not peer-reviewed articles or conference abstracts. Please give justification on why the authors think these materials should be included in this review.
+Response: Conference abstracts are included for the following reasons: “For the purpose of retrieving the most up-to-date research findings for the review, we have included conference papers and abstracts reporting the design and interim results of ongoing projects or those conducted in phases, in addition to peer reviewed articles. We have subsequently emailed authors of included studies for clarification of information reported, and confirmed if there’re additional relevant publications that might have been published or become publicly accessible.”
+(Line 101-106, page 6)
+
+3. Table 1: RASAT should be RSAT. The description of access point(s) for PrEP-PAPA in Taiwan incorrectly included clinics in Thailand.
+Response: The word “RASAT” has been revised to “RSAT”
+(Table 1, page 8)
+
+4. Tables 1 and 2: Please add footnote explaining abbreviations used in each table.
+Response: Footnote has been added under Table 1 as below:
+aThai Red Cross AIDS Research Centre
+bRainbow Sky Association of Thailand
+CService Workers IN Group
+dSisters Foundation
+eDurbar Mahila Samanwaya Committee
+
+The term “NSW” in Table 1 has been spelt in full as “New South Wales”
+
+There are no abbreviations in Table 2 that need to be explained in footnotes, and thus no amendment has been made in this part.
+
+Footnotes have been added to Table 3 for explaining the abbreviations:
+aAIDS Council of New South Wales
+bNew Zealand AIDS Foundation
+cBody Positive
+dRainbow Sky Association of Thailand
+eService Workers IN Group
+fSisters Foundation
+gMPlus Foundation
+hDurbar Mahila Samanwaya Committee
+
+5. Construct 2: The authors used ‘acceptability’ as part of ‘accessibility’ definition. Is the title of this construct ‘acceptability’ or ‘accessibility’? Accessibility seems to provide a better meaning as an overall title of this construct.
+Response: We appreciate the thoughtful comments. Considering acceptability as one of the constructs underpinning the Levesque framework of accessibility adopted in this review, which specifies the aspect of “cultural and social factors”, we consider it more appropriate to use “acceptability” in the title and have therefore decided to keep it as it is.
+
+6. Construct 2: Having only one TGW-specific CBO should not explain poor adherence of TGW as the large majority of TGW accessed PrEP through this CBO in this program.
+Response: Thank you for your kind comments. Having only one TGW-specific CBO is the characteristic of the program rather than the contributing factor to low adherence. The authors suggested other factors which should be more appropriately placed under the construct of “availability”. Revisions have been made as below: “…However, meeting the service needs of highly mobile populations could be a challenge. In the same program, lower adherence was observed in the Chonburi province where a majority of participants were TGW who also engaged in sex work. Factors influencing adherence level were high mobility of sex workers and the irregular time in meeting with clients [36].”
+(Line 319-323, page 16)
+
+7. Construct 3: By definition, construct 3 should describe more clearly the followings; i) when and where were services provided and ii) who were service providers.
+Response: We agree with the comments and have further clarified the definition of availability by making amendments as below:
+“…Availability characteristics include the number and type of facilities (e.g., public hospitals, CBOs-operated clinics, private clinics), scheduling (specific time throughout the day, e.g., daytime hours, evening hours, weekdays, weekends), and healthcare workforce (presence of trained and competent service providers, e.g., physicians, nurses, or lay providers).”
+(Line 303-307, page 16)
+
+8. Model preferences in Asia-Pacific: Thailand has now included PrEP under its Universal Health Coverage Scheme.
+Response: We agree with the comments and have added information about the current situation in Thailand, as well as Vietnam (as suggested by Reviewer 1): “Funding has become more crucial for PrEP rollout. In Thailand, PrEP has recently been included under its Universal Health Coverage Scheme (from October 2019 onwards). Free PrEP was also being scaled up in 26 provinces in Vietnam through PEPFAR, Global Fund and the government [64].”
+(Line 458-461, page 21)
+
+9. References: Please check missing data and format (Refs #28, 46).
+Response: Ref#28: the date has been corrected as “2016 May 17-19”
+(Line 627, page 28)
+
+Ref#46 has been amended as “Myers JM, Coughlan E, Giola M, Rich J. PrEP implementation among gay and bisexual men in a policy vacuum: the power of cross sector collaboration in New Zealand. Paper presented at: The 22nd International AIDS Conference; 2018 July 23-27. Amsterdam, Netherlands.”
+(Line 702-703, page 30)
+
+We noted that ref#47 has duplicated ref#45 in the original text by mistake. Amendment has been made: “Saxton P, Azariah S, Franklin RA, Forster RF, Werder SF, Jenkins R, et al. Will gay and bisexual men who use methamphetamine participate in PrEP services? Paper presented at: The 22nd International AIDS Conference; 2018 July 23-27. Amsterdam, Netherlands. p.568.
+(Line 705-708, page 30)
+
+We have also updated the flow chart, with the counts of peer-reviewed paper and conference papers or abstracts amended as 12 and 12 respectively.
+(Fig 1)
+
+10. Figure 2: This seems like the key figure to describe findings from this study. However, no description was provided in text around how scores were provided for each construct in each model. For examples, how could a free public service be more ‘Available’ than a free community setting, while the latter provided service during after-hours?
+Response: We agree that the way of generating the scores need to be clarified. Please find revision as below: “The score was a reflection of the degree of availability of the types of services meeting the needs of the clients served. A higher score was given to a service with more abundant operational inputs as reported. The authors independently scored the models; the results of which were then combined and averaged to give the final scores.”
+(Line 121-124, page 6)
+
+Since the availability characteristics include facilities, service hours and healthcare staff (as responded to comment #7), we gave a higher score for the free public service when a team of trained healthcare staff (e.g., the EPIC-NSW) was available in the setting.
+
+11. Figure 3: Please consider using the word ‘client’ instead of patient for boxes under ‘Appropriateness’.
+Response: The word “patient” has been revised to “client”.
+(Figure 3)
+
+12. Figure 3: The actions under ‘Availability’ need to involve or be closely linked to ‘Enabling conditions’ as well. Examples include the institutionalization and legalization of non-conventional healthcare workforce (such as lay providers or nurses) or the use of consent process as described.
+Response: We have revised the figure by adding “institutionalize and legalize non-conventional healthcare workforce” in the white-colored background box with an arrow pointing to “Availability”. The overall layout has been revised for your easier reference.
+(Figure 3)
+
+13. Table 3: Please consider adding a column to describe populations(s) of clients each clinic/hospital in each model served.
+Response: We have added a column to describe populations.
+(Table 3)
+
+14. Table 3: There were quite confusing/overlapping characteristics of each model described for different constructs. Please consider revising this table based on the definitions the authors provided for each construct in the text.
+Approachability: Currently, the authors focused on offline and online reach/recruitment methods which were clear.
+Acceptability: This described how the model got the clients to be linked to/started the services. What was described for O2O under ‘Availability’ should be moved to ‘Acceptability”.
+Response: We appreciate the comments. Considering that technology has enhanced O2O program availability, we have retained this part but added a sentence to explain why it should fall in this construct. “Technology can have a practical impact on increasing the availability of services.”
+(Line 323-324, page 16)
+
+Availability: Right now the processes leading to/supporting availability were described here as well. Please consider only describe i) when (service hours) and where (location, private clinic, public hospital, etc.) the service were provided, and ii) who provided the services (doctors, nurses, lay providers, pharmacists, etc.). Processes to support ‘Availability’, such as training and asking for consent form, should be added as remarks in another column.
+Response: We agree with the comments and have made the following revisions:
+We have rephrased the topic sentence as “An adequately sized healthcare workforce plays the critical role of broadening PrEP access.”
+(Line 330, page 17)
+
+We also moved the sentence, “Training provision has been included as one of the components across all models, but only a few programs classified under the free public service model had specified the types of training and how the skills would benefit PrEP delivery at an organizational and system level.” to the later part of the paragraph to distinguish it as one of the ways to support availability.
+(Line 344-347, page 17)
+
+- Appropriateness: This seems like a good place to describe components of services. Any description related to community engagement in the design should not be described here (but may be under Acceptability).
+Response: We agree with the comments and have moved the description related to community engagement to the construct of acceptability.
+
+For PrEP-P4P: The sentence “Putting clients at the centre of care by meeting their needs was highlighted by the efforts of needs assessment as well as service co-creation.” has been moved to the construct of acceptability.
+(Line 279-281, page 15)
+
+For PrEP-India and Project PrEPPY: community engagment has already been described so the sentence “engaging community members to taking part in implementing responsive services” has been removed to avoid redundancy.
+
+To clarify the role of community engagement under the construct of acceptability, we have rephrased the topic sentence as “Services developed after taking reference of local opinions could have been more capable of meeting the unique needs of the community. A focus on acceptability of service by involving community leaders and members…”
+(Line 250-252, page 14)
+
+- P4P: Please describe differences (in availability, likely through public hospitals vs. private clinics) which the model has had to make them eligible in the first two models.
+Response: To describe the differences, we have firstly clarified the meaning of “community setting” by giving a clearer definition: “….., which involved a range of settings including private clinics and community-based organization (CBOs)-operated clinics.”
+(Line 143-144, page 7)
+
+We then explained the reason of placing P4P in the first two models by adding the following revision:
+“For the KP-led Prepped for PrEP-P4P, it was classified under both the fee-based public service model, and fee-based community setting model on the basis of the availability of its assessment service in the community setting (i.e., CBO)s, and PrEP prescription in both community setting (i.e., private clinics) and public setting (i.e., public clinics).”
+(Line 158-162, page 11)
+
+- PrEP Substudy: Referral described was not from the same Test, Treat, and Prevent program as described under the ‘Free public service model. Samples were shipped for machine-based 4th gen assay (not the 4th gen Alere).
+Response: We apologise for the confusion and have revised Table 3 as below:
+For the column on availability, we have replaced the description about referral from Test Treat program to “Staff have been trained and were made available at all clinic sites who openly discussed study-related questions prior to clients’ participation.”
+For the column on appropriateness. We have replaced the “4th generation Alere” by “laboratory-based 4th generation assay”
+
+In the manuscript, we have revised the description by focusing on the benefits of peer-driven recruitment strategy as below:
+“….the potential of peer-driven recruitment intervention to reach HIV-negative MSM and transgender women was demonstrated in the Test, Treat, and Prevent HIV Program, allowing service providers to take steps to deliver timely HIV prevention services [30].”
+(Line 205-207, page 12)
+
+15. Language needs to be checked by a native speaker.
+Response: The revised manuscript has been reviewed by an English speaking staff in the Research Team
+
+Responses to Reviewer 1’s comments
+Major considerations
+• Cut off time for literature review: Given how new PrEP is in Asia-Pacific, a March 2019 cut-off of the lit review limits use of more recent data (including from IAS2019) that would further round-out this article. To ensure this review is more relevant when published, consider updating the lit review. In Line 446, there is a reference that outcome data was not available for the PrEP models described. Allowing for a more updated lit review would enable a richer dataset including PrEP outcome data to reference.
+Response: We agree to the needs to ensure that the reviewed literature is up-to-date. While the cut-off date of the literature search was April 2019, we have been keeping track of new development with the authors of selected publications between May and June. To supplement the newly appeared literature at the revision stage, we visited the IAS 2019 programme website where a relevant conference abstract was identified and has been included as below:
+“Similar model has also been implemented in Malaysia where PrEP was delivered through a demonstration project in the community setting comprising clinics operated by private, CBO and academia [63].“
+(Line 435-437, page 20)
+
+“Funding has become more crucial for PrEP rollout. In Thailand, PrEP has recently been included under its Universal Health Coverage Scheme (from October 2019 onwards). Free PrEP was being scale up in 26 provinces in Vietnam through PEPFAR, Global Fund and the government [64]. While PrEP remained relatively unaffordable in Taiwan, an update of the guidelines of 2018 specifying who would benefit most from PrEP was shown to have expedited program implementation [65].”
+(Line 458-464, page 21)
+
+References are added in the reference list as Ref#63-65
+(Line 776-786, page 32- 33)
+
+• Line 45: “PrEP utilization has remained low.” Low utilization is primarily due to limited service availability. That is the critical factor that limits PrEP use – where services are in place, yes, low awareness, non-adherence, cost, stigma are also factors that limit use. Based on this, please better describe/elaborate on reasons for low levels of PrEP utilization.
+Response: Factors have been further elaborated as follow: “Barriers leading to its low utilization include poor awareness [8], perceived side-effects [9-11], concerns about maintaining adherence [8-9], costs [11-13], and anticipated stigma [11, 14-16]…“
+(Line 46-48, page 4)
+
+• Search terms: Why not use “Asia-Pacific” or related geographic terms to help narrow the search?
+Response: The reason for not using “Asia-Pacific” as the search term is that retrievals based its use was ineffective as most studies reported were often country-specific. We have therefore identified studies conducted in geographic locations that fall within the region of Asia-Pacific to obtain the maximum number of studies.
+
+• Conclusions: Here it will be important to update your lit review as Thailand is now also financing PrEP through the National Health Security Office as part of Universal Health Coverage (from 1 October 2019 onwards). This is in publically available slides (IAS Educational Fund Malaysia and IAS2019). Free PrEP is now being scaled in Vietnam to 26 provinces through PEPFAR and Global Fund (IAS 2019).
+Response: We have updated our searched literature about Thailand and Vietnam and have put this information under the sub-section of “Model preferences in the Asia Pacific”, which we find more appropriate.
+(Line 458-461, page 21)
+
+Minor considerations
+• Line 40: PrEP does not necessarily require a prescription. Programs are starting to move away from requiring this given can limit access and given PrEP’s safety profile. Suggest removing this (requires a prescription) as part of describing PrEP.
+Response: The word “prescription-based” has been removed.
+(Line 40, page 4)
+
+• Line 185/187: Please cite what program you are referencing. I think it’s KPLHS in Thailand but it is not clear.
+Response: It refers to “the Test, Treat, and Prevent HIV Program” and has been cited in the original text.
+(Line 207, page 12)
+
+We noted that a program in the same paragraph has not been cited properly. We’ve revised to “…PrEP Princess program in Thailand.”
+(Line 214, page 13)
+
+• Line 254: Suggest using “continuation” not “retention” when talking about duration of PrEP use.
+Response: The word has “retention” has been revised to “continuation”.
+(Line 282, page 15)
+
+• Line 362: “…was highlighted by the free community setting”. I think you mean fee-based community setting since you refer to KP-led Prepped for PrEP.
+Response: The description referred has been removed due to overlapping.
+(Line 403, page 19)
+
+Responses to Reviewer 2’s comments
+1. The first sentence in the introduction underestimates the efficacy of PrEP when taken with "high adherence." The US CDC website states that PrEP is 99% effective at reducing HIV infections when taken daily. It would be more accurate to state that effectiveness with high adherence is >90% or >95%
+Response: The phrase has been revised to “….an intervention for HIV prevention, which could, with high adherence achieve an effectiveness of >90%,”.
+(Line 41-42, page 4)
+
+2. As the only data generation and reporting in the paper are the data that went into figure 2, it would be useful if the methods for determining the scores were described in more detail. For example, each service delivery has multiple implementation projects reported in Table 3. Were the scores for the 5 different factors for each model generated for the model as a whole in one step? Or were scores generated for each program and then combined or averaged in some way? Were then scores generated by one person, by committee, or independently by multiple people and tehn averaged?
+Response: We agree that the way of generating the scores need to be clarified. Please find revision as below:
+“The score was a reflection of the degree of availability of the types of services meeting the needs of the clients served. A higher score was given to a service with more abundant operational inputs as reported. The authors independently scored the models; the results of which were then combined and averaged to give the final scores.”
+(Line 121-124, page 6)
+
+3. Lines 341-43: please provide context to the cost of 10,000 VND. Per day? Actually, if per day not much different than $15/month. In addition, the sentence seems to be asserting that 77% is a higher percentage than 83%.
+Response: Our apologies for the confusion arising from data reported in unrelated literature. We have deleted “and a higher percentage (77%) was willing to pay at a cost of 10,000 VND (US $0.43)”.
+(Line 383-384, page 18)
+
+Responses to Reviewer 3’s comments
+- A thorough proofreading to correct grammatical and punctuation errors and inconsistencies is strongly recommended to improve the readability of the manuscript in general. This includes a consistent use of tense in the manuscript, as well as the use of singular/plural clauses as appropriate - whether in the presentation of findings, or in the description of the reviewed articles.
+Response: Thorough proofreading has been performed before submission of the revised manuscript
+
+- In addition, a close reading and reworking of the manuscript to improve turn of phrase would greatly enhance the credible arguments put forth by the authors. In its current form, parts of the manuscript sound slightly awkward – the list below is illustrative but by no means exhaustive.
+- Line 56: “concentrating among MSM, people who injected drug (PWID)..”: concentrated and people who inject drugs might be more appropriate.
+Response: Rephrased to “…concentrated in people who inject drugs (PWID),…”
+(Line 56, page 4)
+
+- Line 59: It is not clear what the authors mean by the phrase “In this connection”: perhaps in this context might be preferable.
+Response: Rephrased to “In this context”.
+(Line 59, page 4)
+
+- Line 89: “.. a knowledge translation of PrEP being an intervention to address HIV prevention in the real-world setting”: this definition is unclear, and would benefit from clarification and possibly rephrasing.
+Response: Rephrased to “…the implementation of the provision of PrEP for HIV prevention in the real-world setting“
+(Line 92-93, page 5)
+
+- Line 181: “… to reach targeted populations…”: is awkward phrasing; might key affected populations be more appropriate here?
+Response: Rephrased to “…. to reach key affected populations”.
+(Line 202, page 12)
+
+- Line 214/215: “… with the advantages of creating and endeavouring a safe, comfortable..”: unclear what is meant here – will benefit from rephrasing.
+Response: Rephrased to “…endeavouring an inclusive, non-judgmental and welcoming ..”
+(Line 238, page 13)
+
+- Line 283/284: “… some at-risk populations who have a different lifestyle..”: this sentence is vague and unedifying – I would recommend rephrasing for clarity and to avoid the patina of judgment in its current form.
+Response: Rephrased to “Offering flexible clinic appointments was a means to minimize clinic visit burden.”
+(Line 315-316, page 16)
+
+- Line 318: “.. out of reach of the prevention pill.”: this sounds rather unscientific, would recommend rephrasing the entire sentence.
+Response: Rephrased to “…. could potentially make HIV prevention financially inaccessible to individuals with limited income.”
+(Line 358-359, page 17)
+
+
+If you have been invited to submit an article for a supplement, please select the title of the supplement:
+
+ 
+Manuscript Details - Metadata (Please use numbers only)
+Content Information
+ Number of words (excluding the title page, abstract, references, acknowledgements, and wording for tables and figures):	
+4691
+
+ Number of manuscript pages:	
+30
+
+ Number of tables (use 0 for none):	
+3
+
+Illustration Information
+ Total number of figures (use 0 for none):	
+3
+
+ Number of colour figures (use 0 for none):	
+2
+
+
+ 
+Publication Charge
+ All articles published by Journal of the International AIDS Society are fully open access: immediately freely available to read, download and share. To cover the cost of publishing, Journal of the International AIDS Society charges a publication fee.
+
+The Journal of the International AIDS Society standard publication charge is $2,400/£1850/€2200, except for Letters to the Editor, Viewpoints and Editorials for which there is no charge.
+Supplement articles: please select the option "I believe a third-party will pay..." below, and enter JSS as the code (stands for "JIAS Supplement Sponsor").
+
+If your manuscript is accepted, you will be given the option of paying by credit card or invoice. If you believe that payment for your article is covered by a society, institutional or funding agency arrangement, please let us know using the form below.
+
+Not sure if payment for your article could be covered by your institution or funding agency? Use our Institute/Funder Policy Finder tool to check: http://exchanges.wiley.com/authors/oa-policies-by-funder_272.html
+
+Who Will Pay
+
+
+I accept responsibility for paying the publication charge on this article.
+
+If your manuscript is accepted, you will be able to pay by credit card, invoice, or pro forma.
+
+(Please see the “Discounts That May Apply” section for a list of institutions and funding agencies that have agreed to cover a portion of the publication fees.)
+ 
+
+I believe a third-party will pay the publication charge for this article.
+
+Some institutions and funding agencies have agreed to be invoiced directly and pay the Wiley Open Access article publication charge (APC) for their affiliated researchers. To check your eligibility, go to http://www.wileyauthors.com/accountcodes and find the affiliated institution or funder of the corresponding author, then copy the code and paste it here.
+ 	Please enter institution code here:
+ 	
+ 	Please enter your funder and grant / project number if your institution requires this information in order to pay the APC:
+ 	
+ 
+
+I request a waiver of the publication charge for this article.
+
+We offer a complete or partial fee waiver on a case-by-case basis for individual authors or author groups from countries on the Wiley Open Access Waiver and Discount Country List.. Editorial office comments (internal use)
+ 	
+Discounts That May Apply
+
+Please select from the drop-down menus below for all discounts you wish to claim. Please note that the single, highest discount will apply.
+Society Membership Discount
+If the Corresponding Author is a member of the International AIDS Society (IAS) and wishes to request a discount (as applicable), please select it from the list below.
+If the Corresponding Author is not an IAS member but wishes to apply before submitting, the membership application form is available at: www.iasociety.org/membership. To qualify for the discount, please supply your membership number during original submission. The discount will not be applied if you become a member after original submission, or if you suspend your membership before acceptance of your manuscript.
+Please enter the society membership ID number of the corresponding author so we can verify your membership. If you don't know your membership ID you can request this from memberservice@iasociety.org:
+For office use only: Society Discount Code
+Institutional Discount
+The institutions or funding agencies listed below have agreed to cover a portion of the article publication charges in Wiley Open Access Journals for their affiliated researchers. If you are a corresponding author affiliated with one of the organizations listed, please select it from the list below:
+Other Discount
+If you have received another type of discount code, such as a promotional discount code via e-mail or brochure, please enter it below:
+Eligibility for institutional payment via Wiley Open Access account/partnership is based on the date of submission of an article. If your institution ceases to have an active account/partnership arrangement prior to completion of the article submission process, your article will not be eligible for institutional/funder payment.
+
+ 
+Submission Information - Confirm the following:
+ Confirm that the manuscript has been submitted solely to this journal and is not published, in press, or submitted elsewhere.	
+
+
+
+ 
+Conflict of Interest
+Journal of the International AIDS Society requires that all authors disclose any potential sources of conflict of interest. Any interest or relationship, financial or otherwise, that might be perceived as influencing an author’s objectivity is considered a potential source of conflict of interest. These must be disclosed when directly relevant or indirectly related to the work that the authors describe in their manuscript. Potential sources of conflict of interest include but are not limited to patent or stock ownership, membership of a company board of directors, membership of an advisory board or committee for a company, and consultancy for or receipt of speaker’s fees from a company. The existence of a conflict of interest does not preclude publication in this journal.
+
+If the authors have no conflict of interest to declare, they must also state this at submission. It is the responsibility of the corresponding author to review this policy with all authors and to collectively list in the cover letter (if applicable) to the Editor-in-Chief, in the manuscript (in the footnotes, Conflict of Interest or Acknowledgments section), and in the online submission system ALL pertinent commercial and other relationships.
+ Do you or any of your co-authors have a conflict of interest to declare?
+No
+
+Confirm that you have stated this conflict of interest in the footnotes, Conflict of Interest or Acknowledgments section of your manuscript as required by the Journal (see the Instructions to Authors).
+
+
+Provide details and include this information below.
+
+ 
+Previously Submitted to Journal of the International AIDS Society
+ Has this manuscript previously
+- been submitted via Journal of the International AIDS Society's previous submission site and is now being submitted either for final acceptance or after revision
+- been submitted via the Journal of the International AIDS Society ScholarOne Manuscripts submission website and received a revision decision [revised papers should be submitted as “revisions” and not as “new” papers]
+- been submitted to Journal of the International AIDS Society and been rejected?
+If either of the above is true please answer "Yes".	
+Yes
+
+If yes, please state previous Journal of the International AIDS Society Manuscript ID:
+JIAS-2019-11-0612
+
+
+ 
+Open Access Agreement
+ Confirm that all authors of this submission have read and understood the journal's policy concerning the completion of the Open Access Agreement. This form will be requested if your paper is accepted. Further information can be found in the journal's Author Guidelines.	
+
+
+
+ 
+Supporting Information
+ We allow submission of "Supporting Information". Go to https://authorservices.wiley.com/author-resources/Journal-Authors/Prepare/supporting-information.html to access the Wiley guidelines for the submission of Supporting Information. If you wish to submit Supporting Information, please select the file designation “Supporting Information for review and publication” when uploading your files. Please note that we would encourage you, where possible and appropriate, to include such information in an Appendix in your main document instead of designating it as Supporting Information.
+
+Does your submission include any supporting information files for publication?
+ 
+
+Yes
+
+
+
+No
+
+
+ 
+ Ethics
+ Please insert your ethical statement below. This should include approval by any ethical boards and your consent or consent waiver procedure. If your article does not require an ethical statement (for example if it is a review), please state this. Your ethical statement should also be included in your methods section.
+It is a review and therefore an ethical statement is not required.
+
+
+ 
+ Dates of data collection
+ Please state the dates between which your data was collected. Literature reviews should list when the review was completed and the dates of the literature reviewed. This information should also be included in the methods section of your main article and abstract.
+March-April 2019
+
+
+ 
+ 
+
+ 
+	
+- Plagiarism Check iThenticate User Guide
+
+
+Crossref Similarity Check logo	
+Select the file for submission to iThenticate :
+
+
+Or view the latest report on this manuscript:
+
+View the Originality Report.
+
+
+ 
+
+ 
+	
+- Forward to Viewing
+
+
+Viewing
+
+ 
+	
+- Forward to Admin
+
+
+ Watson, Hannah  (assign a different person)
+
+ 
+	
+- Admin Checklist (Date Completed: 11-Mar-2020 )
+
+
+Is the submission complete, are all files submitted in an acceptable format and is the manuscript ready for review?	
+
+
+ Has the author requested a fee waiver?	
+
+
+Have all co-author names been uploaded by the submitting author?	
+
+
+Is the manuscript within the scope of/suitable for the journal?	
+
+
+Does the manuscript main document include keywords?	
+
+
+If the author has claimed a society membership discount, has membership been verified and society discount code provided (Manuscript Information tab>Author-Supplied Data>Edit This Information)?	
+
+
+Supplement articles only: Has author selected "JIAS Supplement Sponsor" as their funder? Is manuscript on list of expected supplemental articles? If yes, copy Supplement Title into "Comments to Payment Administrator" below. If no, unsubmit paper and ask author to select another payment option.	
+
+
+
+ 
+Comments to Payment Administrator:
+  
+
+
+ 
+
+ 
+	
+- Editor-in-Chief List
+
+
+Order
+
+Name
+
+Status
+
+History
+
+Remove
+
+ 
+
+	
+ Editorial Office, JIAS
+(assign a different person)
+
+ 
+
+Assigned (11-Mar-2020)
+
+
+
+ 
+	
+- Deputy Editor List
+
+
+Order
+
+Name
+
+Status
+
+History
+
+Remove
+
+ 
+
+	
+ Phanuphak, Nittaya
+(assign a different person)
+proxy
+
+ 
+
+Assigned (11-Mar-2020)
+
+
+
+ 
+	
+- EIC Decision
+
+
+Make a Decision
+
+	
+Accept
+
+	
+Minor Revision
+
+	
+Major Revision
+
+	
+Reject
+
+	
+Reject without Review
+
+Decision comments (internal use only):
+
+		
+ 	
+Reviews
+
+# reviews required to make decision	
+3
+
+ 
+
+ 
+ 
+	
+- Assign to Issue
+
+
+Not assigned to issue.
+
+Assign to:
+
+
+
+
+ 
+	
+- Companion Papers
+
+
+Manuscript ID
+
+Manuscript Title
+
+Date Submitted
+
+Author
+
+Status
+
+Delete
+
+Type
+
+
+
+
+ 
+	
+- Flag This Manuscript
+
+
+	
+Leave this manuscript unflagged
+
+	  Accepted Manuscript	 		  Plagiarism check needed
+	  	 		  
+	  .R2	 		  
+	  	 		  Resubmission
+	  	 		  .R1
+	  TDA with Reports	 		  TDA without Reports
+	  	 		  
+	  	 
+
+
+ 
+	
+- Notes
+
+
+Note Title
+
+Updated By
+
+Updated On
+
+Edit
+
+Delete
+
+This document has no notes.
+
+
+
+Previous Document	 1 / 10 	Next Document
+
+
+ScholarOne logoClarivate Analytics logo
+© Clarivate Analytics |  © ScholarOne, Inc., 2020. All Rights Reserved.
+ScholarOne Manuscripts and ScholarOne are registered trademarks of ScholarOne, Inc.
+ScholarOne Manuscripts Patents #7,257,767 and #7,263,655.
+
+ @ScholarOneNews  |   System Requirements  |   Privacy Statement  |   Terms of Use
+
+ Admin: configure instructions | 

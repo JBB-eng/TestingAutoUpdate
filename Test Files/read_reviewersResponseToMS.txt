@@ -1,0 +1,245 @@
+Journal of the International AIDS Society
+
+
+
+	 
+
+	 	
+Reviewer 3: Napierala, Sue
+
+Reviewer Affiliation
+
+RTI International
+
+Manuscript ID:
+
+JIAS-2020-01-0058
+
+Wiley - Manuscript type:
+
+Research Article
+
+Discipline:
+
+Epidemiology
+
+Keywords:
+
+PrEP
+
+Additional Keywords:
+
+Self-testing , HIV testing , Counseling , Standard of care , Satisfaction
+
+Date Submitted:
+
+29-Jan-2020
+
+Manuscript Title:
+
+Uptake and impact of facility-based HIV self-testing on PrEP delivery: a pilot study among young women in Kisumu, Kenya
+
+Date Assigned:
+
+18-Feb-2020
+
+Date Review Returned:
+
+02-Mar-2020
+
+M-Score for this manuscript:
+
+4.00
+
+Authors:
+
+Wanga, Valentine
+     E-Mail:wangav@uw.edu
+     E-Mail:valenwanga@yahoo.com
+Omollo, Victor
+     E-Mail:victorciv2@gmail.com
+Bukusi, Elizabeth
+     E-Mail:ebukusi@kemri.org
+Odoyo, Josephine
+     E-Mail:orajose@kemri-ucsf.org
+Morton, Jennifer
+     E-Mail:jfmorton@uw.edu
+Kidoguchi, Lara
+     E-Mail:larakid@uw.edu
+Johnson, Rachel
+     E-Mail:rjohnso@uw.edu
+Hughes, James
+     E-Mail:jphughes@uw.edu
+     E-Mail:jphughes@u.washington.edu
+Celum, Connie
+     E-Mail:ccelum@uw.edu
+Baeten, Jared
+     E-Mail:jbaeten@uw.edu
+Please make your report as constructive, specific and detailed as possible in a text ideally no longer than 1500 words.
+When assessing the work, please consider the following points:
+
+1. Does the manuscript address a new, important or timely issue?
+2. Is the methodology used sound and described comprehensively?
+3. Are the interpretations and conclusions valid and based on the results?
+4. Do the authors provide the context of the topic in a balanced way by referring to relevant publications?
+5. Are the findings disaggregated by sex and analyzed by gender?
+
+Please number your comments and divide them into:
+
+- Major Compulsory Revisions
+
+These concerns must be responded to by the author before a decision on acceptance can be made.
+
+- Minor Essential Revisions
+
+These comments need to be addressed by the author in the revised manuscript.
+
+- Discretionary Revisions
+
+These are suggested improvements, which the author may choose to consider.
+
+
+ 
+Questionnaire	Yes	No	Not applicable
+Is the language acceptable?	
+
+
+ 
+
+ 
+
+Does the manuscript need to be seen by an expert statistician?	
+ 
+
+
+
+ 
+
+ Please choose the most appropriate description of this article	
+An article whose findings are important to those with closely related research interests
+
+
+ 
+ Please state any conflict(s) of interest that you have in relation to the review of this paper (state “none” if this is not applicable).
+None
+
+
+ 
+ Recommendation
+
+ 	
+Accept
+
+ 	
+Minor Revision
+
+	
+Major Revision
+
+ 	
+Reject
+
+ 
+Would you be willing to review a revision of this manuscript?
+
+	
+Yes
+
+ 	
+No
+
+ 
+Comments
+
+Confidential Comments to the Editor
+
+ 
+
+ Comments to the Author
+
+This manuscript provides among the first data on the feasibility and acceptability of integrating HIVST into PrEP programming. The study is among an important target population of young women in western Kenya. While the study is largely descriptive, authors did include the novel element of evaluating the relative visit time among a subset of participant who did and did not opt for HIVST. A relatively small proportion of women accepted self-testing, and only 6 women self-tested more than once which did not permit a meaningful longitudinal analysis. While the analysis of visit time is an important contribution when considering HIVST implementation in PrEP programming, it was not clear how the authors arrived at the total visit time. Additionally, a more robust discussion is required prior to publication, including a slightly more balanced interpretation of the findings.
+Major compulsory Revisions
+Methods
+1. Could authors provide clarification around sampling strategies? Were all women enrolled in POWER included in this HIVST sub-study? Also, how were the 40 ppts (10 per site) selected for the analysis of time within and between PrEP delivery procedures?
+2. Page 4 para 2 – would be good to present a more complete description of clinic flow, particularly around what happens after self-testing. This will allow readers to understand what QA procedures are built into this strategy (eg if PrEP providers review test results, etc).
+3. There is a very limited description of how total visit time was measured. It would be helpful to have a clearer description of this. For example, presumably the time for confirmatory testing was not included in the analysis, but authors should be specific about this. Was this conducted via research staff observation, as per a time and motion study?
+Results
+4. What happened to the 2 ppts who did not successfully complete HIVST (70 agreed, 68 successfully completed)?
+5. On page 7 para 1, I struggled to follow the numbers. Authors indicated that 64/68 women correctly interpreted their results. Further down in the para authors indicated 5 women - 4 reactive and 1 invalid - actually had a negative result. Is the former based on self-read of HIVST, and the latter confirmatory testing? Please revise text for clarity. Would also be helpful to present how many women overall had an incorrect result (between incorrect self-test interpretation and confirmatory testing).
+6. Page 8 lines 188-189 - Just adding up the rows from table 4, Acceptors adds up to 47 minutes and Decliners adds up to 44 minutes. Therefore it’s difficult to understand how the total visit time for Acceptors is 33 minutes and for Decliners is 54 minutes. What is the explanation for this, what accounts for the fairly substantial difference?
+Discussion
+7. On page 8 lines 208-210, please describe what results specifically suggest that HIVST offers a strategy to facilitate testing and streamline refills. Flush this out a bit to guide readers through how/why this would benefit PrEP programming based on research findings and existing literature.
+8. In line 217-220 authors describe how HIVST acceptors could undertake clinic procedures in a non-sequential manner, unlike with PITC. Is this actually what was done, or is this a hypothetical example? If hypothetical, would this really facilitate things in a busy clinic? I’m not sure I could envision how this would work in practice. However if you actually did this it would be interesting to understand how this worked in a presumably busy clinic setting. There is virtually no description in the methods of clinic flow, and therefore it’s difficult to understand why, though HIVST took longer, the clinic visit was shorter.
+9. Page 9 lines 229-230 – Authors should be clear that MOST women, a large majority, preferred PITC. Authors then go on to discuss why under various circumstances HIVST uptake could be greater and nonetheless there may be a rationale to expand this option. But to simply say ‘some preferred HIVST while others preferred PITC’ seems to lack specificity.
+10. Related to the above comment, authors might also consider discussing scenarios or a rationale, based on the data generated int his study, for why implementing HIVST in PrEP programming may not be a good course of action. There is undoubtedly a valid argument there as well.
+11. Very few women contributed data to both periods. If visits are scheduled for every 4 weeks and the HIVST period was 17 weeks, how do authors explain this - is it simply attrition, does it have to do with ppts in POWER not enrolling in the HIVST study…? And how might this effect data interpretation?
+12. Page 10 line 249 – I’m not sure this study provided evidence of ‘impact of HIVST’. In fact, I would consider this a limitation of the study, that it did not go so far as to measure the impact of introducing HIVST in a PrEP setting.
+13. I would recommend including a paragraph which discusses elements of the diagnostic test itself. There has been concern that the Oraquick test is less sensitive than other rapid tests, and therefore may not be appropriate for use in PrEP programming. A discussion addressing these concerns, including relative window period, sensitivity and specificity compared to PITC in Kenya seems important, along with thoughts on how use of HIVST in PrEP programming might impact HIV resistance.
+14. I would also recommend including discussion of the findings of your confirmatory testing results, including addressing what proportion of those opting for HIVST would have left the clinic with an incorrect result, if this was a part of routine programming.
+15. The limitations section mentioned the short study period, but it would perhaps have been more appropriate to discuss what we might have learned or could learn in future with repeated measures, including about how HIVST might impact PrEP continuation or adherence, incorporating other self-testing literature. Rather, the authors suggest that more women may have chosen HIVST with a longer duration or if HIVST was implemented in a different way, but without incorporating any literature to support or negate these theories. Also the relatively small sample size was not discussed, and in particular the fairly low uptake of HIVST (particularly in relation to what some other studies have found). There was little discussion of how generalizable these results might be as a result of these various limitations.
+Tables 2-3
+16. I found a number of the variable descriptions unclear or incomplete in these 2 tables. For example, “Where got self-test” could more clearly be phrased as ‘Among those who had ever self-tested, where did they get a self-test kit” - and indicate if more than one answer could be provided (if they had self-tested more than once in the past). Another example “How happy with clarity of explanation” could be more clearly phrased by describing what was being explained, eg explanation of how to use the self-test.
+Table 2
+17. I recognize that at this point nothing can be done, but in Table 3 questions are phrased in terms of ‘how happy’ a participant is. For many/most of the variables in this table framing in terms of ‘happiness’ seems a less than accurate measure of satisfaction, and there are arguably better ways to frame these questions. I do find the phrasing problematic as I am not convinced you are necessarily measuring what you mean to be measuring.
+18. Why were acceptors not asked the question “Main reasons to consider HIVST in future”?
+19. Was there an option of ‘other’ for the last 2 variables on page 16 or is this not included because no one responded ‘other’? Referring to “Main reason not want to self-test again” and “Main reason why declined HIVST”. It seems like there could be a number of other explanations for both of these.
+20. There are a number of acronyms used in these tables, eg HIVST, PITC. I’m assuming these acronyms were not used in the questionnaire as not all ppts would understand them, and in general understand a number of these questions due to how they are phrased. I imagine, rather, that authors are attempting to be more succinct or abbreviated in these tables, but I find many of the variable descriptions condensed to the point of losing clarity. Suggest reviewing all variable names and revising those which may be unclear.
+Table 4
+21. Same comment as above in the results - Just adding up the rows, Acceptors adds up to 47 minutes and Decliners adds up to 44 minutes. Therefore it’s difficult to understand how the total visit time for Acceptors is 33 minutes and for Decliners is 54 minutes. What is the explanation for this, what accounts for the fairly substantial difference?
+
+Minor essential revisions
+Methods
+22. The outcomes are listed in the methods section, and authors list variables used to address those outcomes. It would be helpful to provide information on how the variables were measured.
+23. Page 6 first para – please explain the rationale for the sensitivity analysis excluding wait times longer than 30 minutes.
+Results
+24. It isn’t necessary to include a p-value on Page 7 line 175, however page 7 line 176 should include a p-value.
+25. Page 8 lines 191 and 192 – include units of measurement (minutes).
+Discussion
+26. I was not clear what the authors were meaning with the following text from page 10 lines 240-241 – “The observed HIVST time, which was significantly longer than PITC, could have been reduced had our study been longer….” How could the observed time been reduced if your study had been longer? Please revise text for clarity
+Table 1
+27. There is a superscript reference ⱡ but no footnote explaining the meaning of this.
+Table 2
+28. In heading would be helpful to clarify what p-value you are measuring, eg p-value of acceptors vs decliners.
+
+Discretionary revisions
+29. Would be good to have a more thorough understanding of reasons for accepting then declining HIVST, and vice versa. The data are very small to say much about this. 
+
+ 
+ 
+ 
+Timeliness
+
+
+3 - Review was on time
+
+
+
+2 - Review was slightly delayed
+
+
+
+1 - Review was severely delayed
+
+
+ 
+Quality Assessment
+
+
+3 - Review was highly relevant
+
+
+
+2 - Review was sufficient
+
+
+
+1 - Review was below average
+
+
+ 
+       
+
+ 
+© Clarivate Analytics |  © ScholarOne, Inc., 2020. All Rights Reserved.
+
+ Admin: configure instructions | 

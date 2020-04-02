@@ -1,0 +1,907 @@
+ScholarOne Manuscripts™
+JIAS Editorial Office 
+Instructions & Forms
+Help
+Log Out
+
+ Home
+ Author
+ Review
+ Manage 
+Admin Dashboard / Search results / Details for JIAS-2019-10-0536.R1 Search
+Manuscript ID  
+Search
+
+
+
+
+	This section of the manuscript details usually includes the Manuscript Checklist, the author-supplied metadata, and add additional data as needed to complete the check-in process. If a companion paper should accompany the review of this paper, you can search for and link the two papers by using the companion paper feature on the Details tab.   Read More ...
+ 
+	
+	
+Invite Reviewers
+
+
+
+
+
+
+
+
+No Notes Added
+Add A Note
+ 
+
+	
+JIAS-2019-10-0536.R1
+
+Submitted: 13-Mar-2020; Last Updated: 16-Mar-2020; 3 days, 12 hours in review
+	
+Integration of Data from Various Sources to Evaluate and Improve the Prevention of Mother to Child Transmission of HIV Program in Zimbabwe
+
+	
+Sibanda, Euphemia (proxy) (contact); Webb, Karen; Fahey, Carolyn; Kang Dufour, Mi-Suk; McCoy, Sandra; Watadzaushe, Constancia; Dirawo, Jeffrey; Deda, Masha; Chimwaza, Anesu; Taramusi, Isaac; Mushavi, Angela; Mukungunugwa, Solomon; Padian, Nancy; Cowan, Frances
+
+	
+Supplement: Research Article
+
+	
+Wiley - Manuscript id of previous submission:  
+
+	
+Invite Reviewers (Due 19-Mar-2020)
+5 active selections; 0 invited; 0 agreed; 0 declined; 0 returned
+
+DE: Editorial Office, JIAS
+EIC: Editorial Office, JIAS
+ADM: Watson, Hannah (proxy)
+
+   HTML    PDF   Supplemental Files    Original Files     Abstract     Cover Letter     External Searches     Author's Response   
+
+R1
+
+ 	
+ 
+
+ 
+	
+- Peer Review Milestones
+
+
+Date Submitted:
+
+13-Mar-2020
+ 
+Admin:
+
+Watson, Hannah  AU REV VIEW ADM PROD 
+proxy	
+Date to Admin:
+
+13-Mar-2020
+
+Admin:
+
+ Admin	
+Date to Admin:
+
+16-Mar-2020
+
+Editor-in-Chief:
+
+Editorial Office, JIAS  AU REV DE EIC ADM VIEW PROD 	
+Date to Editor-in-Chief:
+
+16-Mar-2020
+
+Deputy Editor:
+
+Editorial Office, JIAS  AU REV DE EIC ADM VIEW PROD 	
+Date to Deputy Editor:
+
+16-Mar-2020
+
+
+
+ 
+	
+- Duplicate Submission Check
+
+
+This feature searches other submissions to this site and displays a relevancy % on both the manuscript title and the full author list to help identify potential duplicate submissions. The manuscript with the highest relevancy % on both title and author list will be displayed first.
+
+
+
+ 
+	
+- Version History
+
+
+ 
+
+Manuscript ID
+
+Manuscript Title
+
+Date Submitted
+
+Decision Letter & Response
+
+Switch
+Details
+
+	
+JIAS-2019-10-0536.R1
+
+Integration of Data from Various Sources to Evaluate and Improve the Prevention of Mother to Child Transmission of HIV Program in Zimbabwe
+
+13-Mar-2020
+
+ 
+ 	
+JIAS-2019-10-0536
+
+Integration of Data from Various Sources to Evaluate and Improve the Prevention of Mother to Child Transmission of HIV Program in Zimbabwe
+
+02-Oct-2019
+
+ 	
+view author's response
+
+ 	 view the authors response to the decision letter for JIAS-2019-10-0536
+ 	
+view decision letter
+
+ 	 view the decision letter for JIAS-2019-10-0536
+
+
+ 
+	
+- Author-Supplied Data
+
+
+Wiley - Manuscript type:
+
+Supplement: Research Article
+
+Title:
+
+Integration of Data from Various Sources to Evaluate and Improve the Prevention of Mother to Child Transmission of HIV Program in Zimbabwe
+
+Manuscript ID:
+
+JIAS-2019-10-0536.R1
+
+Funding Information:
+
+There are no funders to report for this submission
+
+Submitting Author:
+
+		
+	Sibanda, Euphemia L  (proxy)
+	
+primary affiliation
+Centre for Sexual Health and HIV AIDS Research (CeSHHAR)
+Harare
+Zimbabwe
+
+Authors & Institutions:
+
+ 
+
+Sibanda, Euphemia L
+proxy
+Corresponding Author
+ https://orcid.org/0000-0003-1754-1076
+
+ 		
+Centre for Sexual Health and HIV AIDS Research (CeSHHAR)
+Harare
+Zimbabwe
+
+ 	 	
+Liverpool School of Tropical Medicine Ringgold standard institution
+Liverpool, Liverpool L3 5QA
+United Kingdom of Great Britain and Northern Ireland
+
+
+Webb, Karen
+proxy	 		
+3. Organization for Public Health Interventions and Development (OPHID)
+Harare
+Zimbabwe
+
+ 	 	
+London School of Hygiene and Tropical Medicine Ringgold standard institution
+London, London WC1E 7HT
+United Kingdom of Great Britain and Northern Ireland
+
+
+Fahey, Carolyn A
+proxy	 		
+University of California, Berkeley - Division of Epidemiology
+Berkeley, California
+United States
+
+
+Kang Dufour, Mi-Suk
+proxy	 		
+University of California Berkeley Ringgold standard institution
+Berkeley, California 94720
+United States
+
+
+McCoy, Sandra I
+proxy	 		
+Associate Professor in Residence, Epidemiology
+University of California Berkeley School of Public Health Ringgold standard institution - Division of Epidemiology
+2121 Berkeley Way , Berkeley, California 94720-7360
+United States
+
+
+Watadzaushe, Constancia
+proxy	 		
+7. Centre for Sexual Health and HIV AIDS Research (CeSHHAR), Harare, Zimbabwe
+
+
+Dirawo, Jeffrey
+proxy	 		
+Centre for Sexual Health and HIV AIDS Research (CeSHHAR)
+Harare
+Zimbabwe
+
+
+Deda, Masha
+proxy	 		
+Organization for Public Health Interventions and Development (OPHID)
+Harare
+Zimbabwe
+
+
+Chimwaza, Anesu
+proxy	 		
+Ministry of Health and Child Care Ringgold standard institution
+Harare, Harare
+Zimbabwe
+
+
+Taramusi, Isaac
+proxy	 		
+National AIDS Council, Zimbabwe
+
+
+Mushavi, Angela
+proxy	 		
+Ministry of Health and Child Care, Zimbabwe
+
+
+Mukungunugwa, Solomon
+proxy	 		
+Ministry of Health and Child Care, Zimbabwe
+
+
+Padian, Nancy
+proxy	 		
+University of California, Berkeley
+California
+United States
+
+
+Cowan, Frances Mary
+proxy
+ https://orcid.org/0000-0003-3087-4422
+
+ 		
+Professor of Global Health
+Liverpool School of Tropical Medicine Ringgold standard institution - Department of International Publich Health
+Pembroke Place , Liverpool L3 5QA
+United Kingdom of Great Britain and Northern Ireland
+
+ 	 	
+Executive Director
+Centre for Sexual Health and HIV AIDS Research -
+Harare
+Zimbabwe
+
+Contact Author (populates the ##PROLE_AUTHOR_..## e-mail tags):
+
+		 	
+Current Contact Author: Sibanda, Euphemia L
+(proxy)
+
+Running Head:
+
+Integrated data to evaluate/improve PMTCT programs
+
+Discipline:
+
+Operational and Implementation Sciences
+
+Keywords:
+
+Differentiated care, Africa < Region, Health systems, HIV care continuum
+
+Additional Keywords:
+
+Author Recommended Reviewers:
+
+Lynda Stranix-Chibanda UZ-CHS Clinical Trial Research Centre - lstranix@uzchs-ctrc.org
+
+Author Opposed Reviewers:
+
+Author's Cover Letter:
+
+Journal of the International AIDS Society
+Avenue de France 23
+CH - 1202 Geneva
+Switzerland
+
+13 March 2020
+
+Dear Guest Editors
+
+Responses to comments – Manuscript ID JIAS-2019-10-0536
+
+Thank you very much for affording us the opportunity to respond to the insightful comments we have received on the manuscript. It is our pleasure to provide responses as detailed below:
+
+General Comments:
+
+The manuscript would benefit from being copyedited by a scientific native English speaker for the correction of syntax, spelling and grammar. Thank you
+
+Please add the study type to the title.
+We have now changed the title of the study to incorporate study type, it now reads: Use of Data from Various Sources to Evaluate and Improve the Prevention of Mother to Child Transmission of HIV Program in Zimbabwe: A Data Integration Exercise
+
+Funding source for the activity if any should be stated. Funding sources for Surveys, OPHID programme and MoHCC PMTCT programme are now included at the end of the title page – there was no specific funding for this data integration exercise.
+
+Abstract:
+- Please revise the methods section for clarity.
+- Please make sure that the specific findings of this study are described more accurately in this section.
+We have described the results in more detail
+
+Methods:
+- In line 150 -152, it states that Infants 9-18 months old were selected in order to be able to detect HIV transmissions occurring during pregnancy, delivery, and breastfeeding. The authors should explain why they believe that this study population will miss infants with HIV who died before age 9 months in this area with high infant mortality.
+
+Thank you; we have now included a sentence explaining that we included mother / infants who had died since delivery ‘Importantly the survey aimed to include mothers or infants who had died since delivery, in which case verbal autopsy data were collected.’ (lines 183-184).
+
+Discussion:
+- Please describe in more extent the limitations of the study and how they affect the findings.
+We have expanded the limitations section of the discussion (lines 414-419).
+
+Figures:
+- Fig 2A. Please include the legend in a box to improve the clarity of the figure and add the units to Y axis to make sure that figure stands alone.
+Thank you, this has been done.
+
+- Fig 4. The authors repeat the colours and it is difficult to distinguish the small layers. The editors suggest the authors to use another way to distinguish the various layers – e.g., by patterns instead of solid colour. Please outline each of the segments of the bars.
+Thank you, we have amended the figure accordingly. Note that we have retained the broad groupings of MTCT source to visualize the main contributors to MTCT (i.e., incident infection vs. no ART vs. non-adherence) in a similar format as presented by UNAIDS (see Figure 2, p.9 of Thematic Segment Reducing The Impact Of Aids On Children And Youth Background Note, November 2019 https://www.unaids.org/sites/default/files/media_asset/28112019_UNAIDS_PCB45_Thematic-Segment-Background-Note_EN.pdf). To improve clarity, we have however provided an additional legend to classify the broad category by colour/pattern).
+
+Because the original colours we used are based on the colour scheme suggested by UNAIDS, we have kept the original figure (hence two options are available) and if there is interest in retaining the UNAIDS colour scheme then we can revert to the original colour.
+
+Reviewer 1:
+
+Comments to the Author
+
+I commend the authors for completing this important exercise. The paper is interesting.
+
+Thank you for the helpful review which has enabled us to strengthen the paper.
+
+- Major Compulsory Revisions
+
+1) 122-125: The purpose of the data integration initiative is clearly stated and its relevance to the PMTCT programme in Zimbabwe is apparent. What is missing is whether the authors believe this exercise to be of any importance to others. Including the authors’ views on the relevance of the process and their findings to JIAS readers/fellow programme implementers and policy makers is an essential revision to the introduction before a decision on acceptance can be made.
+
+We agree and are sorry this wasn’t clear. We think there are lessons to be learned for PMTCT programming more broadly – additionally spectrum models which are guiding some programmatic responses have to guestimates for rate of post- natal PMTCT transmission and we hope by highlighting this it will encourage better data collection in that period. We have changed the ordering of the sentence lines 154-156 and added an additional sentence:
+
+‘Additionally this process aims to identify data gaps (for example in the postnatal cascade) required to inform programming and modelling across the region more broadly’.
+
+
+2) The take-home messages from this paper appear to be (1) data integration is feasible, (2) the exercise identified specific aspects of the programme for strengthening through a set of interventions yet to be developed, and (3) the current routine cascade is too limited to adequately monitor programme success. These conclusions are immediately relevant to PMTCT programmes globally.
+
+Thank you – it is helpful to have it summarized so succinctly.
+
+From what I could discern, the authors propose to extend the period of monitoring through 24 months postpartum and to add a number of indicators for the 4 separate populations (women with and without HIV, infants/children with HIV, HEUs) aligned with the data illustrated by the Figures 2a-c. The paper would be strengthened by presenting the information gaps in a more structured manner within the text because, as written, these points are not fully appreciated from rows 263-271 until the Figures have been reviewed. The reader is left uncertain about what action the authors propose to take to close the important information gaps after finishing the paper.
+
+Thank you – we have expanded the text to describe the figures more clearly and detailed the gaps more precisely
+
+- Minor Essential Revisions
+
+1) 258-271: Readers less familiar with the intricacies of PMTCT would benefit from an explanation earlier on in the paper (or an infographic) of why the authors consider these information gaps to be important and how monitoring these indicators will improve PMTCT programme performance.
+
+See infographic, Figure 5, which also shows the process that was followed in the data integration exercise
+
+- Discretionary Revisions
+
+1) 74: I concur that the need for life-long ART in children who are perinatally infected with HIV is a highly important outcome of failure to prevent vertical HIV transmission. Outlining the gaps in the paediatric treatment cascade would not fall within the scope of this paper, however the authors could consider adding a comment to the introduction about the HIV infected child facing an increased risk of significant morbidity and mortality that persist into adulthood.
+
+Thank you – we have added this (Line 91-92)
+
+2) 84: Consider clarifying that ‘MTCT outcomes’ refer to UNAIDS prongs 3 and 4, tying in with the clarification that primary HIV prevention refers to UNAIDS prong 1 to align with the conclusion that MTCT programme monitoring should now track indicators relating to prong 1.
+Thank you; we have added this clarification
+
+3) Throughout: Please standardise the placement of the cited references – either before or after punctuation – as there is a mixture presented in the paper.
+
+Thank you we have corrected this
+
+4) 123: ‘results will be used to strengthen the impact of the programme on PMTCT’ should be ‘….MTCT’, I believe.
+
+Thank you this has been corrected.
+
+5) 248: ‘with most analysis using deidentified data’ should be ‘…analyses’, I believe.
+
+Thank you this has been corrected.
+
+Reviewer 2:
+
+Comments to the Author
+
+This is in general, a nicely written manuscript. I have the following comments:
+
+1. Line 214. Data Quality Assessment. While the authors reference a framework for this, we need more detail on how this was actually done. How was conformance of data values to intended format and allow values actually assessed, especially for the routinely collected data? Similarly, how was completeness evaluated? Is it possible to quantify any of this?
+We have now given examples which we hope will illustrate how we went about the quality assessment process. We would like to clarify that the quality assessment process dealt with the data we had and did not necessarily include checks for fidelity of implementation of the PMTCT interventions.
+
+
+2. Line 248. "...with most analysis using deidentified data." What does this mean? Does is mean that some analyses used identifiable data? If so, what and how.
+
+We have now clarified that investigation of MTCT required identification during the follow-up process, but subsequent reports were anonymized. The sentence (line 287-289) now reads:
+“MOHCC and OPHID data were collected programmatically with verbal consent as part of local standard of care; with all but PMTCT case investigation (where names were necessary for follow-up but was de-identified at data entry and in generated reports) using deidentified data”
+
+3. Line 92. The paragraph beginning "The Start Free Stay Free AIDS Free..." seems misplaced as it affects the flow in the introduction.
+
+We have reordered the introduction – moving the paragraph beginning "The Start Free Stay Free AIDS Free..." further down to improve the flow.
+
+4. Line 357. "The systematic process by which we conducted the integration/triangulation exercise was robust...". This seems an unjustifiably strong statement given that there is insufficient detail on how the data quality assessment was actually conducted.
+
+We believe that the process we followed was robust; we hope that the responses we made related to comment 1 above will make that clear. The limitations in the actual data are summarized in our assessment of quality that is given in Table 1 and also described in our Limitations section (line 414-419).
+
+
+
+Reviewer 3:
+
+Comments to the Author
+
+This is a very well-written paper that describes important problem and programmatic response. The authors combined data from research studies (the Zimbabwe PMTCT survey), MOHCC, and an implementing partner (OPHID) that supports >50% of clinical sites in Zimbabwe. They sought to triangulate estimates of uptake at each step in the PMTCT and MCH care cascade and identify gaps or discrepancies between data sources. They compared these results to UNAIDS/Spectrum modeling results as well. This work provides an updated, nuanced picture of current PMTCT success and challenges in Zimbabwe, and also outlines how the multidisciplinary working group that assembled these data used them to develop new data collection approaches and interventions to address identified critical issues. I have only minor suggestions for this excellent manuscript.
+
+Thank you
+
+Line 202: There are already many figures, but a figure (similar to figure 1) that outlines the way these 4 stages fit together would be helpful. Perhaps as an appendix, if there is not room in the main manuscript.
+
+We have done a figure, Figure 5, that illustrates the data integration process we followed. It also summarises the findings and the intervention that we developed as a result of this process.
+
+Line 274: A key issue not explained here is why the survey data for MTCT (3.4% in 2018) differ so greatly from the Spectrum results (6.7%). Could the authors add some information about possible reasons for this?
+There are many assumptions that go into Spectrum that affect its results, at steps very proximal to the entry of country and program data, such as estimates of fertility in women with HIV (this could also be mentioned as a limitation in Table 1). These are summarized in a few key papers, eg Mahy AIDS 2017).
+Thank you for pointing this out – the main reason for this discrepancy between survey and SPECTRUM is that the survey follows women to a median of 11.5 months post delivery whereas SPECTRUM estimates transmissions to end of breast feeding – assumed 24 months. Several studies including ours have shown that the majority of women are still breast feeding at 18 months and so still at risk of transmission should they become infected. The rate of MTCT resulting from late breast feeding is based on estimates in SPECTRUM and is not supported by data – this is a critical data gap that needs to be filled. This is now highlighted in the first paragraph of the discussion.
+
+Line 285: Importantly, 12/25 MTCTs in the 2018 survey were among MB pairs in which the mother previously tested negative. From Table 2b, it appears that 143/271 (53%) of infants with HIV in the Case Investigation also were born to mothers who previously tested negative. Can this be added as sentence here or combined with this sentence?
+
+This has been added (line 338-339)
+
+Would also clarify in this paragraph (line 287) what is meant by majority – from Table 2b, 40% had a partner with unknown status, but this would a majority if defined as positive or unknown status, e.g., 40+38% (or alternatively, unknown + not documented, 40+14%).
+
+Thank you; we have made the clarification. The sentence now reads:
+Program data on HIV Positive Child Case Investigation found that the majority of mothers that transmitted HIV to their infants booked for ANC late, with a median of 23.5 months, and 40% unaware of their partner’s HIV status, Table 2b
+
+Line 297: please clarify or define “data gaps in match.”
+Thank you, we have done this and clarified the explanation in lines 346-348:
+A key finding is the variable coverage and completeness of MTCT case investigation: some health facilities complete this comprehensively for all newly diagnosed infants, while in many facilities there were gaps which did not allow elucidation of the cause of transmission.
+
+
+Line 307: can any additional information be provided about the hotspots? This is fascinating. Can the authors explain why they occur (what factors are common to hotspots), or how these geospatial data may impact program planning?
+Thank you. We have done detailed analyses on these in a separate paper.
+
+
+Line 316: In addition to prevention interventions, could the authors comment on the importance and potential implementation of retesting interventions in pregnancy and breastfeeding? Also in Box 1.2.
+
+Thank you – retesting has now been added line 357 and in Box 1.2
+
+Figures 2b-2c: please explain in a footnote the difference between a dot indicating a value of zero and the absence of a dot (no data?). Can you comment further on possible reasons for the difference in estimated retesting in L&D between the survey and DHIS2?
+
+We have now made a distinction between the value of zero and absence of data, for all figures 2a-2c.
+
+Survey data were self reported. Testing during delivery may be over reported by health facility staff?
+
+Figure 3: the MOHCC data are shown as absolute numbers, and the survey data as rates. Can you show the MOHCC data as both numbers (which are interesting as an estimate of magnitude) and rates (both for comparability to the survey data and as a better measure of risk when incorporating population size)?
+
+Thank you, we have included a map of MOHCC data on EID positivity rates over the same period to Figure 3.
+
+Figure 4. This is a great figure. Please clarify whether the MTCT rate (on the left) is a rate per 100PY (or other unit) or a risk (eg MTCT risk as a % of mothers with HIV). Whether a rate or a risk, how does the 7.78 reconcile with the Spectrum estimate of 6.7% MTCT risk at end of breastfeeding? (If a rate, would expect the risk to be even higher if breastfeeding duration is >1y.)
+
+The MTCT rate (on the left of Figure 4) is the percentage of babies born to HIV+ mothers who are infected. The spectrum estimate we have in our final modeled estimates was 7.78% not 6.7% and this has been corrected throughout the manuscript.
+
+
+For the orange and yellow bars, are the first two “child infected during BF” and the second two “child infected during pregnancy” to match the labels immediately below? If so, please add this to the legend.
+What was the threshold for including a value in the red circles suggesting key factors? I might also include the 0.45 (left) and 297 (right) that reflect women who did not receive ART during BF.
+Thank you, we have amended the figure accordingly. Note that we have retained the broad groupings of MTCT source to visualize the main contributors to MTCT (i.e., incident infection vs. no ART vs. non-adherence) in a similar format as presented by UNAIDS (see Figure 2, p.9 of Thematic Segment Reducing The Impact Of Aids On Children And Youth Background Note, November 2019 https://www.unaids.org/sites/default/files/media_asset/28112019_UNAIDS_PCB45_Thematic-Segment-Background-Note_EN.pdf). To improve clarity, we have however provided an additional legend to classify the broad category by colour/pattern).
+
+In red circle (center of figure), would suggest “lack of retention” rather than “retention” to keep all effects in the direction of greater MTCT.
+Thank you, we have made this change to Figure 4.
+
+Table 1: is it possible to indicate (perhaps with Population) whether the data source includes only women with HIV, or all women?
+
+Thank you Table 1 includes both HIV positive and negative women
+
+Table 2a: in the text of the MS, please explain why only univariate analysis was done, or add multivariate analyses if possible.
+We have now explained in lines 267-269 that we had too few MTCTs to support a multivariable analysis.
+
+Appendix: Please define the subcategories (eg value conformance) as was done for the primary categories.
+Thank you. We have now defined these in the appendix table
+
+
+On behalf of the co-authors,
+Euphemia Sibanda & Karen Webb
+
+Author's Response:
+
+A letter is uploaded
+
+If you have been invited to submit an article for a supplement, please select the title of the supplement:
+Data driven HIV prevention: the HIV prevention cascade and beyond
+
+
+ 
+Manuscript Details - Metadata (Please use numbers only)
+Content Information
+ Number of words (excluding the title page, abstract, references, acknowledgements, and wording for tables and figures):	
+4161
+
+ Number of manuscript pages:	
+18
+
+ Number of tables (use 0 for none):	
+3
+
+Illustration Information
+ Total number of figures (use 0 for none):	
+6
+
+ Number of colour figures (use 0 for none):	
+5
+
+
+ 
+Publication Charge
+ All articles published by Journal of the International AIDS Society are fully open access: immediately freely available to read, download and share. To cover the cost of publishing, Journal of the International AIDS Society charges a publication fee.
+
+The Journal of the International AIDS Society standard publication charge is $2,400/£1850/€2200, except for Letters to the Editor, Viewpoints and Editorials for which there is no charge.
+Supplement articles: please select the option "I believe a third-party will pay..." below, and enter JSS as the code (stands for "JIAS Supplement Sponsor").
+
+If your manuscript is accepted, you will be given the option of paying by credit card or invoice. If you believe that payment for your article is covered by a society, institutional or funding agency arrangement, please let us know using the form below.
+
+Not sure if payment for your article could be covered by your institution or funding agency? Use our Institute/Funder Policy Finder tool to check: http://exchanges.wiley.com/authors/oa-policies-by-funder_272.html
+
+Who Will Pay
+ 
+
+I accept responsibility for paying the publication charge on this article.
+
+If your manuscript is accepted, you will be able to pay by credit card, invoice, or pro forma.
+
+(Please see the “Discounts That May Apply” section for a list of institutions and funding agencies that have agreed to cover a portion of the publication fees.)
+
+
+I believe a third-party will pay the publication charge for this article.
+
+Some institutions and funding agencies have agreed to be invoiced directly and pay the Wiley Open Access article publication charge (APC) for their affiliated researchers. To check your eligibility, go to http://www.wileyauthors.com/accountcodes and find the affiliated institution or funder of the corresponding author, then copy the code and paste it here.
+ 	Please enter institution code here:
+ 	
+JSS
+
+ 	Please enter your funder and grant / project number if your institution requires this information in order to pay the APC:
+ 	
+ 
+
+I request a waiver of the publication charge for this article.
+
+We offer a complete or partial fee waiver on a case-by-case basis for individual authors or author groups from countries on the Wiley Open Access Waiver and Discount Country List.. Editorial office comments (internal use)
+ 	
+Discounts That May Apply
+
+Please select from the drop-down menus below for all discounts you wish to claim. Please note that the single, highest discount will apply.
+Society Membership Discount
+If the Corresponding Author is a member of the International AIDS Society (IAS) and wishes to request a discount (as applicable), please select it from the list below.
+If the Corresponding Author is not an IAS member but wishes to apply before submitting, the membership application form is available at: www.iasociety.org/membership. To qualify for the discount, please supply your membership number during original submission. The discount will not be applied if you become a member after original submission, or if you suspend your membership before acceptance of your manuscript.
+Please enter the society membership ID number of the corresponding author so we can verify your membership. If you don't know your membership ID you can request this from memberservice@iasociety.org:
+For office use only: Society Discount Code
+Institutional Discount
+The institutions or funding agencies listed below have agreed to cover a portion of the article publication charges in Wiley Open Access Journals for their affiliated researchers. If you are a corresponding author affiliated with one of the organizations listed, please select it from the list below:
+Other Discount
+If you have received another type of discount code, such as a promotional discount code via e-mail or brochure, please enter it below:
+Eligibility for institutional payment via Wiley Open Access account/partnership is based on the date of submission of an article. If your institution ceases to have an active account/partnership arrangement prior to completion of the article submission process, your article will not be eligible for institutional/funder payment.
+
+ 
+Submission Information - Confirm the following:
+ Confirm that the manuscript has been submitted solely to this journal and is not published, in press, or submitted elsewhere.	
+
+
+
+ 
+Conflict of Interest
+Journal of the International AIDS Society requires that all authors disclose any potential sources of conflict of interest. Any interest or relationship, financial or otherwise, that might be perceived as influencing an author’s objectivity is considered a potential source of conflict of interest. These must be disclosed when directly relevant or indirectly related to the work that the authors describe in their manuscript. Potential sources of conflict of interest include but are not limited to patent or stock ownership, membership of a company board of directors, membership of an advisory board or committee for a company, and consultancy for or receipt of speaker’s fees from a company. The existence of a conflict of interest does not preclude publication in this journal.
+
+If the authors have no conflict of interest to declare, they must also state this at submission. It is the responsibility of the corresponding author to review this policy with all authors and to collectively list in the cover letter (if applicable) to the Editor-in-Chief, in the manuscript (in the footnotes, Conflict of Interest or Acknowledgments section), and in the online submission system ALL pertinent commercial and other relationships.
+ Do you or any of your co-authors have a conflict of interest to declare?
+No
+
+Confirm that you have stated this conflict of interest in the footnotes, Conflict of Interest or Acknowledgments section of your manuscript as required by the Journal (see the Instructions to Authors).
+(Confirmed)
+
+Provide details and include this information below.
+
+ 
+Previously Submitted to Journal of the International AIDS Society
+ Has this manuscript previously
+- been submitted via Journal of the International AIDS Society's previous submission site and is now being submitted either for final acceptance or after revision
+- been submitted via the Journal of the International AIDS Society ScholarOne Manuscripts submission website and received a revision decision [revised papers should be submitted as “revisions” and not as “new” papers]
+- been submitted to Journal of the International AIDS Society and been rejected?
+If either of the above is true please answer "Yes".	
+No
+
+If yes, please state previous Journal of the International AIDS Society Manuscript ID:
+
+ 
+Open Access Agreement
+ Confirm that all authors of this submission have read and understood the journal's policy concerning the completion of the Open Access Agreement. This form will be requested if your paper is accepted. Further information can be found in the journal's Author Guidelines.	
+
+
+
+ 
+Supporting Information
+ We allow submission of "Supporting Information". Go to https://authorservices.wiley.com/author-resources/Journal-Authors/Prepare/supporting-information.html to access the Wiley guidelines for the submission of Supporting Information. If you wish to submit Supporting Information, please select the file designation “Supporting Information for review and publication” when uploading your files. Please note that we would encourage you, where possible and appropriate, to include such information in an Appendix in your main document instead of designating it as Supporting Information.
+
+Does your submission include any supporting information files for publication?
+ 
+
+Yes
+
+
+
+No
+
+
+ 
+ Ethics
+ Please insert your ethical statement below. This should include approval by any ethical boards and your consent or consent waiver procedure. If your article does not require an ethical statement (for example if it is a review), please state this. Your ethical statement should also be included in your methods section.
+The surveys were approved by Medical Research Council of Zimbabwe. Written informed consent was obtained from participants before procedure were conducted.
+
+
+ 
+ Dates of data collection
+ Please state the dates between which your data was collected. Literature reviews should list when the review was completed and the dates of the literature reviewed. This information should also be included in the methods section of your main article and abstract.
+2012 to 2018 in three serial cross sectional studies
+
+
+ 
+ 
+
+ 
+	
+- Plagiarism Check iThenticate User Guide
+
+
+Crossref Similarity Check logo	
+Select the file for submission to iThenticate :
+
+
+Or view the latest report on this manuscript:
+
+View the Originality Report.
+
+
+ 
+
+ 
+	
+- Forward to Viewing
+
+
+Viewing
+
+ 
+	
+- Forward to Admin
+
+
+ Watson, Hannah  (assign a different person)
+
+ 
+	
+- Admin Checklist (Date Completed: 16-Mar-2020 )
+
+
+Is the submission complete, are all files submitted in an acceptable format and is the manuscript ready for review?	
+
+
+ Has the author requested a fee waiver?	
+
+
+Have all co-author names been uploaded by the submitting author?	
+
+
+Is the manuscript within the scope of/suitable for the journal?	
+
+
+Does the manuscript main document include keywords?	
+
+
+If the author has claimed a society membership discount, has membership been verified and society discount code provided (Manuscript Information tab>Author-Supplied Data>Edit This Information)?	
+
+
+Supplement articles only: Has author selected "JIAS Supplement Sponsor" as their funder? Is manuscript on list of expected supplemental articles? If yes, copy Supplement Title into "Comments to Payment Administrator" below. If no, unsubmit paper and ask author to select another payment option.	
+
+
+
+ 
+Comments to Payment Administrator:
+  
+Supplement title: Data driven HIV prevention: the HIV prevention cascade and beyond
+
+
+ 
+
+ 
+	
+- Editor-in-Chief List
+
+
+Order
+
+Name
+
+Status
+
+History
+
+Remove
+
+ 
+
+	
+ Editorial Office, JIAS
+(assign a different person)
+
+ 
+
+Assigned (16-Mar-2020)
+
+
+
+ 
+	
+- Deputy Editor List
+
+
+Order
+
+Name
+
+Status
+
+History
+
+Remove
+
+ 
+
+	
+ Editorial Office, JIAS
+(assign a different person)
+
+ 
+
+Assigned (16-Mar-2020)
+
+
+
+ 
+	
+- EIC Decision
+
+
+Make a Decision
+
+	
+Accept
+
+	
+Minor Revision
+
+	
+Major Revision
+
+	
+Reject
+
+	
+Reject without Review
+
+Decision comments (internal use only):
+
+		
+ 	
+Reviews
+
+# reviews required to make decision	
+3
+
+ 
+
+ 
+ 
+	
+- Assign to Issue
+
+
+Not assigned to issue.
+
+Assign to:
+
+
+
+
+ 
+	
+- Companion Papers
+
+
+Manuscript ID
+
+Manuscript Title
+
+Date Submitted
+
+Author
+
+Status
+
+Delete
+
+Type
+
+
+
+
+ 
+	
+- Flag This Manuscript
+
+
+	
+Leave this manuscript unflagged
+
+	  Accepted Manuscript	 		  Plagiarism check needed
+	  	 		  
+	  .R2	 		  
+	  	 		  Resubmission
+	  	 		  .R1
+	  TDA with Reports	 		  TDA without Reports
+	  	 		  
+	  	 
+
+
+ 
+	
+- Notes
+
+
+Note Title
+
+Updated By
+
+Updated On
+
+Edit
+
+Delete
+
+This document has no notes.
+
+
+
+
+
+ScholarOne logoClarivate Analytics logo
+© Clarivate Analytics |  © ScholarOne, Inc., 2020. All Rights Reserved.
+ScholarOne Manuscripts and ScholarOne are registered trademarks of ScholarOne, Inc.
+ScholarOne Manuscripts Patents #7,257,767 and #7,263,655.
+
+ @ScholarOneNews  |   System Requirements  |   Privacy Statement  |   Terms of Use
+
+ Admin: configure instructions | 
