@@ -11,7 +11,7 @@ __email__		= 'jbursavich@gmail.com'
 __status__		= 'Beta'
 
 __AppName__		= 'JIAS Automation Assistant'
-__version__		= '0.1'
+__version__		= '0.2'
 
 #LOCATION OF NEW RELEASE AND VERSION CHECK FILEs####################################################################################
 location_version_check = "http://raw.githubusercontent.com/JBB-eng/TestingAutoUpdate/master/Version"
@@ -644,11 +644,12 @@ def generate_main_app_section(tab_no):
 class Main:
 	def __init__(self, parent):
 		def CheckUpdates():
+			global latest_version
 			#check if __version__ is lower than latest release
 			try:
 				url_data = urlopen(location_version_check)
 				latest_version = str(url_data.read(), 'utf-8')
-				if __version__ < latest_version:
+				if float(__version__) < float(latest_version):
 					mb = MessageBox(None,__AppName__+' '+ str(__version__)+' needs to update to version '+str(latest_version),'Update Available',flags.MB_YESNO | flags.MB_ICONQUESTION)
 					if mb ==  6:
 						print("picked YES")
@@ -781,6 +782,7 @@ class UpdateManager(tk.Toplevel):
 				self.destroy()
 			else:
 				f.close()
+				os.rename(self.tempdir+'/'+self.appname, __AppName__ + "v" + latest_version.rstrip() + ".exe")
 				self.label0.config(text=str(str("{:.2f}".format(self.progressbar['value'] * 0.000001)) + '/' + str("{:.2f}".format(self.filesize_text * 0.001))+' MBs'))
 				self.label2.config(text='Please wait a moment while application is updated...')
 				self.label1.config(text='Success!')
@@ -797,7 +799,7 @@ class UpdateManager(tk.Toplevel):
 			#also, all of the app binary files will have the following format:
 			#[name of application]_v[version number].exe
 			#for example: "JIASAutomationAssistant_v0.3.exe"
-			OpenNewVersion = subprocess.Popen([self.tempdir+'\\'+self.appname])
+			OpenNewVersion = subprocess.Popen([self.tempdir+'\\'+ __AppName__+"v"+latest_version.rstrip()+".exe"])# self.appname])
 			time.sleep(5)
 			parent.destroy()
 
