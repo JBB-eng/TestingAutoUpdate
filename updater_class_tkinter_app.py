@@ -21,6 +21,7 @@ location_updated_release = "https://github.com/JBB-eng/TestingAutoUpdate/release
 
 #imports
 import tkinter as tk
+import pandas as pd
 from tkinter import ttk, font, scrolledtext, filedialog, messagebox
 from PIL import ImageTk, Image, ImageOps
 from urllib.request import urlopen
@@ -688,7 +689,7 @@ class Main:
 			menubar.add_cascade(label='File', menu=filemenu)
 			
 			toolsmenu = tk.Menu(menubar, tearoff=0)
-			toolsmenu.add_command(label='Weekly S1/SP MS Check', command=runBinary)
+			toolsmenu.add_command(label='Weekly S1/SP MS Check', command=S1_check_popup)
 			menubar.add_cascade(label='Tools', menu=toolsmenu)
 
 
