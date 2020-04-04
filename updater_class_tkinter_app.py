@@ -30,6 +30,7 @@ from itertools import islice
 from datetime import datetime
 import os, webbrowser, cgi, threading, ctypes, subprocess, time, io, re, pyperclip, time, docx
 from docx import Document
+from docx.shared import Pt
 from ctypes import c_int, WINFUNCTYPE, windll
 from ctypes.wintypes import HWND, LPCWSTR, UINT
 
@@ -118,14 +119,21 @@ def clear_paragraph(self, paragraph):
 		p_element.remove(child_element)
 
 
-def paragraph_replace(self, search, replace):
+def paragraph_replace(self, search, replace, x):
 	searchre = re.compile(search)
 	for paragraph in self.paragraphs:
 		paragraph_text = paragraph.text
 		if paragraph_text:
 			if searchre.search(paragraph_text):
 				clear_paragraph(self, paragraph)
-				paragraph.add_run(re.sub(search, replace, paragraph_text))
+				para = paragraph.add_run(re.sub(search, replace, paragraph_text))
+				para.font.size = Pt(10)
+				paragraph.paragraph_format.space_after=Pt(0)
+				if x is 2:
+					para.bold = True
+				else:
+					para.bold = False
+				paragraph.paragraph_format.line_spacing = 1.0
 	return paragraph
 
 
@@ -135,6 +143,11 @@ def table_replace(self, text_value, replace):
 	for table in self.tables:
 		for row in table.rows:
 			for cell in row.cells:
+				paragraphs = cell.paragraphs
+				for paragraph in paragraphs:
+					for run in paragraph.runs:
+						font = run.font
+						font.size=Pt(10)
 				if cell.text:
 					if tbl_regex.search(cell.text):
 						cell.text = replace
@@ -435,10 +448,10 @@ def bigParsingFunction (method):
 
 			doc = Document(filename)
 			for x in range(len(regex1)):
-				paragraph_replace(doc, regex1[x], replace1[x])
+				paragraph_replace(doc, regex1[x], replace1[x], x)
 				table_replace(doc, regex1[x], replace1[x])
 				
-			print('saved at:', get_download_path() + '\\' + MSInfo.ms_first_author + ' ' + MSInfo.ms_short_ID + '\\' + MSInfo.ms_first_author + ' MS Details.docx')
+			#print('saved at:', get_download_path() + '\\' + MSInfo.ms_first_author + ' ' + MSInfo.ms_short_ID + '\\' + MSInfo.ms_first_author + ' MS Details.docx')
 			doc.save(get_download_path() + '\\' + MSInfo.ms_first_author + ' ' + MSInfo.ms_short_ID + '\\' + MSInfo.ms_first_author + ' MS Details.docx')
 
 		except:
