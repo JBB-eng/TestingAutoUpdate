@@ -28,7 +28,8 @@ from urllib.request import urlopen
 from MessageBox import *
 from itertools import islice
 from datetime import datetime
-import os, webbrowser, cgi, threading, ctypes, subprocess, time, io, re, pyperclip, time
+import os, webbrowser, cgi, threading, ctypes, subprocess, time, io, re, pyperclip, time, docx
+from docx import Document
 from ctypes import c_int, WINFUNCTYPE, windll
 from ctypes.wintypes import HWND, LPCWSTR, UINT
 
@@ -92,6 +93,56 @@ ms_variables_values = [[None] * m for i in range(len(tab_names))]
 parsing_values[0][:] = "JIAS-2020", "Submitted: ", "Title:", " (proxy) (contact)", "Wiley - Manuscript type:", "previous submission:", "Submitting Author:", "Running Head:", "Author's Cover Letter:", "If you have been invited to submit an article for a supplement, please select the title of the supplement:", "Discipline:", "Overall Similarity Index Percentage:"
 
 
+def intersperse(lst, item):
+    result = [item] * (len(lst) * 2 - 1)
+    result[0::2] = lst
+    return result
+
+def get_download_path():
+    """Returns the default downloads path for linux or windows"""
+    if os.name == 'nt':
+        import winreg
+        sub_key = r'SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders'
+        downloads_guid = '{374DE290-123F-4565-9164-39C4925E467B}'
+        with winreg.OpenKey(winreg.HKEY_CURRENT_USER, sub_key) as key:
+            location = winreg.QueryValueEx(key, downloads_guid)[0]
+        return location
+    else:
+        return os.path.join(os.path.expanduser('~'), 'downloads')
+
+
+def clear_paragraph(self, paragraph):
+	p_element = paragraph._p
+	p_child_elements = [elm for elm in p_element.iterchildren()]
+	for child_element in p_child_elements:
+		p_element.remove(child_element)
+
+
+def paragraph_replace(self, search, replace):
+	searchre = re.compile(search)
+	for paragraph in self.paragraphs:
+		paragraph_text = paragraph.text
+		if paragraph_text:
+			if searchre.search(paragraph_text):
+				clear_paragraph(self, paragraph)
+				paragraph.add_run(re.sub(search, replace, paragraph_text))
+	return paragraph
+
+
+def table_replace(self, text_value, replace):
+	result = False
+	tbl_regex = re.compile(text_value)
+	for table in self.tables:
+		for row in table.rows:
+			for cell in row.cells:
+				if cell.text:
+					if tbl_regex.search(cell.text):
+						cell.text = replace
+						result = True
+	return result
+
+
+
 
 def findStringsInMiddle(a, b, text):
 	return re.findall(re.escape(a)+"(.*?)"+re.escape(b),text)
@@ -143,7 +194,7 @@ def bigParsingFunction (method):
 
 
 		#set default names for each revelant data variable
-		ms_variables_default_values = ["ms ID", "ms date", "ms title", "ms authors", "ms type", "ms extra data", "ms discipline", "ms ithenticate", "ms first author", "ms short ID", "ms first author country", "ms last author country", "ms all author countries"]
+		ms_variables_default_values = ["ms ID", "ms date", "ms title", "ms author(s)", "ms type", "ms extra data", "ms discipline", "ms ithenticate", "ms first author", "ms short ID", "ms first author country", "ms last author country", "ms all author countries"]
 		#ms_variables_values = [None]*len(ms_variables_default_values) #ms_ID, ms_short_ID, ms_date, ms_title, ms_authors, ms_first_author, ms_type, ms_extra_data, ms_author_countries, ms_first_author_country, ms_last_author_country, ms_cover_letter, ms_discipline, ms_ithenticate]
 
 		for ndex, entry in enumerate(ms_variables_values[method]):
@@ -344,14 +395,54 @@ def bigParsingFunction (method):
 			print("error setting msInfo values")
 			display_message.set("Error setting MsInfo values") 
 
-		# Copies the appropriate data in excel format to the clipboard.  User then can CTRL+V directly
-		# into the MSLOG via the online processor.  If pasting directly to Excel on their
-		# laptop, then the user needs to paste into the first cell, rather than the row header
-		# as pasting in the row header will make excel create a warning popup in which they
-		# have to just press OK, then it will work properly
-		data = MSInfo.ms_all_authors + "	" + MSInfo.ms_first_author + "	" + "	" + MSInfo.ms_ID + "	" + MSInfo.ms_title + "	" + MSInfo.ms_date + "	" + MSInfo.ms_type + "	" + MSInfo.ms_discipline + "	"  + "	" + "Editorial Assessment"  + "	"  + "	"  + "	"  + "	"  + "	"  + "	" + MSInfo.ms_first_au_country + "	" + MSInfo.ms_submitting_au_country + "	" + MSInfo.ms_last_au_country + "	" + MSInfo.ms_all_au_country + "	"  + "	"  + "	"  + "	"  + "	"  + "	" + MSInfo.ms_ithenticate
-		pyperclip.copy(data)
-		print("\nClipboard:\t\t\t", data, "\n")
+		try:
+			# Copies the appropriate data in excel format to the clipboard.  User then can CTRL+V directly
+			# into the MSLOG via the online processor.  If pasting directly to Excel on their
+			# laptop, then the user needs to paste into the first cell, rather than the row header
+			# as pasting in the row header will make excel create a warning popup in which they
+			# have to just press OK, then it will work properly
+			data = MSInfo.ms_all_authors + "	" + MSInfo.ms_first_author + "	" + "	" + MSInfo.ms_ID + "	" + MSInfo.ms_title + "	" + MSInfo.ms_date + "	" + MSInfo.ms_type + "	" + MSInfo.ms_discipline + "	"  + "	" + "Editorial Assessment"  + "	"  + "	"  + "	"  + "	"  + "	"  + "	" + MSInfo.ms_first_au_country + "	" + MSInfo.ms_submitting_au_country + "	" + MSInfo.ms_last_au_country + "	" + MSInfo.ms_all_au_country + "	"  + "	"  + "	"  + "	"  + "	"  + "	" + MSInfo.ms_ithenticate
+			pyperclip.copy(data)
+			print("\nClipboard:\t\t\t", data, "\n")
+		except:
+			print('couldn\'t copy data properly to clipboard')
+
+		#create the folder and add the CL to it
+		try:
+			if not os.path.exists(get_download_path() + '\\' + MSInfo.ms_first_author + ' ' + MSInfo.ms_short_ID):
+				os.mkdir(get_download_path() + '\\' + MSInfo.ms_first_author + ' ' + MSInfo.ms_short_ID)
+				cover_letter_to_doc = []
+				cover_letter_to_doc = intersperse(ms_cover_letter[method], '\n')
+				cl_doc = Document()
+				cl_doc.add_paragraph(cover_letter_to_doc)
+				cl_doc.save(get_download_path() + '\\' + MSInfo.ms_first_author + ' ' + MSInfo.ms_short_ID + '\\' + MSInfo.ms_first_author + ' CL' + '.docx')
+		except:
+			print("failed to make MS folder and/or place CL doc inside it")
+
+
+		# create the MS Details file
+		try:
+			regex1 = ["<<authors>>", "<<author>>", "<<id>>", 		\
+			"<<title>>", "<<date>>", "<<discipline>>",	\
+			'<<countries>>', '<<type>>', '<<study_design>>', \
+			'<<n>>', '<<study_period>>', '<<coi_string>>']
+
+			replace1 = [MSInfo.ms_all_authors, MSInfo.ms_first_author, MSInfo.ms_ID, MSInfo.ms_title, \
+					MSInfo.ms_date, MSInfo.ms_discipline, MSInfo.ms_all_au_country, MSInfo.ms_type, \
+					"study_design", "n=", "study_period", MSInfo.ms_COI_parameters]
+
+			filename = os.getcwd() + '\\Document Templates\\' + "NEW MS Details TEMPLATE.docx"
+
+			doc = Document(filename)
+			for x in range(len(regex1)):
+				paragraph_replace(doc, regex1[x], replace1[x])
+				table_replace(doc, regex1[x], replace1[x])
+				
+			print('saved at:', get_download_path() + '\\' + MSInfo.ms_first_author + ' ' + MSInfo.ms_short_ID + '\\' + MSInfo.ms_first_author + ' MS Details.docx')
+			doc.save(get_download_path() + '\\' + MSInfo.ms_first_author + ' ' + MSInfo.ms_short_ID + '\\' + MSInfo.ms_first_author + ' MS Details.docx')
+
+		except:
+			print('couldn\'t create ms details document')
 
 
 
@@ -659,11 +750,31 @@ class Main:
 						print("Picked NO")
 						pass
 				else:
-					messagebox.showinfo('Software Update','No Updates are Available.')
+					#messagebox.showinfo('Software Update','No Updates are Available.')
+					pass
 			except Exception as e:
 				messagebox.showinfo('Software Update','Unable to Check for Update, Error:' + str(e))
 				#CallUpdateManager = UpdateManager(parent)
 
+		def CheckUpdatesViaMenu():
+			try:
+				url_data = urlopen(location_version_check)
+				latest_version = str(url_data.read(), 'utf-8')
+				if float(__version__) < float(latest_version):
+					mb = MessageBox(None,__AppName__+' '+ str(__version__)+' needs to update to version '+str(latest_version),'Update Available',flags.MB_YESNO | flags.MB_ICONQUESTION)
+					if mb ==  6:
+						print("picked YES")
+						CallUpdateManager = UpdateManager(parent)
+						pass
+					elif mb == 7:
+						print("Picked NO")
+						pass
+				else:
+					messagebox.showinfo('Software Update','No Updates are Available.')
+					pass
+			except Exception as e:
+				messagebox.showinfo('Software Update','Unable to Check for Update, Error:' + str(e))
+				#CallUpdateManager = UpdateManager(parent)
 
 		def AboutMe():
 			#loads info
@@ -695,7 +806,7 @@ class Main:
 
 
 			helpmenu = tk.Menu(menubar, tearoff=0)
-			helpmenu.add_command(label='Check For Updates', command=CheckUpdates)
+			helpmenu.add_command(label='Check For Updates', command=CheckUpdatesViaMenu)
 			helpmenu.add_command(label='About', command=AboutMe)
 			menubar.add_cascade(label='Help', menu=helpmenu)
 			
