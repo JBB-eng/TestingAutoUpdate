@@ -35,24 +35,25 @@ from ctypes import c_int, WINFUNCTYPE, windll
 from ctypes.wintypes import HWND, LPCWSTR, UINT
 
 
-#MS data stored in a single class for easier access
+#MS data stored in a class for easier accessiblity
 class MSInfo:
+	def __init__(self, authors, first_au, ms_id, title, date, ms_type, discipline, ithenticate, extra, first_co, last_co, all_co, sub_co, short_id, coi):
+		self.authors = authors
+		self.first_au = first_au 	
+		self.ms_id = ms_id
+		self.title = title 		
+		self.date = date 	
+		self.ms_type = ms_type
+		self.discipline = discipline
+		self.ithenticate = ithenticate
+		self.extra = extra
+		self.first_co = first_co	
+		self.last_co = last_co
+		self.all_co = all_co
+		self.sub_co = sub_co
+		self.short_id = short_id
+		self.coi = coi
 
-	ms_ID = "ID"
-	ms_date = "date"
-	ms_title = "title"
-	ms_all_authors = "all authors"
-	ms_type = "type"
-	ms_extra_info = "extra info"
-	ms_discipline = "discipline"
-	ms_ithenticate = "ithenticate value"
-	ms_first_author = "1st author"
-	ms_short_ID = "short ID"
-	ms_first_au_country = "1st au country"
-	ms_last_au_country = "last au country"
-	ms_all_au_country = "all author's countries"
-	ms_COI_parameters = "COI parameters"
-	ms_submitting_au_country = "submitting au country"
 
 
 prototype = WINFUNCTYPE(c_int, HWND, LPCWSTR, LPCWSTR, UINT)
@@ -75,16 +76,34 @@ folders_for_S1_check = [None]*10 #stores variables used in the S1_manuscript_che
 
 
 #all countries in the world
-all_countries = "Afghanistan, Albania, Algeria, Andorra, Angola, Antigua & Deps, Argentina, Armenia, Australia, Austria, Azerbaijan, Bahamas, Bahrain, Bangladesh, Barbados, Belarus, Belgium, Belize, Benin, Bhutan, Bolivia, Bosnia Herzegovina, Botswana, Brazil, Brunei, Bulgaria, Burkina, Burma, Burundi, Cambodia, Cameroon, Canada, Cape Verde, Central African Rep, Chad, Chile, China, Republic of China, Colombia, Comoros, Democratic Republic of the Congo, Republic of the Congo, Costa Rica, Côte d’Ivoire, Ivory Coast, Republic of Côte d'Ivoire, Croatia, Cuba, Cyprus, Czech Republic, Danzig, Denmark, Djibouti, Dominica, Dominican Republic, East Timor, Ecuador, Egypt, El Salvador, Equatorial Guinea, Eritrea, Estonia, Ethiopia, Fiji, Finland, France, Gabon, Gaza Strip, The Gambia, Georgia, Germany, Ghana, Greece, Grenada, Guatemala, Guinea, Guinea-Bissau, Guyana, Haiti, Holy Roman Empire, Honduras, Hungary, Iceland, India, Indonesia, Iran, Iraq, Republic of Ireland, Israel, Italy, Ivory Coast, Jamaica, Japan, Jonathanland, Jordan, Kazakhstan, Kenya, Kiribati, North Korea, South Korea, Kosovo, Kuwait, Kyrgyzstan, Laos, Latvia, Lebanon, Lesotho, Liberia, Libya, Liechtenstein, Lithuania, Luxembourg, Macedonia, Madagascar, Malawi, Malaysia, Maldives, Mali, Malta, Marshall Islands, Mauritania, Mauritius, Mexico, Micronesia, Moldova, Monaco, Mongolia, Montenegro, Morocco, Mount Athos, Mozambique, Namibia, Nauru, Nepal, Newfoundland, Netherlands, New Zealand, Nicaragua, Niger, Nigeria, Norway, Oman, Ottoman Empire, Pakistan, Palau, Panama, Papua New Guinea, Paraguay, Peru, Philippines, Poland, Portugal, Prussia, Qatar, Romania, Rome, Russian Federation, Rwanda, St Kitts & Nevis, St Lucia, Saint Vincent & the Grenadines, Samoa, San Marino, Sao Tome & Principe, Saudi Arabia, Senegal, Serbia, Seychelles, Sierra Leone, Singapore, Slovakia, Slovenia, Solomon Islands, Somalia, South Africa, Spain, Sri Lanka, Sudan, Suriname, Swaziland, Sweden, Switzerland, Syria, Taiwan, Tajikistan, Tanzania, Thailand, Togo, Tonga, Trinidad & Tobago, Tunisia, Turkey, Turkmenistan, Tuvalu, Uganda, Ukraine, United Arab Emirates, United Kingdom, United States, Uruguay, Uzbekistan, Vanuatu, Vatican City, Venezuela, Vietnam, Yemen, Zambia, Zimbabwe"
-all_countries = all_countries.split(', ')
+all_countries = "Afghanistan, Albania, Algeria, Andorra, Angola, Antigua & Deps, Argentina, Armenia, Australia, Austria, Azerbaijan, Bahamas, 							\
+				Bahrain, Bangladesh, Barbados, Belarus, Belgium, Belize, Benin, Bhutan, Bolivia, Bosnia Herzegovina, Botswana, Brazil, Brunei, 							\
+				Bulgaria, Burkina, Burma, Burundi, Cambodia, Cameroon, Canada, Cape Verde, Central African Rep, Chad, Chile, China, Republic of China, 					\
+				Colombia, Comoros, Democratic Republic of the Congo, Republic of the Congo, Costa Rica, Côte d’Ivoire, Ivory Coast, Republic of Côte d'Ivoire,			\
+				Croatia, Cuba, Cyprus, Czech Republic, Danzig, Denmark, Djibouti, Dominica, Dominican Republic, East Timor, Ecuador, Egypt, El Salvador, 				\
+				Equatorial Guinea, Eritrea, Estonia, Ethiopia, Fiji, Finland, France, Gabon, Gaza Strip, The Gambia, Georgia, Germany, Ghana, Greece, Grenada, 			\
+				Guatemala, Guinea, Guinea-Bissau, Guyana, Haiti, Holy Roman Empire, Honduras, Hungary, Iceland, India, Indonesia, Iran, Iraq, Republic of Ireland, 		\
+				Israel, Italy, Ivory Coast, Jamaica, Japan, Jonathanland, Jordan, Kazakhstan, Kenya, Kiribati, North Korea, South Korea, Kosovo, Kuwait, Kyrgyzstan, 	\
+				Laos, Latvia, Lebanon, Lesotho, Liberia, Libya, Liechtenstein, Lithuania, Luxembourg, Macedonia, Madagascar, Malawi, Malaysia, Maldives, Mali, Malta, 	\
+				Marshall Islands, Mauritania, Mauritius, Mexico, Micronesia, Moldova, Monaco, Mongolia, Montenegro, Morocco, Mount Athos, Mozambique, Namibia, Nauru, 	\
+				Nepal, Newfoundland, Netherlands, New Zealand, Nicaragua, Niger, Nigeria, Norway, Oman, Ottoman Empire, Pakistan, Palau, Panama, Papua New Guinea, 		\
+				Paraguay, Peru, Philippines, Poland, Portugal, Prussia, Qatar, Romania, Rome, Russian Federation, Rwanda, St Kitts & Nevis, St Lucia, 					\
+				Saint Vincent & the Grenadines, Samoa, San Marino, Sao Tome & Principe, Saudi Arabia, Senegal, Serbia, Seychelles, Sierra Leone, Singapore, Slovakia, 	\
+				Slovenia, Solomon Islands, Somalia, South Africa, Spain, Sri Lanka, Sudan, Suriname, Swaziland, Sweden, Switzerland, Syria, Taiwan, Tajikistan,			\
+				Tanzania, Thailand, Togo, Tonga, Trinidad & Tobago, Tunisia, Turkey, Turkmenistan, Tuvalu, Uganda, Ukraine, United Arab Emirates, United Kingdom,		\
+				United States, Uruguay, Uzbekistan, Vanuatu, Vatican City, Venezuela, Vietnam, Yemen, Zambia, Zimbabwe".split(', ')
+#all_countries = all_countries.split(', ')
 
 #multidimensional lists that hold the relevant parsed and collected data for each tab
 #example: list[n][m] (n=rows, m=columns) --> list[len(tabs_names), m=?]
+
 m=20
-entry_files1 = [[None] * 1 for i in range(len(tab_names))] #these columns are extended via "append" when they are built
-entry_files2 = [[None] * m for i in range(len(tab_names))]
-entry_files2_checkbox = [[None] * m for i in range(len(tab_names))]
-entry_parsed_data = [[None] * m for i in range(len(tab_names))]
+
+entry1_files = [[None] * 8 for i in range(len(tab_names))] 
+entry2_files = [[None] * 8 for i in range(len(tab_names))]
+entry3_checkboxes = [[None] * 8 for i in range(len(tab_names))]
+entry_parsed_data = [[None] * 15 for i in range(len(tab_names))]
+
 parsing_values = [[None] * m for i in range(len(tab_names))]
 parsing_bools = [[None] * m for i in range(len(tab_names))]
 ms_variables_values = [[None] * m for i in range(len(tab_names))] 
@@ -94,22 +113,51 @@ ms_variables_values = [[None] * m for i in range(len(tab_names))]
 parsing_values[0][:] = "JIAS-2020", "Submitted: ", "Title:", " (proxy) (contact)", "Wiley - Manuscript type:", "previous submission:", "Submitting Author:", "Running Head:", "Author's Cover Letter:", "If you have been invited to submit an article for a supplement, please select the title of the supplement:", "Discipline:", "Overall Similarity Index Percentage:"
 
 
+def check_for_files_in_dl_folder(method):
+	global files, more_than_8_files
+	files = []
+	download_path = get_download_path()
+	for entry in os.listdir(download_path):
+		if os.path.isfile(os.path.join(download_path, entry)):
+			if not entry.startswith(('desktop.ini', 'test.xlsx', 'export.csv', 'export (', 'S1 Weekly Check')):
+				files.append(entry)
+
+	#for x, entry in enumerate(found_file_names[method]):# in range (len(files)):
+	#	if x < len(files):
+	#		found_file_names[method].append(files[x])
+
+	if len(files) > 8:
+		print(files)
+		print("files greater than 8")
+		more_than_8_files = 1
+		#print(found_file_names[method])
+	else:
+		print("files less than 8")
+		print('files:',files)
+		more_than_8_files = 0
+		#print('found_file_names[method]:',found_file_names[method])
+
+	#found_file_names[method].pop(0)
+	#print('found_file_names[method]:', found_file_names[method])
+
+
+
 def intersperse(lst, item):
-    result = [item] * (len(lst) * 2 - 1)
-    result[0::2] = lst
-    return result
+	result = [item] * (len(lst) * 2 - 1)
+	result[0::2] = lst
+	return result
 
 def get_download_path():
-    """Returns the default downloads path for linux or windows"""
-    if os.name == 'nt':
-        import winreg
-        sub_key = r'SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders'
-        downloads_guid = '{374DE290-123F-4565-9164-39C4925E467B}'
-        with winreg.OpenKey(winreg.HKEY_CURRENT_USER, sub_key) as key:
-            location = winreg.QueryValueEx(key, downloads_guid)[0]
-        return location
-    else:
-        return os.path.join(os.path.expanduser('~'), 'downloads')
+	"""Returns the default downloads path for linux or windows"""
+	if os.name == 'nt':
+		import winreg
+		sub_key = r'SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders'
+		downloads_guid = '{374DE290-123F-4565-9164-39C4925E467B}'
+		with winreg.OpenKey(winreg.HKEY_CURRENT_USER, sub_key) as key:
+			location = winreg.QueryValueEx(key, downloads_guid)[0]
+		return location
+	else:
+		return os.path.join(os.path.expanduser('~'), 'downloads')
 
 
 def clear_paragraph(self, paragraph):
@@ -173,21 +221,8 @@ def bigParsingFunction (method):
 	ms_temp_date = [] #temporarily holds submission date
 
 
-	#clear all MSInfo data to prevent value mix ups when using different tabs
-	MSInfo.ms_ID = ""
-	MSInfo.ms_date = ""
-	MSInfo.ms_title = ""
-	MSInfo.ms_all_authors = ""
-	MSInfo.ms_type = ""
-	MSInfo.ms_extra_info = ""
-	MSInfo.ms_discipline = ""
-	MSInfo.ms_ithenticate = ""
-	MSInfo.ms_first_author = ""
-	MSInfo.ms_short_ID = ""
-	MSInfo.ms_first_au_country = ""
-	MSInfo.ms_last_au_country = ""
-	MSInfo.ms_all_au_country = ""
-	MSInfo.ms_COI_parameters = "" 
+	parsed = MSInfo('','','','','','','','','','','','','','','')
+
 	
 	if method==0:	 #New MS parsing
 		print("\n@@@@@@@@\n@@@@@@@@\nRunning", tab_names[method], "function:")
@@ -208,7 +243,7 @@ def bigParsingFunction (method):
 
 		#set default names for each revelant data variable
 		ms_variables_default_values = ["ms ID", "ms date", "ms title", "ms author(s)", "ms type", "ms extra data", "ms discipline", "ms ithenticate", "ms first author", "ms short ID", "ms first author country", "ms last author country", "ms all author countries"]
-		#ms_variables_values = [None]*len(ms_variables_default_values) #ms_ID, ms_short_ID, ms_date, ms_title, ms_authors, ms_first_author, ms_type, ms_extra_data, ms_author_countries, ms_first_author_country, ms_last_author_country, ms_cover_letter, ms_discipline, ms_ithenticate]
+		#ms_variables_values = [None]*len(ms_variables_default_values) #ms_ID, short_id, ms_date, ms_title, ms_authors, ms_first_author, ms_type, ms_extra_data, ms_author_countries, ms_first_author_country, ms_last_author_country, ms_cover_letter, ms_discipline, ithenticate]
 
 		for ndex, entry in enumerate(ms_variables_values[method]):
 			if ndex < len(ms_variables_default_values):
@@ -322,9 +357,9 @@ def bigParsingFunction (method):
 				ms_variables_values[method][7] = re.sub('%', '', ms_variables_values[method][7])
 				ms_variables_values[method][7] = float(ms_variables_values[method][7]) / 100
 			except:
-				ms_ithenticate_error = "Error: could not perform post processing of ithenticate value!"
-				print(ms_ithenticate_error)
-				display_message.set(ms_ithenticate_error)
+				ithenticate_error = "Error: could not perform post processing of ithenticate value!"
+				print(ithenticate_error)
+				display_message.set(ithenticate_error)
 
 
 		#post processing of values:
@@ -389,21 +424,24 @@ def bigParsingFunction (method):
 			print('could not generate COI search parameters:', e)
 
 		try:
-			MSInfo.ms_ID = ms_variables_values[method][0].rstrip()
-			MSInfo.ms_date = ms_variables_values[method][1].rstrip()
-			MSInfo.ms_title = ms_variables_values[method][2].rstrip()
-			MSInfo.ms_all_authors = ms_variables_values[method][3].rstrip()
-			MSInfo.ms_type = ms_variables_values[method][4].rstrip()
-			MSInfo.ms_extra_info = ms_variables_values[method][5].rstrip()
-			MSInfo.ms_discipline = ms_variables_values[method][6].rstrip()
-			MSInfo.ms_ithenticate = str(ms_variables_values[method][7]).rstrip()
-			MSInfo.ms_first_author = ms_variables_values[method][8].rstrip()
-			MSInfo.ms_short_ID = ms_variables_values[method][9].rstrip()
-			MSInfo.ms_first_au_country = ms_variables_values[method][10].rstrip()
-			MSInfo.ms_last_au_country = ms_variables_values[method][11].rstrip()
-			MSInfo.ms_all_au_country = ms_variables_values[method][12].rstrip()
-			MSInfo.ms_submitting_au_country = ms_variables_values[method][13].rstrip()
-			MSInfo.ms_COI_parameters = ms_variables_values[method][14].rstrip()
+			parsed.id = ms_variables_values[method][0].rstrip()
+			parsed.date = ms_variables_values[method][1].rstrip()
+			parsed.title = ms_variables_values[method][2].rstrip()
+			parsed.authors = ms_variables_values[method][3].rstrip()
+			parsed.type = ms_variables_values[method][4].rstrip()
+			parsed.extra = ms_variables_values[method][5].rstrip()
+			parsed.discipline = ms_variables_values[method][6].rstrip()
+			parsed.ithenticate = str(ms_variables_values[method][7]).rstrip()
+			parsed.first_au = ms_variables_values[method][8].rstrip()
+			parsed.short_id = ms_variables_values[method][9].rstrip()
+			parsed.first_co = ms_variables_values[method][10].rstrip()
+			parsed.last_co = ms_variables_values[method][11].rstrip()
+			parsed.all_co = ms_variables_values[method][12].rstrip()
+			parsed.sub_co = ms_variables_values[method][13].rstrip()
+			parsed.coi = ms_variables_values[method][14].rstrip()
+
+
+
 		except:
 			print("error setting msInfo values")
 			display_message.set("Error setting MsInfo values") 
@@ -414,7 +452,7 @@ def bigParsingFunction (method):
 			# laptop, then the user needs to paste into the first cell, rather than the row header
 			# as pasting in the row header will make excel create a warning popup in which they
 			# have to just press OK, then it will work properly
-			data = MSInfo.ms_all_authors + "	" + MSInfo.ms_first_author + "	" + "	" + MSInfo.ms_ID + "	" + MSInfo.ms_title + "	" + MSInfo.ms_date + "	" + MSInfo.ms_type + "	" + MSInfo.ms_discipline + "	"  + "	" + "Editorial Assessment"  + "	"  + "	"  + "	"  + "	"  + "	"  + "	" + MSInfo.ms_first_au_country + "	" + MSInfo.ms_submitting_au_country + "	" + MSInfo.ms_last_au_country + "	" + MSInfo.ms_all_au_country + "	"  + "	"  + "	"  + "	"  + "	"  + "	" + MSInfo.ms_ithenticate
+			data = parsed.authors + "	" + parsed.first_au + "	" + "	" + parsed.ms_id + "	" + parsed.title + "	" + parsed.date + "	" + parsed.ms_type + "	" + parsed.discipline + "	"  + "	" + "Editorial Assessment"  + "	"  + "	"  + "	"  + "	"  + "	"  + "	" + parsed.first_co + "	" + parsed.sub_co + "	" + parsed.last_co + "	" + parsed.all_co + "	"  + "	"  + "	"  + "	"  + "	"  + "	" + parsed.ithenticate
 			pyperclip.copy(data)
 			print("\nClipboard:\t\t\t", data, "\n")
 		except:
@@ -422,13 +460,13 @@ def bigParsingFunction (method):
 
 		#create the folder and add the CL to it
 		try:
-			if not os.path.exists(get_download_path() + '\\' + MSInfo.ms_first_author + ' ' + MSInfo.ms_short_ID):
-				os.mkdir(get_download_path() + '\\' + MSInfo.ms_first_author + ' ' + MSInfo.ms_short_ID)
+			if not os.path.exists(get_download_path() + '\\' + parsed.first_au + ' ' + parsed.short_id):
+				os.mkdir(get_download_path() + '\\' + parsed.first_au + ' ' + parsed.short_id)
 				cover_letter_to_doc = []
 				cover_letter_to_doc = intersperse(ms_cover_letter[method], '\n')
 				cl_doc = Document()
 				cl_doc.add_paragraph(cover_letter_to_doc)
-				cl_doc.save(get_download_path() + '\\' + MSInfo.ms_first_author + ' ' + MSInfo.ms_short_ID + '\\' + MSInfo.ms_first_author + ' CL' + '.docx')
+				cl_doc.save(get_download_path() + '\\' + parsed.first_au + ' ' + parsed.short_id + '\\' + parsed.first_au + ' CL' + '.docx')
 		except:
 			print("failed to make MS folder and/or place CL doc inside it")
 
@@ -440,9 +478,9 @@ def bigParsingFunction (method):
 			'<<countries>>', '<<type>>', '<<study_design>>', \
 			'<<n>>', '<<study_period>>', '<<coi_string>>']
 
-			replace1 = [MSInfo.ms_all_authors, MSInfo.ms_first_author, MSInfo.ms_ID, MSInfo.ms_title, \
-					MSInfo.ms_date, MSInfo.ms_discipline, MSInfo.ms_all_au_country, MSInfo.ms_type, \
-					"study_design", "n=", "study_period", MSInfo.ms_COI_parameters]
+			replace1 = [parsed.authors, parsed.first_au, parsed.ms_id, parsed.title, \
+					parsed.date, parsed.discipline, parsed.all_co, parsed.ms_type, \
+					"study_design", "n=", "study_period", parsed.coi]
 
 			filename = os.getcwd() + '\\Document Templates\\' + "NEW MS Details TEMPLATE.docx"
 
@@ -451,29 +489,79 @@ def bigParsingFunction (method):
 				paragraph_replace(doc, regex1[x], replace1[x], x)
 				table_replace(doc, regex1[x], replace1[x])
 				
-			#print('saved at:', get_download_path() + '\\' + MSInfo.ms_first_author + ' ' + MSInfo.ms_short_ID + '\\' + MSInfo.ms_first_author + ' MS Details.docx')
-			doc.save(get_download_path() + '\\' + MSInfo.ms_first_author + ' ' + MSInfo.ms_short_ID + '\\' + MSInfo.ms_first_author + ' MS Details.docx')
+			#print('saved at:', get_download_path() + '\\' + MSInfo.first_au + ' ' + MSInfo.short_id + '\\' + MSInfo.first_au + ' MS Details.docx')
+			doc.save(get_download_path() + '\\' + parsed.first_au + ' ' + parsed.short_id + '\\' + parsed.first_au + ' MS Details.docx')
 
 		except:
 			print('couldn\'t create ms details document')
 
+#		try:
+#			for x in range(len(entry1_files[method])):
+#				entry_files1[method][x].destroy
+#
+#			for x in range(len(entry2_files[method])):
+#				entry_files2[method][x].destroy
+#
+#			for x in range(len(entry3_checkboxes[method])):
+#				entry3_checkboxes[method][x].destroy
+#		except:
+#			print('could not clear the three big lists!')
+
+		check_for_files_in_dl_folder(method)
+		if more_than_8_files:
+			for i in range(8):
+				entry1_files[method][i] = tk.Entry(tabs[method], width=20)
+				entry1_files[method][i].grid(column=0, row=8+i, sticky='w')
+				entry1_files[method][i].delete(0, 'end')
+				entry1_files[method][i].insert(0, files[i])
+
+				entry2_files[method][i] = tk.Entry(tabs[method], width=20)
+				entry2_files[method][i].grid(column=1, row=8+i, sticky='w')
+				entry2_files[method][i].delete(0, 'end')
+				entry2_files[method][i].insert(0, parsed.first_au)
+
+				tk.Checkbutton(tabs[method], var=entry3_checkboxes[method][i]).grid(column=1, row=8+i, sticky='e')
+			#for ndex2, entry1 in enumerate(entry1_files[method]):
+			#	if ndex2 < 8:
+			#		entry1.delete(0, 'end')
+			#		entry1.insert(0, files[ndex2])
+			#print('lalala:',more_than_8_files)
+		else:
+			for i in range(len(files)):
+				entry1_files[method][i] = tk.Entry(tabs[method], width=20)
+				entry1_files[method][i].grid(column=0, row=8+i, sticky='w')
+				entry1_files[method][i].delete(0, 'end')
+				entry1_files[method][i].insert(0, files[i])
+
+				entry2_files[method][i] = tk.Entry(tabs[method], width=20)
+				entry2_files[method][i].grid(column=0, row=8+i, sticky='e')
+				entry2_files[method][i].delete(0, 'end')
+				entry2_files[method][i].insert(0, parsed.first_au)
+
+				tk.Checkbutton(tabs[method], var=entry3_checkboxes[method][i]).grid(column=1, row=8+i, sticky='e')
+			#for ndex2, entry1 in enumerate(entry1_files[method]):
+			#	if ndex2 < 8:
+			#		entry1.delete(0, 'end')
+			#		entry1.insert(0, files[ndex2])
+			#print('nonono:',more_than_8_files)
+		show_results_in_labels(method)
 
 
 		#debugging -- check for valid data results
-		print('ID:\t\t\t\t\t', MSInfo.ms_ID)
-		print('Date:\t\t\t\t', MSInfo.ms_date)
-		print('Title:\t\t\t\t', MSInfo.ms_title)
-		print('Authors:\t\t\t', MSInfo.ms_all_authors)
-		print('Type:\t\t\t\t', MSInfo.ms_type)
-		print('Extra Data:\t\t\t', MSInfo.ms_extra_info)
-		print('Discipline:\t\t\t', MSInfo.ms_discipline)
-		print('Ithenticate:\t\t', MSInfo.ms_ithenticate)
-		print('First AU:\t\t\t', MSInfo.ms_first_author)
-		print('Short ID:\t\t\t', MSInfo.ms_short_ID)
-		print('First AU Country:\t', MSInfo.ms_first_au_country)
-		print('Last AU Country:\t', MSInfo.ms_last_au_country)
-		print('All AU Countries:\t', MSInfo.ms_all_au_country)
-		print('COI parameters:\t\t', MSInfo.ms_COI_parameters)
+		print('ID:\t\t\t\t\t', parsed.ms_id)
+		print('Date:\t\t\t\t', parsed.date)
+		print('Title:\t\t\t\t', parsed.title)
+		print('Authors:\t\t\t', parsed.authors)
+		print('Type:\t\t\t\t', parsed.ms_type)
+		print('Extra Data:\t\t\t', parsed.extra)
+		print('Discipline:\t\t\t', parsed.discipline)
+		print('Ithenticate:\t\t', parsed.ithenticate)
+		print('First AU:\t\t\t', parsed.first_au)
+		print('Short ID:\t\t\t', parsed.short_id)
+		print('First AU Country:\t', parsed.first_co)
+		print('Last AU Country:\t', parsed.last_co)
+		print('All AU Countries:\t', parsed.all_co)
+		print('COI parameters:\t\t', parsed.coi)
 
 		"""
 		#debugging -- check for valid data results
@@ -729,19 +817,21 @@ def generate_copypaste_section(tab_no):
 def generate_main_app_section(tab_no):
 	if tab_no is 0:
 		tk.Label(tabs[tab_no], text="Files to Rename:", width=15, height=1).grid(column=0, row=4, sticky="w")
-		
-		entry_files1[tab_no] = tk.Entry(tabs[tab_no], width= 17)
-		entry_files1[tab_no].grid(column=0, row=8, sticky='w')
-		#entry_files1[tab_no].place(x = 0.01, y = 0.4)#column=0, row=8, sticky='w')
-		entry_files1[tab_no].insert(0, "Original Name:")
-		entry_files1[tab_no].configure(state="readonly")
 
-		entry_files2[tab_no] = tk.Entry(tabs[tab_no], width= 17)
-		entry_files2[tab_no].grid(column=0, row=8, sticky='e')
-		#entry_files2[tab_no].place(x = 0.25, y = 0.4)#column=0, row=8, sticky='w')
-		entry_files2[tab_no].insert(0, "New Name:")
-		entry_files2[tab_no].configure(state="readonly")
+def show_results_in_labels(tab_no):
+	lbl_list = ['ID:', 'Date:', 'Title:', 'Authors:', 'Type:', \
+            'Extra:', 'Disci:', 'iThent:', '1st AU: ', \
+            'ShortID:', '1AU CO:', 'LastAU CO:', 'AllAU CO:', \
+            'SubmitAu CO:', 'SearchCOI:']
+
+
+	for i in range(15):
+		tk.Label(tabs[tab_no], text=lbl_list[i], anchor='e', width=15).grid(column=2, row=i, sticky='w')
 		
+		entry_parsed_data[tab_no][i] = tk.Entry(tabs[tab_no], width=35)
+		entry_parsed_data[tab_no][i].grid(column=3, row=i, sticky='w')
+		entry_parsed_data[tab_no][i].delete(0, 'end')
+		entry_parsed_data[tab_no][i].insert(0, ms_variables_values[tab_no][i])
 
 
 
@@ -1022,7 +1112,7 @@ class DisplayAboutMe(tk.Toplevel):
 def main():
 	root = tk.Tk()
 	root.title(__AppName__+' '+str(__version__))
-	w=650; h=400
+	w=650; h=525
 	sw = root.winfo_screenwidth()
 	sh = root.winfo_screenheight()
 	x = (sw - w) / 2
