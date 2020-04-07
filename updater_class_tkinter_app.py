@@ -300,7 +300,6 @@ def bigParsingFunction (method):
 						ms_temp_author_countries.append("United States")
 					else:
 						if re.search('\\b'+d+'\\b', line):
-							print("blah blah blah")
 							ms_temp_author_countries.append(d) #these values will be reassigned after the parsing is completed
 						#if re.search(d, line):
 						#	print("gaga gaga gaga")
@@ -372,6 +371,9 @@ def bigParsingFunction (method):
 			#post processing to get short ID in proper format
 			ms_variables_values[method][9] = re.sub('JIAS-', '', ms_variables_values[method][0]) #ms short ID in proper format
 
+			ms_variables_values[method][13] = ms_temp_author_countries[0]	#submitting author country (is typically 1st in list, NOT 2nd)
+			ms_variables_values[method][11] = ms_temp_author_countries[-1]  #last author country 
+
 			#removes duplicates from the temporarily list of countries
 			ms_temp_author_countries = list(dict.fromkeys(ms_temp_author_countries))
 
@@ -386,9 +388,10 @@ def bigParsingFunction (method):
 			if len(ms_temp_author_countries) is 1:
 				ms_variables_values[method][11] = ms_temp_author_countries[0]	#if only 1 author, last author country is the same as first author country
 				ms_variables_values[method][13] = ms_temp_author_countries[0]	#if 1 author, submitting author country is same as 1st au
-			elif len(ms_temp_author_countries) is not 1:
-				ms_variables_values[method][11] = ms_temp_author_countries[-1]	#if more than 1 author, last author country is last country in list
-				ms_variables_values[method][13] = ms_temp_author_countries[1]	#if more than 1 au, submitting au country is 2nd au in list
+			#elif len(ms_temp_author_countries) is not 1:
+				#print("countries list:", str(ms_temp_author_countries))
+				#ms_variables_values[method][11] = ms_temp_author_countries[-1]	#if more than 1 author, last author country is last country in list
+				#ms_variables_values[method][13] = ms_temp_author_countries[1]	#if more than 1 au, submitting au country is 2nd au in list
 
 			ms_variables_values[method][12] = ', '.join(ms_temp_author_countries)	#all authors' countries
 
