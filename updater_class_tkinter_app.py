@@ -2,6 +2,10 @@
 Creating classes and building tkinter app with updater
 """
 
+#JIAS-2020-03-0186 breaks country parsing
+#JIAS-2020-03-0175 causes ROME to be added to country and MS extra data is not captured
+
+
 __author__		= 'Jacob Bursavich'
 __copyright__	= 'Copyright (C) 2020, Jacob Bursavich'
 __credits__		= ['Jacob Bursavich']
@@ -76,29 +80,13 @@ folders_for_S1_check = [None]*10 #stores variables used in the S1_manuscript_che
 
 
 #all countries in the world
-all_countries = "Afghanistan, Albania, Algeria, Andorra, Angola, Antigua & Deps, Argentina, Armenia, Australia, Austria, Azerbaijan, Bahamas, 							\
-				Bahrain, Bangladesh, Barbados, Belarus, Belgium, Belize, Benin, Bhutan, Bolivia, Bosnia Herzegovina, Botswana, Brazil, Brunei, 							\
-				Bulgaria, Burkina, Burma, Burundi, Cambodia, Cameroon, Canada, Cape Verde, Central African Rep, Chad, Chile, China, Republic of China, 					\
-				Colombia, Comoros, Democratic Republic of the Congo, Republic of the Congo, Costa Rica, Côte d’Ivoire, Ivory Coast, Republic of Côte d'Ivoire,			\
-				Croatia, Cuba, Cyprus, Czech Republic, Danzig, Denmark, Djibouti, Dominica, Dominican Republic, East Timor, Ecuador, Egypt, El Salvador, 				\
-				Equatorial Guinea, Eritrea, Estonia, Ethiopia, Fiji, Finland, France, Gabon, Gaza Strip, The Gambia, Georgia, Germany, Ghana, Greece, Grenada, 			\
-				Guatemala, Guinea, Guinea-Bissau, Guyana, Haiti, Holy Roman Empire, Honduras, Hungary, Iceland, India, Indonesia, Iran, Iraq, Republic of Ireland, 		\
-				Israel, Italy, Ivory Coast, Jamaica, Japan, Jonathanland, Jordan, Kazakhstan, Kenya, Kiribati, North Korea, South Korea, Kosovo, Kuwait, Kyrgyzstan, 	\
-				Laos, Latvia, Lebanon, Lesotho, Liberia, Libya, Liechtenstein, Lithuania, Luxembourg, Macedonia, Madagascar, Malawi, Malaysia, Maldives, Mali, Malta, 	\
-				Marshall Islands, Mauritania, Mauritius, Mexico, Micronesia, Moldova, Monaco, Mongolia, Montenegro, Morocco, Mount Athos, Mozambique, Namibia, Nauru, 	\
-				Nepal, Newfoundland, Netherlands, New Zealand, Nicaragua, Niger, Nigeria, Norway, Oman, Ottoman Empire, Pakistan, Palau, Panama, Papua New Guinea, 		\
-				Paraguay, Peru, Philippines, Poland, Portugal, Prussia, Qatar, Romania, Rome, Russian Federation, Rwanda, St Kitts & Nevis, St Lucia, 					\
-				Saint Vincent & the Grenadines, Samoa, San Marino, Sao Tome & Principe, Saudi Arabia, Senegal, Serbia, Seychelles, Sierra Leone, Singapore, Slovakia, 	\
-				Slovenia, Solomon Islands, Somalia, South Africa, Spain, Sri Lanka, Sudan, Suriname, Swaziland, Sweden, Switzerland, Syria, Taiwan, Tajikistan,			\
-				Tanzania, Thailand, Togo, Tonga, Trinidad & Tobago, Tunisia, Turkey, Turkmenistan, Tuvalu, Uganda, Ukraine, United Arab Emirates, United Kingdom,		\
-				United States, Uruguay, Uzbekistan, Vanuatu, Vatican City, Venezuela, Vietnam, Yemen, Zambia, Zimbabwe".split(', ')
-#all_countries = all_countries.split(', ')
+all_countries = "Afghanistan, Albania, Algeria, Andorra, Angola, Antigua & Deps, Argentina, Armenia, Australia, Austria, Azerbaijan, Bahamas, Bahrain, Bangladesh, Barbados, Belarus, Belgium, Belize, Benin, Bhutan, Bolivia, Bosnia Herzegovina, Botswana, Brazil, Brunei, Bulgaria, Burkina, Burma, Burundi, Cambodia, Cameroon, Canada, Cape Verde, Central African Rep, Chad, Chile, China, Republic of China,Colombia, Comoros, Democratic Republic of the Congo, Republic of the Congo, Costa Rica, Côte d’Ivoire, Ivory Coast, Republic of Côte d'Ivoire, Croatia, Cuba, Cyprus, Czech Republic, Danzig, Denmark, Djibouti, Dominica, Dominican Republic, East Timor, Ecuador, Egypt, El Salvador, Equatorial Guinea, Eritrea, Estonia, Ethiopia, Fiji, Finland, France, Gabon, Gaza Strip, The Gambia, Georgia, Germany, Ghana, Greece, Grenada, Guatemala, Guinea, Guinea-Bissau, Guyana, Haiti, Holy Roman Empire, Honduras, Hungary, Iceland, India, Indonesia, Iran, Iraq, Republic of Ireland, Israel, Italy, Ivory Coast, Jamaica, Japan, Jordan, Kazakhstan, Kenya, Kiribati, North Korea, South Korea, Kosovo, Kuwait, Kyrgyzstan, Laos, Latvia, Lebanon, Lesotho, Liberia, Libya, Liechtenstein, Lithuania, Luxembourg, Macedonia, Madagascar, Malawi, Malaysia, Maldives, Mali, Malta, Marshall Islands, Mauritania, Mauritius, Mexico, Micronesia, Moldova, Monaco, Mongolia, Montenegro, Morocco, Mount Athos, Mozambique, Namibia, Nauru, Nepal, Newfoundland, Netherlands, New Zealand, Nicaragua, Niger, Nigeria, Norway, Oman, Ottoman Empire, Pakistan, Palau, Panama, Papua New Guinea,Paraguay, Peru, Philippines, Poland, Portugal, Prussia, Qatar, Romania, Russian Federation, Rwanda, St Kitts & Nevis, St Lucia, Saint Vincent & the Grenadines, Samoa, San Marino, Sao Tome & Principe, Saudi Arabia, Senegal, Serbia, Seychelles, Sierra Leone, Singapore, Slovakia, Slovenia, Solomon Islands, Somalia, South Africa, Spain, Sri Lanka, Sudan, Suriname, Swaziland, Sweden, Switzerland, Syria, Taiwan, Tajikistan, Tanzania, Thailand, Togo, Tonga, Trinidad & Tobago, Tunisia, Turkey, Turkmenistan, Tuvalu, Uganda, Ukraine, United Arab Emirates, United Kingdom, United States, Uruguay, Uzbekistan, Vanuatu, Vatican City, Venezuela, Vietnam, Yemen, Zambia, Zimbabwe".split(', ')
 
 #multidimensional lists that hold the relevant parsed and collected data for each tab
 #example: list[n][m] (n=rows, m=columns) --> list[len(tabs_names), m=?]
-
+#all_countries.append("Tanzania")
+#all_countries.append("United Kingdom")
 m=20
-
 entry1_files = [[None] * 8 for i in range(len(tab_names))] 
 entry2_files = [[None] * 8 for i in range(len(tab_names))]
 entry3_checkboxes = [[None] * 8 for i in range(len(tab_names))]
@@ -287,6 +275,10 @@ def bigParsingFunction (method):
 			elif parsing_values[method][5] in line:
 				ms_variables_values[method][5] = line #ms extra data
 
+			elif "Select Reviewers" in line:
+				ms_variables_values[method][5] = line #ms extra data
+
+
 			#now continuing to parse through the text
 
 			#bool check for whether to parse for country information
@@ -296,7 +288,7 @@ def bigParsingFunction (method):
 				parsing_bools[method][0] = False
 
 			#parse for country data if bool is true
-			if parsing_bools[method][0] == True:
+			if parsing_bools[method][0]:
 				for d in all_countries:
 					if "Georgia" and "Atlanta," in line:
 						ms_temp_author_countries.append("United States")
@@ -308,9 +300,12 @@ def bigParsingFunction (method):
 						ms_temp_author_countries.append("United States")
 					else:
 						if re.search('\\b'+d+'\\b', line):
+							print("blah blah blah")
 							ms_temp_author_countries.append(d) #these values will be reassigned after the parsing is completed
-
-
+						#if re.search(d, line):
+						#	print("gaga gaga gaga")
+						#	ms_temp_author_countries.append(d) #these values will be reassigned after the parsing is completed
+						
 
 					#if (d and "Atlanta,") in line or (d and "Atlanta") in line or (d and "Athens,") in line or (d and "Athens") in line:	#this is added because of the country Georgia, which, without this condition, is added to the list when the author is from Atlanta, Georgia!
 					#	ms_temp_author_countries.append("United States")
@@ -382,6 +377,8 @@ def bigParsingFunction (method):
 
 			#remove first line of cover letter
 			ms_cover_letter[method].pop(0)
+
+			print('countries:', ms_temp_author_countries)
 			
 			#post processing to get first and last author's country
 			ms_variables_values[method][10] = ms_temp_author_countries[0] #first author country
@@ -424,11 +421,11 @@ def bigParsingFunction (method):
 			print('could not generate COI search parameters:', e)
 
 		try:
-			parsed.id = ms_variables_values[method][0].rstrip()
+			parsed.ms_id = ms_variables_values[method][0].rstrip()
 			parsed.date = ms_variables_values[method][1].rstrip()
 			parsed.title = ms_variables_values[method][2].rstrip()
 			parsed.authors = ms_variables_values[method][3].rstrip()
-			parsed.type = ms_variables_values[method][4].rstrip()
+			parsed.ms_type = ms_variables_values[method][4].rstrip()
 			parsed.extra = ms_variables_values[method][5].rstrip()
 			parsed.discipline = ms_variables_values[method][6].rstrip()
 			parsed.ithenticate = str(ms_variables_values[method][7]).rstrip()
@@ -478,7 +475,7 @@ def bigParsingFunction (method):
 			'<<countries>>', '<<type>>', '<<study_design>>', \
 			'<<n>>', '<<study_period>>', '<<coi_string>>']
 
-			replace1 = [parsed.authors, parsed.first_au, parsed.ms_id, parsed.title, \
+			replace1 = [parsed.authors, parsed.first_au, parsed.short_id, parsed.title, \
 					parsed.date, parsed.discipline, parsed.all_co, parsed.ms_type, \
 					"study_design", "n=", "study_period", parsed.coi]
 
