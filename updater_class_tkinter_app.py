@@ -41,7 +41,7 @@ from ctypes.wintypes import HWND, LPCWSTR, UINT
 
 #MS data stored in a class for easier accessiblity
 class MSInfo:
-	def __init__(self, authors, first_au, ms_id, title, date, ms_type, discipline, ithenticate, extra, first_co, last_co, all_co, sub_co, short_id, coi):
+	def __init__(self, authors, first_au, ms_id, title, date, ms_type, discipline, ithenticate, extra, first_co, last_co, all_co, sub_co, short_id, coi, cover_letter, files):
 		self.authors = authors
 		self.first_au = first_au 	
 		self.ms_id = ms_id
@@ -57,6 +57,8 @@ class MSInfo:
 		self.sub_co = sub_co
 		self.short_id = short_id
 		self.coi = coi
+		self.cover_letter = []
+		self.files = []
 
 
 
@@ -101,19 +103,29 @@ ms_variables_values = [[None] * m for i in range(len(tab_names))]
 parsing_values[0][:] = "JIAS-2020", "Submitted: ", "Title:", " (proxy) (contact)", "Wiley - Manuscript type:", "previous submission:", "Submitting Author:", "Running Head:", "Author's Cover Letter:", "If you have been invited to submit an article for a supplement, please select the title of the supplement:", "Discipline:", "Overall Similarity Index Percentage:"
 
 
+def RenameFilesAndAddToFolder(shortid, method, files, firstAuthor):
+	shortID = shortid
+	for ndex, entry in enumerate(entry1_files[method]):
+		if ndex < len(files) and entry3_checkboxes[method][ndex].get() == True:
+			try:
+				file_name1, file_extension1 = os.path.splitext(entry1_files[method][ndex].get())
+				file_name2, file_extension2 = os.path.splitext(entry2_files[method][ndex].get())
+				print("bool value " + str(ndex) + ": " + str(entry3_checkboxes[method][ndex].get()))
+				os.rename(get_download_path() + '/' + entry1_files[method][ndex].get(), get_download_path() + '/' + str(firstAuthor) + " " + shortid + '/' + entry2_files[method][ndex].get() + file_extension1)
+			except:
+				print('not working...need to fix this!')
+
+
 def check_for_files_in_dl_folder(method):
 	global files, more_than_8_files
 	files = []
+	files.clear()
 	download_path = get_download_path()
 	for entry in os.listdir(download_path):
 		if os.path.isfile(os.path.join(download_path, entry)):
 			if not entry.startswith(('desktop.ini', 'test.xlsx', 'export.csv', 'export (', 'S1 Weekly Check')):
 				files.append(entry)
-
-	#for x, entry in enumerate(found_file_names[method]):# in range (len(files)):
-	#	if x < len(files):
-	#		found_file_names[method].append(files[x])
-
+				
 	if len(files) > 8:
 		print(files)
 		print("files greater than 8")
@@ -123,11 +135,6 @@ def check_for_files_in_dl_folder(method):
 		print("files less than 8")
 		print('files:',files)
 		more_than_8_files = 0
-		#print('found_file_names[method]:',found_file_names[method])
-
-	#found_file_names[method].pop(0)
-	#print('found_file_names[method]:', found_file_names[method])
-
 
 
 def intersperse(lst, item):
@@ -209,7 +216,7 @@ def bigParsingFunction (method):
 	ms_temp_date = [] #temporarily holds submission date
 
 
-	parsed = MSInfo('','','','','','','','','','','','','','','')
+	parsed = MSInfo('','','','','','','','','','','','','','','','','')
 
 	
 	if method==0:	 #New MS parsing
@@ -321,7 +328,8 @@ def bigParsingFunction (method):
 			#parse for cover letter data if bool is true
 			if parsing_bools[method][1] == True:
 				try:
-					ms_cover_letter[method].append(line)
+					parsed.cover_letter.append(line)
+					#ms_cover_letter[method].append(line)
 				except:
 					ms_coverletter_error = "Error: could not parse cover letter value!"
 					print(ms_coverletter_error)
@@ -378,7 +386,8 @@ def bigParsingFunction (method):
 			ms_temp_author_countries = list(dict.fromkeys(ms_temp_author_countries))
 
 			#remove first line of cover letter
-			ms_cover_letter[method].pop(0)
+			#ms_cover_letter[method].pop(0)
+			parsed.cover_letter.pop(0)
 
 			print('countries:', ms_temp_author_countries)
 			
@@ -463,7 +472,8 @@ def bigParsingFunction (method):
 			if not os.path.exists(get_download_path() + '\\' + parsed.first_au + ' ' + parsed.short_id):
 				os.mkdir(get_download_path() + '\\' + parsed.first_au + ' ' + parsed.short_id)
 				cover_letter_to_doc = []
-				cover_letter_to_doc = intersperse(ms_cover_letter[method], '\n')
+				#cover_letter_to_doc = intersperse(ms_cover_letter[method], '\n')
+				cover_letter_to_doc = intersperse(parsed.cover_letter, '\n')
 				cl_doc = Document()
 				cl_doc.add_paragraph(cover_letter_to_doc)
 				cl_doc.save(get_download_path() + '\\' + parsed.first_au + ' ' + parsed.short_id + '\\' + parsed.first_au + ' CL' + '.docx')
@@ -495,55 +505,26 @@ def bigParsingFunction (method):
 		except:
 			print('couldn\'t create ms details document')
 
-#		try:
-#			for x in range(len(entry1_files[method])):
-#				entry_files1[method][x].destroy
-#
-#			for x in range(len(entry2_files[method])):
-#				entry_files2[method][x].destroy
-#
-#			for x in range(len(entry3_checkboxes[method])):
-#				entry3_checkboxes[method][x].destroy
-#		except:
-#			print('could not clear the three big lists!')
-
 		check_for_files_in_dl_folder(method)
-		if more_than_8_files:
-			for i in range(8):
-				entry1_files[method][i] = tk.Entry(tabs[method], width=20)
-				entry1_files[method][i].grid(column=0, row=8+i, sticky='w')
-				entry1_files[method][i].delete(0, 'end')
-				entry1_files[method][i].insert(0, files[i])
 
-				entry2_files[method][i] = tk.Entry(tabs[method], width=20)
-				entry2_files[method][i].grid(column=1, row=8+i, sticky='w')
-				entry2_files[method][i].delete(0, 'end')
-				entry2_files[method][i].insert(0, parsed.first_au)
+		for x in range(len(entry1_files[method])):
+			entry1_files[method][x].delete(0, 'end')
+			entry2_files[method][x].delete(0, 'end')
 
-				tk.Checkbutton(tabs[method], var=entry3_checkboxes[method][i]).grid(column=1, row=8+i, sticky='e')
-			#for ndex2, entry1 in enumerate(entry1_files[method]):
-			#	if ndex2 < 8:
-			#		entry1.delete(0, 'end')
-			#		entry1.insert(0, files[ndex2])
-			#print('lalala:',more_than_8_files)
-		else:
-			for i in range(len(files)):
-				entry1_files[method][i] = tk.Entry(tabs[method], width=20)
-				entry1_files[method][i].grid(column=0, row=8+i, sticky='w')
-				entry1_files[method][i].delete(0, 'end')
-				entry1_files[method][i].insert(0, files[i])
 
-				entry2_files[method][i] = tk.Entry(tabs[method], width=20)
-				entry2_files[method][i].grid(column=0, row=8+i, sticky='e')
-				entry2_files[method][i].delete(0, 'end')
-				entry2_files[method][i].insert(0, parsed.first_au)
+		for ndex2, entry1 in enumerate(entry1_files[method][:]):
+			if ndex2 < len(files):
+				entry1.insert(0, files[ndex2])
+	
 
-				tk.Checkbutton(tabs[method], var=entry3_checkboxes[method][i]).grid(column=1, row=8+i, sticky='e')
-			#for ndex2, entry1 in enumerate(entry1_files[method]):
-			#	if ndex2 < 8:
-			#		entry1.delete(0, 'end')
-			#		entry1.insert(0, files[ndex2])
-			#print('nonono:',more_than_8_files)
+		for ndex2, entry1 in enumerate(entry2_files[method][:]):
+			if ndex2 < len(files):
+				entry1.insert(0, parsed.first_au)
+
+		for i in range(8):
+
+			tk.Checkbutton(tabs[method], var=entry3_checkboxes[method][i]).grid(column=1, row=8+i, sticky='e')
+
 		show_results_in_labels(method)
 
 
@@ -563,22 +544,8 @@ def bigParsingFunction (method):
 		print('All AU Countries:\t', parsed.all_co)
 		print('COI parameters:\t\t', parsed.coi)
 
-		"""
-		#debugging -- check for valid data results
-		print('ID:', ms_variables_values[0].rstrip())
-		print('Date:', ms_variables_values[1].rstrip())
-		print('Title:', ms_variables_values[2].rstrip())
-		print('Authors:', ms_variables_values[3].rstrip())
-		print('Type:', ms_variables_values[4].rstrip())
-		print('Extra Data:', ms_variables_values[5].rstrip())
-		print('Discipline:', ms_variables_values[6].rstrip())
-		print('Ithenticate:', str(ms_variables_values[7]).rstrip())
-		print('First Author:', ms_variables_values[8].rstrip())
-		print('Short ID:', ms_variables_values[9].rstrip())
-		print('First Author Country:', ms_variables_values[10].rstrip())
-		print('Last Author Country:', ms_variables_values[11].rstrip())
-		print('All Authors Countries:', ms_variables_values[12].rstrip())
-		"""
+
+
 
 def get_download_folder():
 	global download_directory
@@ -817,19 +784,35 @@ def generate_copypaste_section(tab_no):
 def generate_main_app_section(tab_no):
 	if tab_no is 0:
 		tk.Label(tabs[tab_no], text="Files to Rename:", width=15, height=1).grid(column=0, row=4, sticky="w")
+		for i in range(8):
+			entry1_files[tab_no][i] = tk.Entry(tabs[tab_no], width=20)
+			entry1_files[tab_no][i].grid(column=0, row=8+i, sticky='w')
+
+			entry2_files[tab_no][i] = tk.Entry(tabs[tab_no], width=20)
+			entry2_files[tab_no][i].grid(column=0, row=8+i, sticky='e')
+
+			tk.Checkbutton(tabs[tab_no], var=entry3_checkboxes[tab_no][i]).grid(column=1, row=8+i, sticky='e')
+		
+		lbl_list = ['ID:', 'Date:', 'Title:', 'Authors:', 'Type:', \
+			'Extra:', 'Disci:', 'iThent:', '1st AU: ', \
+			'ShortID:', '1AU CO:', 'LastAU CO:', 'AllAU CO:', \
+			'SubmitAu CO:', 'SearchCOI:']
+
+
+		for i in range(15):
+			tk.Label(tabs[tab_no], text=lbl_list[i], anchor='e', width=15).grid(column=2, row=i, sticky='w')
+			entry_parsed_data[tab_no][i] = tk.Entry(tabs[tab_no], width=35)
+			entry_parsed_data[tab_no][i].grid(column=3, row=i, sticky='w')
+
+		ttk.Button(tabs[tab_no], text='OK', command=RenameFiles).grid(column=1, sticky='e', row=16)	
+
+def RenameFiles():
+	pass
+
+
 
 def show_results_in_labels(tab_no):
-	lbl_list = ['ID:', 'Date:', 'Title:', 'Authors:', 'Type:', \
-            'Extra:', 'Disci:', 'iThent:', '1st AU: ', \
-            'ShortID:', '1AU CO:', 'LastAU CO:', 'AllAU CO:', \
-            'SubmitAu CO:', 'SearchCOI:']
-
-
 	for i in range(15):
-		tk.Label(tabs[tab_no], text=lbl_list[i], anchor='e', width=15).grid(column=2, row=i, sticky='w')
-		
-		entry_parsed_data[tab_no][i] = tk.Entry(tabs[tab_no], width=35)
-		entry_parsed_data[tab_no][i].grid(column=3, row=i, sticky='w')
 		entry_parsed_data[tab_no][i].delete(0, 'end')
 		entry_parsed_data[tab_no][i].insert(0, ms_variables_values[tab_no][i])
 
