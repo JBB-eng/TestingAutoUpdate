@@ -170,9 +170,9 @@ class MSInfo:
 
 	def ParseText(self):
 
-		if self.method==0:	 #New MS parsing
+		if self.method is 0:	 #New MS parsing
 			
-			display_message.set("Parsing " + tab_names[method] + " Text!")
+			#display_message.set("Parsing " + tab_names[method] + " Text!")
 
 			#set default names for each revelant data variable
 			self.authors = "authors"
@@ -194,9 +194,12 @@ class MSInfo:
 			self.parse_text = "parse_text"
 			self.files = []
 
+			#bools for parsing
+			cover_letter_bool = 0
+			country_bool = 0
 
 			# add the text from the GUI textbox to a variable
-			self.parse_text = io.StringIO(ms_textbox[method].get('1.0', 'end-1c'))
+			self.parse_text = io.StringIO(ms_textbox[self.method].get('1.0', 'end-1c'))
 
 			# BEGIN PARSING TEXT
 			# IF SCHOLAR ONE CHANGES THEIR FORMAT, THEN THIS SECTION
@@ -204,38 +207,35 @@ class MSInfo:
 			# THE parsing_values[] VARIABLE, SHOULD MAKE THIS PROCESS EASIER
 
 			for line in self.parse_text:
+				line = line.rstrip()
 
-				if parsing_values[method][0] in line or "JIAS-2019" in line:
+				if parsing_values[self.method][0] in line or "JIAS-2019" in line:
 					self.ms_id = line #ms id
 
-				elif parsing_values[method][1] in line:
+				elif parsing_values[self.method][1] in line:
 					self.date = line #ms date
 
-				elif parsing_values[method][2] in line:
-					for line in islice(the_MS_text, 2):
-						self.title = line #ms title
+				elif parsing_values[self.method][2] in line:
+					for line in islice(self.parse_text, 2):
+						self.title = line.rstrip() #ms title
 
-				elif parsing_values[method][3] in line:
+				elif parsing_values[self.method][3] in line:
 					self.authors = line #ms authors
 
-				elif parsing_values[method][4] in line:
-					for line in islice(the_MS_text, 2):
-						self.ms_type = line #ms type
+				elif parsing_values[self.method][4] in line:
+					for line in islice(self.parse_text, 2):
+						self.ms_type = line.rstrip() #ms type
 
-				elif parsing_values[method][5] in line:
+				elif parsing_values[self.method][5] in line:
 					self.extra = line #ms extra data
 
 				elif "Select Reviewers" in line:
 					self.extra = line #ms extra data
 
-
-				#now continuing to parse through the text
-				country_bool = 0
-
 				#bool check for whether to parse for country information
-				if line.startswith(parsing_values[method][6]):
+				if line.startswith(parsing_values[self.method][6]):
 					country_bool = 1
-				elif line.startswith(parsing_values[method][7]):
+				elif line.startswith(parsing_values[self.method][7]):
 					country_bool = 0
 
 				#band-aid fix for certain issues that appear when search for countries, such as "Georgia" and "Rome"
@@ -255,13 +255,10 @@ class MSInfo:
 								self.all_co.append(d) #these values will be reassigned after the parsing is completed
 
 
-				#continue parse through text
-				cover_letter_bool = 0
-				
 				#bool check for whether to parse for cover letter information
-				if line.startswith(parsing_values[method][8]):
+				if line.startswith(parsing_values[self.method][8]):
 					cover_letter_bool = 1
-				elif line.startswith(parsing_values[method][9]):
+				elif line.startswith(parsing_values[self.method][9]):
 					cover_letter_bool = 0
 
 				#parse for cover letter data if bool is true
@@ -274,23 +271,21 @@ class MSInfo:
 						display_message.set(cover_letter_error)
 
 				#parsing for ms discipline value
-				if re.match(parsing_values[method][10], line):
+				if re.match(parsing_values[self.method][10], line):
 					try:
-						for line in islice(the_MS_text, 2):
-							self.discipline = line #ms discipline
+						for line in islice(self.parse_text, 2):
+							self.discipline = line.rstrip() #ms discipline
 					except:
 						discipline_error = "Error: could not parse discipline value!"
 						print(discipline_error)
 						display_message.set(discipline_error)
-
-
 				#parsing for ms ithenticate value (needs post-processing)
 				try:
-					if re.match(parsing_values[method][11], line):
+					if re.match(parsing_values[self.method][11], line):
 						self.ithenticate = line 	#ms ithenticate
-				except:
-					ithenticate_error = "Error: could not parse ithenticate value!"
-					print(ithenticate_error)
+				except Exception as e:
+					ithenticate_error = 'Could not parse ithenticate. ERROR:'
+					print(ithenticate_error, e)
 					display_message.set(ithenticate_error)					
 					
 	def PostProcessParsedData(self):
@@ -300,20 +295,20 @@ class MSInfo:
 			try:
 				temp_ithenticate = self.ithenticate.split(':')
 				temp_ithenticate = temp_ithenticate[1]
-				temp_ithenticate = re.sub('%', '', ms_variables_values[method][7])
-				temp_ithenticate = float(ms_variables_values[method][7]) / 100
-				self.ithenticate = copy(temp_ithenticate)
-			except:
+				temp_ithenticate = re.sub('%', '', temp_ithenticate)
+				temp_ithenticate = float(temp_ithenticate) / 100
+				self.ithenticate = temp_ithenticate
+			except Exception as e:
 				ithenticate_error = "Error: could not perform post processing of ithenticate value!"
-				print(ithenticate_error)
+				print(ithenticate_error, e)
 				display_message.set(ithenticate_error)
 
 		#post processing of first author			
 		try:
 			temp_authors = self.authors.split(',')
 			self.first_au = temp_authors[0]
-		except:
-			print("failed to post process first author")
+		except Exception as e:
+			print("failed to post process first author. ERROR:",e)
 		
 		#post processing of date
 		try:
@@ -321,37 +316,38 @@ class MSInfo:
 			ms_temp_date = self.date.split(':')
 			ms_temp_date = ms_temp_date[1].split(';')
 			ms_temp_date = ms_temp_date[0].strip(' ') #ms date in proper format
-			self.date = copy(ms_temp_date)
-		except:
-			print("failed to post process date")
+			self.date = ms_temp_date
+		except Exception as e:
+			print("failed to post process date. ERROR:", e)
 
 		#post processing of short ID
 		try:
 			self.short_id = re.sub('JIAS-', '', self.ms_id) #ms short ID in proper format
-		except:
-			print("failed to post process short ID")
+			self.short_id = self.short_id
+		except Exception as e:
+			print("failed to post process short ID. ERROR:", e)
 
 		#post processing of submitting author country
 		try:
 			self.sub_co = self.all_co[0]	#submitting author country is 1st typically, NOT 2ND)
-		except:
-			print("failed to post process submitting author country")
+		except Exception as e:
+			print("failed to post process submitting author country. ERROR:", e)
 
 ########## THIS MAY NEED TO BE UPDATED ALONG WITH PARSING FUNCTION ###############################################
 
 		#post processing of first author country
 		try:
 			self.first_co = self.all_co[0]
-		except:
-			print("failed to post process first author country")
+		except Exception as e:
+			print("failed to post process first author country", e)
 
 		##########################################################################################################
 
 		#post processing of last author country
 		try:
 			self.last_co = self.all_co[-1] #last author country is last in list
-		except:
-			print("failed to post process last author country")
+		except Exception as e:
+			print("failed to post process last author country", e)
 
 		#2nd post processing of first,last,submitting author countries
 		if len(self.all_co) is 1:
@@ -359,20 +355,20 @@ class MSInfo:
 				self.first_co = self.all_co[0]
 				self.sub_co = self.all_co[0]
 				self.last_co = self.all_co[0]
-			except:
-				print("failed 2nd post processing of author countries")
+			except Exception as e:
+				print("failed 2nd post processing of author countries" , e)
 
 		#post processing of all author countries
 		try:
 			self.all_co = list(dict.fromkeys(self.all_co)) #removes duplicates
-		except:
-			print("failed to post process all author countries")
+		except Exception as e:
+			print("failed to post process all author countries", e)
 
 		#post processing of cover letter
 		try:
 			self.cover_letter.pop(0) #removes first entry
-		except:
-			print("failed to post process cover letter")
+		except Exception as e:
+			print("failed to post process cover letter", e)
 
 ########## THIS SECTION NEEDS TO BE UPDATED TO INCLUDE ALL DISCIPLINES #############################################
 		
@@ -383,7 +379,7 @@ class MSInfo:
 
 	def CreateCoiString(self):
 		try:
-			temp_coi = '; ' + self.authors.rstrip()
+			temp_coi = '; ' + self.authors
 			temp_coi = findStringsInMiddle(';',',', temp_coi)
 
 			self.coi = ''
@@ -409,14 +405,14 @@ class MSInfo:
 
 	def CreateFolderForManuscript(self):
 		try:
-			if not os.path.exists(get_download_path() + '\\' + self.first_au + ' ' + self.short_id):
-				os.mkdir(GetDownloadPath() + '\\' + parsed.first_au + ' ' + parsed.short_id)
+			if not os.path.exists(GetDownloadPath() + '\\' + self.first_au + ' ' + self.short_id):
+				os.mkdir(GetDownloadPath() + '\\' + self.first_au + ' ' + self.short_id)
 		except Exception as e:
 			print('failed to generate folder for manuscript. ERROR:', e)
 
 	def CreateCoverLetterAndPlaceInFolder(self):
 		try:
-			cover_letter_to_doc = []
+			cover_letter_to_doc = ""
 			cover_letter_to_doc = intersperse(self.cover_letter, '\n')
 			cover_letter_document = Document()
 			cover_letter_document.add_paragraph(cover_letter_to_doc)
@@ -426,23 +422,28 @@ class MSInfo:
 
 	def CreateMSDetailsAndPlaceInFolder(self):
 		try:
+			str_all_co = ""
+			for x in range(len(self.all_co)):
+				str_all_co += self.all_co[x] + ',' + ' '
+			str_all_co = str_all_co[:-2]
+
 			entries_within_doc_template = ['<<authors>>', '<<author>>', '<<id>>', 		\
 			'<<title>>', '<<date>>', '<<discipline>>',	\
 			'<<countries>>', '<<type>>', '<<study_design>>', \
 			'<<n>>', '<<study_period>>', '<<coi_string>>']
 
 			replace_entries_with_this = [self.authors, self.first_au, self.short_id, self.title, \
-					self.date, self.discipline, self.all_co, self.ms_type, \
-					"study_design", "n=", "study_period", self.coi]
+					self.date, self.discipline, str_all_co, self.ms_type, \
+					"study_design", "n=", "study_period", self.coi + '\r']
 
 			filename = os.getcwd() + '\\Document Templates\\' + "NEW MS Details TEMPLATE.docx"
 
 			ms_details_document = Document(filename)
 			for x in range(len(entries_within_doc_template)):
-				paragraph_replace(doc, entries_within_doc_template[x], replace_entries_with_this[x], x)
-				table_replace(doc, entries_within_doc_template[x], replace_entries_with_this[x])
+				paragraph_replace(ms_details_document, entries_within_doc_template[x], replace_entries_with_this[x], x)
+				table_replace(ms_details_document, entries_within_doc_template[x], replace_entries_with_this[x])
 				
-			ms_details_document.save(get_download_path() + '\\' + self.first_au + ' ' + self.short_id + '\\' + self.first_au + ' MS Details.docx')
+			ms_details_document.save(GetDownloadPath() + '\\' + self.first_au + ' ' + self.short_id + '\\' + self.first_au + ' MS Details.docx')
 
 		except Exception as e:
 			print('failed to create ms details document and move it to folder. ERROR:', e)
@@ -468,7 +469,7 @@ class MSInfo:
 
 
 def Parser():
-	parse = MSInfo('0','','','','','','','','','','','','','','','','','','')
+	parse = MSInfo(0,'','','','','','','','','','','','','','','','','','')
 	parse.ParseText()
 	parse.PostProcessParsedData()
 	parse.CreateCoiString()
