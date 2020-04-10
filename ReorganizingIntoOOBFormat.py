@@ -74,14 +74,20 @@ m=20
 entry1_files = [[None] * 8 for i in range(len(tab_names))] 
 entry2_files = [[None] * 8 for i in range(len(tab_names))]
 entry3_checkboxes = [[None] * 8 for i in range(len(tab_names))]
+
 entry_parsed_data = [[None] * 15 for i in range(len(tab_names))]
 
 parsing_values = [[None] * m for i in range(len(tab_names))]
 parsing_bools = [[None] * m for i in range(len(tab_names))]
 
-#Values for parsing_values list for each individual tab
-#parsing_values[0][:] = "JIAS-2020", "Submitted: ", 2, 3, 3, 3, "Submitting Author:", "Running Head:", "Author's Cover Letter:", "If you have been invited to submit an article for a supplement, please select the title of the supplement:", "Discipline:", 2, "Overall Similarity Index Percentage:"
+
+############ GLOBALS (OOP METHODS) ##############
+#global_first_au = "" #assigned during PostProcessParsedData() function
+files_to_ignore_in_download_folder = ["Elisa to Check Pivot Table Setups", "JAIDS_reveiw"] #add as many as you want here
 parsing_values[0][:] = "JIAS-2020", "Submitted: ", "Title:", " (proxy) (contact)", "Wiley - Manuscript type:", "previous submission:", "Submitting Author:", "Running Head:", "Author's Cover Letter:", "If you have been invited to submit an article for a supplement, please select the title of the supplement:", "Discipline:", "Overall Similarity Index Percentage:"
+#################################################
+
+
 
 def intersperse(lst, item):
 	result = [item] * (len(lst) * 2 - 1)
@@ -377,6 +383,7 @@ class MSInfo:
 			self.discipline = "BE"
 		############################################################################################################
 
+
 	def CreateCoiString(self):
 		try:
 			temp_coi = '; ' + self.authors
@@ -467,6 +474,36 @@ class MSInfo:
 		except Exception as e:
 			print('failed to print parsing results. ERROR:', e)
 
+	#arguments are for files that you'd like to ignore within the download folder
+	def FindFilesInDownloadFolder(self, *args):
+		path = GetDownloadPath()
+		for entry in os.listdir(path):
+			if os.path.isfile(os.path.join(path, entry)):
+				if not entry.startswith(args):
+					self.files.append(entry)
+
+		if len(self.files) >= len(entry1_files[self.method]):
+			for x in range(len(entry1_files[self.method])):
+				entry1_files[self.method][x].delete(0, 'end')
+				entry2_files[self.method][x].delete(0, 'end')			
+			for x in range(len(entry1_files[self.method])):
+				entry1_files[self.method][x].insert(0, self.files[x])
+				entry2_files[self.method][x].insert(0, self.first_au)
+		
+		if len(self.files) < len(entry1_files[self.method]):
+			for x in range(len(entry1_files[self.method])):
+				entry1_files[self.method][x].delete(0, 'end')
+				entry2_files[self.method][x].delete(0, 'end')
+			for x in range(len(self.files)):
+				entry1_files[self.method][x].insert(0, self.files[x])
+				entry2_files[self.method][x].insert(0, self.first_au)
+
+
+		#Now some interaction with the GUI
+		#assign value of files[] to a global list
+		#possibly also assign first AU value to the [0] of the global list
+
+
 
 def Parser():
 	parse = MSInfo(0,'','','','','','','','','','','','','','','','','','')
@@ -477,7 +514,7 @@ def Parser():
 	parse.CreateCoverLetterAndPlaceInFolder()
 	parse.CreateMSDetailsAndPlaceInFolder()
 	parse.PrintParsingResults()
-
+	parse.FindFilesInDownloadFolder(*files_to_ignore_in_download_folder)
 
 def RenameFilesAndAddToFolder(shortid, method, files, firstAuthor):
 	shortID = shortid
