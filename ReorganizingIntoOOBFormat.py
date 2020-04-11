@@ -2,10 +2,6 @@
 Reorganizing updater_class_tinker_app into proper OOP style
 """
 
-"""
-Creating classes and building tkinter app with updater
-"""
-
 #JIAS-2020-03-0186 breaks country parsing
 #JIAS-2020-03-0175 causes ROME to be added to country and MS extra data is not captured
 
@@ -83,7 +79,7 @@ parsing_bools = [[None] * m for i in range(len(tab_names))]
 
 ############ GLOBALS (OOP METHODS) ##############
 #global_first_au = "" #assigned during PostProcessParsedData() function
-files_to_ignore_in_download_folder = ["Elisa to Check Pivot Table Setups", "JAIDS_reveiw"] #add as many as you want here
+files_to_ignore_in_download_folder = ["Elisa to Check Pivot Table Setups", "JAIDS_reveiw", "desktop.ini", "JIAS All manuscripts from list"] #add as many as you want here
 parsing_values[0][:] = "JIAS-2020", "Submitted: ", "Title:", " (proxy) (contact)", "Wiley - Manuscript type:", "previous submission:", "Submitting Author:", "Running Head:", "Author's Cover Letter:", "If you have been invited to submit an article for a supplement, please select the title of the supplement:", "Discipline:", "Overall Similarity Index Percentage:"
 #################################################
 
@@ -411,9 +407,11 @@ class MSInfo:
 			print('failed to copy data to clipboard in excel format. ERROR:', e)
 
 	def CreateFolderForManuscript(self):
+		global ms_folder
 		try:
 			if not os.path.exists(GetDownloadPath() + '\\' + self.first_au + ' ' + self.short_id):
 				os.mkdir(GetDownloadPath() + '\\' + self.first_au + ' ' + self.short_id)
+			ms_folder = GetDownloadPath() + '\\' + self.first_au + ' ' + self.short_id + '\\'
 		except Exception as e:
 			print('failed to generate folder for manuscript. ERROR:', e)
 
@@ -485,8 +483,10 @@ class MSInfo:
 		if len(self.files) >= len(entry1_files[self.method]):
 			for x in range(len(entry1_files[self.method])):
 				entry1_files[self.method][x].delete(0, 'end')
-				entry2_files[self.method][x].delete(0, 'end')			
+				entry2_files[self.method][x].delete(0, 'end')
+				entry3_checkboxes[self.method][x].set(False)			
 			for x in range(len(entry1_files[self.method])):
+				entry3_checkboxes[self.method][x].set(True)
 				entry1_files[self.method][x].insert(0, self.files[x])
 				entry2_files[self.method][x].insert(0, self.first_au)
 		
@@ -494,19 +494,17 @@ class MSInfo:
 			for x in range(len(entry1_files[self.method])):
 				entry1_files[self.method][x].delete(0, 'end')
 				entry2_files[self.method][x].delete(0, 'end')
+				entry3_checkboxes[self.method][x].set(False)
 			for x in range(len(self.files)):
+				entry3_checkboxes[self.method][x].set(True)	
 				entry1_files[self.method][x].insert(0, self.files[x])
 				entry2_files[self.method][x].insert(0, self.first_au)
 
 
-		#Now some interaction with the GUI
-		#assign value of files[] to a global list
-		#possibly also assign first AU value to the [0] of the global list
-
-
-
 def Parser():
+	global method_parsed
 	parse = MSInfo(0,'','','','','','','','','','','','','','','','','','')
+	method_parsed = int(parse.method)
 	parse.ParseText()
 	parse.PostProcessParsedData()
 	parse.CreateCoiString()
@@ -515,9 +513,28 @@ def Parser():
 	parse.CreateMSDetailsAndPlaceInFolder()
 	parse.PrintParsingResults()
 	parse.FindFilesInDownloadFolder(*files_to_ignore_in_download_folder)
+	
+def RenameFilesAndAddToMsFolder():
+	for x in range(len(entry1_files[method_parsed])):
+		if entry1_files[method_parsed][x].get() is not "" and entry3_checkboxes[method_parsed][x].get() is True:
+			try:
+				file_name1, file_extension1 = os.path.splitext(entry1_files[method_parsed][x].get())
+				file_name2, file_extension2 = os.path.splitext(entry2_files[method_parsed][x].get())
+				os.rename(GetDownloadPath() + '/' + entry1_files[method_parsed][x].get(), ms_folder + entry2_files[method_parsed][x].get() + file_extension1)
+
+				entry1_files[method_parsed][x].delete(0, 'end')
+				entry2_files[method_parsed][x].delete(0, 'end')
+				entry3_checkboxes[method_parsed][x].set(False)
+			except Exception as e:
+				print ('RenameFilesAndAssToMsFolder failed. ERROR:', e)
+		else:
+			pass
+
+
+
 
 def RenameFilesAndAddToFolder(shortid, method, files, firstAuthor):
-	shortID = shortid
+	
 	for ndex, entry in enumerate(entry1_files[method]):
 		if ndex < len(files) and entry3_checkboxes[method][ndex].get() == True:
 			try:
@@ -787,6 +804,8 @@ def generate_main_app_section(tab_no):
 			entry2_files[tab_no][i] = tk.Entry(tabs[tab_no], width=20)
 			entry2_files[tab_no][i].grid(column=0, row=8+i, sticky='e')
 
+			entry3_checkboxes[tab_no][i] = tk.BooleanVar()
+
 			tk.Checkbutton(tabs[tab_no], var=entry3_checkboxes[tab_no][i]).grid(column=1, row=8+i, sticky='e')
 		
 		lbl_list = ['ID:', 'Date:', 'Title:', 'Authors:', 'Type:', \
@@ -800,7 +819,7 @@ def generate_main_app_section(tab_no):
 			entry_parsed_data[tab_no][i] = tk.Entry(tabs[tab_no], width=35)
 			entry_parsed_data[tab_no][i].grid(column=3, row=i, sticky='w')
 
-		ttk.Button(tabs[tab_no], text='OK', command=RenameFiles).grid(column=1, sticky='e', row=16)	
+		ttk.Button(tabs[tab_no], text='OK', command=RenameFilesAndAddToMsFolder).grid(column=1, sticky='e', row=16)	
 
 def RenameFiles():
 	pass
