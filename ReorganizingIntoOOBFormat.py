@@ -401,7 +401,7 @@ class MSInfo:
 
 	def CopyExcelFormatToClipboard(self):
 		try:
-			data = self.authors + "	" + self.first_au + "	" + "	" + self.ms_id + "	" + self.title + "	" + self.date + "	" + self.ms_type + "	" + self.discipline + "	"  + "	" + "Editorial Assessment"  + "	"  + "	"  + "	"  + "	"  + "	"  + "	" + self.first_co + "	" + self.sub_co + "	" + self.last_co + "	" + self.all_co + "	"  + "	"  + "	"  + "	"  + "	"  + "	" + self.ithenticate
+			data = self.authors + "	" + self.first_au + "	" + "	" + self.ms_id + "	" + self.title + "	" + self.date + "	" + self.ms_type + "	" + self.discipline + "	"  + "	" + "Editorial Assessment"  + "	"  + "	"  + "	"  + "	"  + "	"  + "	" + self.first_co + "	" + self.sub_co + "	" + self.last_co + "	" + ', '.join(self.all_co) + "	"  + "	"  + "	"  + "	"  + "	"  + "	" + str(self.ithenticate)
 			pyperclip.copy(data)
 		except Exception as e:
 			print('failed to copy data to clipboard in excel format. ERROR:', e)
@@ -513,7 +513,8 @@ def Parser():
 	parse.CreateMSDetailsAndPlaceInFolder()
 	parse.PrintParsingResults()
 	parse.FindFilesInDownloadFolder(*files_to_ignore_in_download_folder)
-	
+	parse.CopyExcelFormatToClipboard()
+
 def RenameFilesAndAddToMsFolder():
 	for x in range(len(entry1_files[method_parsed])):
 		if entry1_files[method_parsed][x].get() is not "" and entry3_checkboxes[method_parsed][x].get() is True:
@@ -583,6 +584,13 @@ def get_editorial_folder():
 	folders_for_S1_check[1].configure(state="readonly")
 	s1_window.lift()
 
+def slice_folder_name(my_str, sub):
+	index=my_str.find(sub)
+	if index != -1 :
+		return my_str[index:]
+	else:
+		return my_str
+
 def check_for_s1_ms_in_editorial_folders():
 	global missing_ms
 
@@ -610,7 +618,11 @@ def check_for_s1_ms_in_editorial_folders():
 	print("Number of Excel export files found:", len(excel_exports))
 
 	ms_IDs = [[None] * 200 for i in range(len(excel_exports))]
+	ms_FirstAu = [[None] * 200 for i in range(len(excel_exports))]
+	ms_FolderLocation = [[None] * 200 for i in range(len(excel_exports))]
+	
 	clean_JIAS = lambda x : (x.replace("JIAS-", ""))
+	clean_AUTHOR = lambda x : (x.split(", ", 1))[0]
 
 	x=0
 	while x < len(excel_exports):
@@ -625,7 +637,17 @@ def check_for_s1_ms_in_editorial_folders():
 				squeeze = True,
 
 				)
-			ms_IDs[x] = data.values.tolist()	
+			data2 = pd.read_csv(
+				excel_file,
+				#index_col=0,
+				converters = {'Submitting Author':clean_AUTHOR},
+				usecols = ["Submitting Author"],
+				engine = "c",
+				squeeze = True,
+
+				)
+			ms_IDs[x] = data.values.tolist()
+			ms_FirstAu[x] = data2.values.tolist()
 
 		if x is not 0:
 			excel_file = excel_file_dir + "export (" + str(x) + ").csv"
@@ -637,7 +659,17 @@ def check_for_s1_ms_in_editorial_folders():
 				engine = "c",
 				squeeze = True,
 				)
+			data2 = pd.read_csv(
+				excel_file,
+				#index_col=0,
+				converters = {'Submitting Author':clean_AUTHOR},
+				usecols = ["Submitting Author"],
+				engine = "c",
+				squeeze = True,
+
+				)
 			ms_IDs[x] = data.values.tolist()
+			ms_FirstAu[x] = data2.values.tolist()
 		x += 1
 
 
@@ -653,18 +685,27 @@ def check_for_s1_ms_in_editorial_folders():
 		
 
 	for x in range (len(excel_exports)):
-		print ("\nPost processing of export list [", str(x), "]:\n", ms_IDs[x])
+		print("\nManuscripts found in export list [" + str(x) + "]:")
+		for y in range (len(ms_IDs[x])):
+			print (str(y+1) + ".\t" + ms_FirstAu[x][y], ms_IDs[x][y])
+		#print ("\nPost processing of export list [", str(x), "]:\n", ms_FirstAu[x]), (ms_IDs[x])
 		#print ("post processing of list[1]:\n", ms_IDs[1])
+
+	print("\n")
 
 	for x in range (len(excel_exports)):
 		for y in range (len(ms_IDs[x])):
+			print("For \"" + str(ms_FirstAu[x][y]) + " " + str(ms_IDs[x][y]) + "\"")
 			for subdir, dirs, files in os.walk(editorial_dir):
 				for file in files:
 					filepath = subdir + os.sep + file
 
 					if str(ms_IDs[x][y]) in filepath:
 						files_found[x][y] = 1
-						print("[" + str(x) + "][" + str(y) + "]\t" + ms_IDs[x][y] + "\tFile Found") 
+						#print("[" + str(x) + "][" + str(y) + "]\t" + ms_IDs[x][y] + " " + ms_FirstAu[x][y] + "\tFound at\t" + filepath)
+						#print(str(ms_FirstAu[x][y]) + " " + str(ms_IDs[x][y]) + "\tFound at\t" + slice_folder_name(subdir, "/Editorial/"))#filepath)  
+						ms_FolderLocation[x][y] = slice_folder_name(subdir, "/Editorial")
+						print("\t-Location(s): " + ms_FolderLocation[x][y])#filepath) 
 						break
 
 
@@ -677,37 +718,42 @@ def check_for_s1_ms_in_editorial_folders():
 	f.write("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\n")
 	f.write("\tThis is the Weekly S1 Manuscript Check against the Editorial Folder\t \n")
 	f.write("\t   Check performed (dd-mm-yy_hour-min-sec): " + time_string + "\t\t \n")
-	f.write("\t			Time it took to process results: " + str(process_time) + " (s)\n")
+	f.write("\t         Time it took to process results: " + str(process_time) + " (s)\n")
 	f.write("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\n")
-	f.write("\n--DIRECTORIES SCANNED:--\n")
-	f.write("-Export.csv folder:\t" + download_directory + "\n")
-	f.write("-Editorial folders:\t" + editorial_directory + "\n\n")
-	f.write("--LIST OF ALL CHECKED MS IDs:--\n")
+	f.write("\nFolders Scanned:--\n")
+	f.write("-Directory of ScholarOne export files:\t" + download_directory + "\n")
+	f.write("-Directory of JIAS Editorial folder:\t" + editorial_directory + "\n\n\n")
+	f.write("List of Manuscripts contained within the ScholarOne export files:\n")
 
 	for x in range(len(excel_exports)):
+		f.write("\n\n")
 		if x is 0:
-			f.write("-Export.csv:\n" + str(ms_IDs[x][:]) + "\n\n")
-		else:
-			f.write("-Export (" + str(x) + ").csv:\n" + str(ms_IDs[x][:]) + "\n\n")
+			f.write("Export.csv:\n")
+		elif x is not 0:
+			f.write("Export (" + str(x) + ").csv:\n")
+		for y in range(len(ms_IDs[x])):
+			f.write("-" + str(ms_FirstAu[x][y]) + " " + str(ms_IDs[x][y] + "\n"))
 
-		f.write("")
+	#f.write("")
 	f.write("\n")
-	f.write("\n\n\n--RESULTS OF S1 CHECK:--")
+	f.write("\n\nResults of check:")
 
 	for x in range(len(excel_exports)):
 		if x is 0:
-			f.write("\nFrom Export.csv, IDs NOT FOUND:\n")
+			f.write("\nFrom Export.csv,\nManuscripts NOT located in the Editorial Folders:\n")
 		else:
-			f.write("\nFrom Export (" + str(x) + ").csv, IDs NOT FOUND:\n")
+			f.write("\nFrom Export (" + str(x) + ").csv,\nManuscripts NOT located in the Editorial Folders:\n")
 		for y in range (len(ms_IDs[x])):
 			if files_found[x][y] is 0:
-				if x is 0:
-					f.write("-" + ms_IDs[x][y] + "\n")
-				else:
-					f.write("-" + ms_IDs[x][y] + "\n")
-				print("MS ID", ms_IDs[x][y], "NOT FOUND IN THE JIAS EDITORIAL FOLDERS!")
+				f.write(ms_FirstAu[x][y] + " " + ms_IDs[x][y] + "\n")
+				#if x is 0:
+				#	f.write("-" + ms_IDs[x][y] + "\n")
+				#else:
+				#	f.write("-" + ms_IDs[x][y] + "\n")
+				#print("MS ID", ms_IDs[x][y], "NOT FOUND IN THE JIAS EDITORIAL FOLDERS!")
+				print(ms_FirstAu[x][y] + " " + ms_IDs[x][y] + "\tNot located in the Editorial Folders.")
 				files_not_found.append(ms_IDs[x][y])
-			else:
+			#elif files_found[x][:] is 0
 				pass
 
 	f.close()
