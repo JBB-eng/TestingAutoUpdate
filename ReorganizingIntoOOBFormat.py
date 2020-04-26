@@ -591,6 +591,27 @@ def slice_folder_name(my_str, sub):
 	else:
 		return my_str
 
+
+def prepend_multiple_lines(file_name, list_of_lines):
+    """Insert given list of strings as a new lines at the beginning of a file"""
+ 
+    # define name of temporary dummy file
+    dummy_file = file_name + '.bak'
+    # open given original file in read mode and dummy file in write mode
+    with open(file_name, 'r') as read_obj, open(dummy_file, 'w') as write_obj:
+        # Iterate over the given list of strings and write them to dummy file as lines
+        for line in list_of_lines:
+            write_obj.write(line + '\n')
+        # Read lines from original file one by one and append them to the dummy file
+        for line in read_obj:
+            write_obj.write(line)
+ 
+    # remove original file
+    os.remove(file_name)
+    # Rename dummy file as the original file
+    os.rename(dummy_file, file_name)
+
+
 def check_for_s1_ms_in_editorial_folders():
 	global missing_ms
 
@@ -682,39 +703,83 @@ def check_for_s1_ms_in_editorial_folders():
 		ms_IDs[x] = [sub.replace('.R1', '') for sub in ms_IDs[x]] 
 		ms_IDs[x] = [sub.replace('.R2', '') for sub in ms_IDs[x]]
 		ms_IDs[x] = [sub.replace('.R3', '') for sub in ms_IDs[x]] 
-		
+	
+	now = datetime.now()
+	time_string = now.strftime("(%d-%m-%Y) %H-%M-%S")
+	the_file_name = download_directory + "S1 Weekly Check_" + time_string + ".txt"
+	f= open(the_file_name,"w+")
+	f.write("Number of Excel export files found: " + str(len(excel_exports)) + "\n\n")	
 
 	for x in range (len(excel_exports)):
 		print("\nManuscripts found in export list [" + str(x) + "]:")
+		f.write("\nManuscripts found in export list [" + str(x) + "]:\n")
 		for y in range (len(ms_IDs[x])):
-			print (str(y+1) + ".\t" + ms_FirstAu[x][y], ms_IDs[x][y])
+			print(str(y+1) + ".\t" + ms_FirstAu[x][y], ms_IDs[x][y])
+			f.write(str(y+1) + ".\t" + ms_FirstAu[x][y] + " " + ms_IDs[x][y] + "\n")
 		#print ("\nPost processing of export list [", str(x), "]:\n", ms_FirstAu[x]), (ms_IDs[x])
 		#print ("post processing of list[1]:\n", ms_IDs[1])
 
 	print("\n")
+	f.write('\n\n')
 
+	f.write("Manuscript FOUND:\n")
 	for x in range (len(excel_exports)):
 		for y in range (len(ms_IDs[x])):
-			print("For \"" + str(ms_FirstAu[x][y]) + " " + str(ms_IDs[x][y]) + "\"")
+			print("\"" + str(ms_FirstAu[x][y]) + " " + str(ms_IDs[x][y]) + "\"")
+			f.write("\n\"" + str(ms_FirstAu[x][y]) + " " + str(ms_IDs[x][y]) + "\"")
 			for subdir, dirs, files in os.walk(editorial_dir):
 				for file in files:
 					filepath = subdir + os.sep + file
 
 					if str(ms_IDs[x][y]) in filepath:
 						files_found[x][y] = 1
+						
+						f.write("\n")
 						#print("[" + str(x) + "][" + str(y) + "]\t" + ms_IDs[x][y] + " " + ms_FirstAu[x][y] + "\tFound at\t" + filepath)
 						#print(str(ms_FirstAu[x][y]) + " " + str(ms_IDs[x][y]) + "\tFound at\t" + slice_folder_name(subdir, "/Editorial/"))#filepath)  
 						ms_FolderLocation[x][y] = slice_folder_name(subdir, "/Editorial")
 						print("\t-Location(s): " + ms_FolderLocation[x][y])#filepath) 
+						f.write("\t-Location(s): " + ms_FolderLocation[x][y])
 						break
+			if files_found[x][y] is not 1:
+					f.write("\t!QAZXSWW@#EDC_DELETE")
+					#break
+					pass
+
+	f.write("\n\nManuscripts NOT FOUND:\n")
+
+	for x in range(len(excel_exports)):
+		if x is 0:
+			f.write("From Export.csv:\n")
+		else:
+			f.write("From Export (" + str(x) + ").csv:\n")
+		for y in range (len(ms_IDs[x])):
+			if files_found[x][y] is 0:
+				f.write(ms_FirstAu[x][y] + " " + ms_IDs[x][y] + "\n")
+				#if x is 0:
+				#	f.write("-" + ms_IDs[x][y] + "\n")
+				#else:
+				#	f.write("-" + ms_IDs[x][y] + "\n")
+				#print("MS ID", ms_IDs[x][y], "NOT FOUND IN THE JIAS EDITORIAL FOLDERS!")
+				print(ms_FirstAu[x][y] + " " + ms_IDs[x][y] + "\tNot located in the Editorial Folders.")
+				files_not_found.append(ms_IDs[x][y])
+			#elif files_found[x][:] is 0
+				pass
 
 
+	f.close()
 	now = datetime.now()
 	end_time = time.time()
 	process_time = round(end_time - start_time, 2)
 
-	time_string = now.strftime("%d-%m-%Y_%H-%M-%S")
-	f= open(download_directory + "S1 Weekly Check_" + time_string + ".txt","w+")
+	heading_for_txt = ["-----", "Weekly S1 Manuscript Check", "Check performed (dd-mm-yy_hour-min-sec): " + time_string, "Time needed to process results: " + str(process_time) + " (s)", "-----\n", "-Directory of ScholarOne export files: " + download_directory, "-Directory of JIAS Editorial folder:\t" + editorial_directory, "\n"]
+
+	prepend_multiple_lines(the_file_name, heading_for_txt)
+
+
+	"""
+	#time_string = now.strftime("%d-%m-%Y_%H-%M-%S")
+	#f= open(download_directory + "S1 Weekly Check_" + time_string + ".txt","w+")
 	f.write("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\n")
 	f.write("\tThis is the Weekly S1 Manuscript Check against the Editorial Folder\t \n")
 	f.write("\t   Check performed (dd-mm-yy_hour-min-sec): " + time_string + "\t\t \n")
@@ -757,6 +822,8 @@ def check_for_s1_ms_in_editorial_folders():
 				pass
 
 	f.close()
+	"""
+
 	folders_for_S1_check[2].configure(state="normal")
 	folders_for_S1_check[2].delete(0, 'end')
 	folders_for_S1_check[2].insert(0, "MS IDs NOT FOUND: " + str(files_not_found))
@@ -764,6 +831,8 @@ def check_for_s1_ms_in_editorial_folders():
 
 	#results_label_text.set("Success! Summary added to S1 Weekly Check_" + time_string + ".txt located in " + download_directory)
 	#folders_for_S1_check[3].configure(text = "Success! Summary added to S1 Weekly Check_" + time_string + ".txt located in " + download_directory)
+
+
 
 def S1_check_popup():
 	"""Generate a pop-up window for special messages."""
