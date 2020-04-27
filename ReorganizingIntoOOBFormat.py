@@ -612,6 +612,34 @@ def prepend_multiple_lines(file_name, list_of_lines):
     os.rename(dummy_file, file_name)
 
 
+def delete_lines_by_condition(original_file, condition):
+    """ In a file, delete the lines at line number in given list"""
+ 
+    dummy_file = original_file + '.bak'
+    is_skipped = False
+    # Open original file in read only mode and dummy file in write mode
+    with open(original_file, 'r') as read_obj, open(dummy_file, 'w') as write_obj:
+        # Line by line copy data from original file to dummy file
+        for line in read_obj:
+            # if current line matches the given condition then skip that line
+            if condition(line) == False:
+                write_obj.write(line)
+            else:
+                is_skipped = True
+ 
+    # If any line is skipped then rename dummy file as original file
+    if is_skipped:
+        os.remove(original_file)
+        os.rename(dummy_file, original_file)
+    else:
+        os.remove(dummy_file)
+
+
+def delete_lines_with_word(file_name, word):
+    """Delete lines from a file that contains a given word / sub-string """
+    delete_lines_by_condition(file_name, lambda x : word in x )
+
+
 def check_for_s1_ms_in_editorial_folders():
 	global missing_ms
 
@@ -625,6 +653,7 @@ def check_for_s1_ms_in_editorial_folders():
 	rootdir = os.getcwd()
 	editorial_dir = editorial_directory
 	excel_file_dir= download_directory
+	delete_marker = "!QAZXSW@#EDC_DELETE"
 
 	start_time = time.time()
 
@@ -742,7 +771,7 @@ def check_for_s1_ms_in_editorial_folders():
 						f.write("\t-Location(s): " + ms_FolderLocation[x][y])
 						break
 			if files_found[x][y] is not 1:
-					f.write("\t!QAZXSWW@#EDC_DELETE")
+					f.write("\t" + delete_marker)
 					#break
 					pass
 
@@ -775,6 +804,7 @@ def check_for_s1_ms_in_editorial_folders():
 	heading_for_txt = ["-----", "Weekly S1 Manuscript Check", "Check performed (dd-mm-yy_hour-min-sec): " + time_string, "Time needed to process results: " + str(process_time) + " (s)", "-----\n", "-Directory of ScholarOne export files: " + download_directory, "-Directory of JIAS Editorial folder:\t" + editorial_directory, "\n"]
 
 	prepend_multiple_lines(the_file_name, heading_for_txt)
+	delete_lines_with_word(the_file_name, delete_marker)
 
 
 	"""
