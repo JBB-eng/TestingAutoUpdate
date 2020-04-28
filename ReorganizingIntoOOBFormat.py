@@ -737,11 +737,13 @@ def check_for_s1_ms_in_editorial_folders():
 	time_string = now.strftime("(%d-%m-%Y) %H-%M-%S")
 	the_file_name = download_directory + "S1 Weekly Check_" + time_string + ".txt"
 	f= open(the_file_name,"w+")
-	f.write("Number of Excel export files found: " + str(len(excel_exports)) + "\n\n")	
+	f.write("-Number of ScholarOne Excel Export files found: " + str(len(excel_exports)) + "\n\n\n\n")	
+	f.write("(1) MANUSCRIPTS INCLUDED IN ScholarOne EXPORT FILES:\n")
+
 
 	for x in range (len(excel_exports)):
-		print("\nManuscripts found in export list [" + str(x) + "]:")
-		f.write("\nManuscripts found in export list [" + str(x) + "]:\n")
+		print("\nExport file (" + str(x+1) + "):")
+		f.write("\nExport file (" + str(x+1) + "):\n")
 		for y in range (len(ms_IDs[x])):
 			print(str(y+1) + ".\t" + ms_FirstAu[x][y], ms_IDs[x][y])
 			f.write(str(y+1) + ".\t" + ms_FirstAu[x][y] + " " + ms_IDs[x][y] + "\n")
@@ -749,9 +751,9 @@ def check_for_s1_ms_in_editorial_folders():
 		#print ("post processing of list[1]:\n", ms_IDs[1])
 
 	print("\n")
-	f.write('\n\n')
+	f.write('\n\n\n')
 
-	f.write("Manuscript FOUND:\n")
+	f.write("(2) MANUSCRIPTS FROM ScholarOne EXCEL EXPORT FILES **FOUND** IN EDITORIAL FOLDERS:\n")
 	for x in range (len(excel_exports)):
 		for y in range (len(ms_IDs[x])):
 			print("\"" + str(ms_FirstAu[x][y]) + " " + str(ms_IDs[x][y]) + "\"")
@@ -775,16 +777,13 @@ def check_for_s1_ms_in_editorial_folders():
 					#break
 					pass
 
-	f.write("\n\nManuscripts NOT FOUND:\n")
+	f.write("\n\n\n\n(3) MANUSCRIPTS FROM ScholarOne EXCEL EXPORT FILES **NOT FOUND** IN EDITORIAL FOLDERS:")
 
 	for x in range(len(excel_exports)):
-		if x is 0:
-			f.write("From Export.csv:\n")
-		else:
-			f.write("From Export (" + str(x) + ").csv:\n")
+		f.write("\n\nFrom Export file (" + str(x) + "):")
 		for y in range (len(ms_IDs[x])):
 			if files_found[x][y] is 0:
-				f.write(ms_FirstAu[x][y] + " " + ms_IDs[x][y] + "\n")
+				f.write("\n\t" + ms_FirstAu[x][y] + " " + ms_IDs[x][y])# + "\n")
 				#if x is 0:
 				#	f.write("-" + ms_IDs[x][y] + "\n")
 				#else:
@@ -801,7 +800,13 @@ def check_for_s1_ms_in_editorial_folders():
 	end_time = time.time()
 	process_time = round(end_time - start_time, 2)
 
-	heading_for_txt = ["-----", "Weekly S1 Manuscript Check", "Check performed (dd-mm-yy_hour-min-sec): " + time_string, "Time needed to process results: " + str(process_time) + " (s)", "-----\n", "-Directory of ScholarOne export files: " + download_directory, "-Directory of JIAS Editorial folder:\t" + editorial_directory, "\n"]
+
+	#cleaning up date and time variable for user-friendly output to text file:
+	cleanedup_time_string = ((time_string[:15] + ":" + time_string[16:])[:-3]).replace('-', '/')
+	cleanedup_time_string = (cleanedup_time_string.replace('(',"")).replace(')','')
+	cleanedup_time_string = cleanedup_time_string[:11] + "at " + cleanedup_time_string[11:]
+	
+	heading_for_txt = ["-----------------------------------------------------------", "\t\tWeekly S1 Manuscript Check", "\t  Check performed on " + cleanedup_time_string, "-----------------------------------------------------------", "-Location of ScholarOne Export files:\t" + download_directory, "-Location of JIAS Editorial folder:\t" + editorial_directory]
 
 	prepend_multiple_lines(the_file_name, heading_for_txt)
 	delete_lines_with_word(the_file_name, delete_marker)
