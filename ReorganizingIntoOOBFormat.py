@@ -780,7 +780,7 @@ def check_for_s1_ms_in_editorial_folders():
 	f.write("\n\n\n\n(3) MANUSCRIPTS FROM ScholarOne EXCEL EXPORT FILES **NOT FOUND** IN EDITORIAL FOLDERS:")
 
 	for x in range(len(excel_exports)):
-		f.write("\n\nFrom Export file (" + str(x) + "):")
+		f.write("\n\nFrom Export file (" + str(x+1) + "):")
 		for y in range (len(ms_IDs[x])):
 			if files_found[x][y] is 0:
 				f.write("\n\t" + ms_FirstAu[x][y] + " " + ms_IDs[x][y])# + "\n")
