@@ -736,7 +736,7 @@ def check_for_s1_ms_in_editorial_folders():
 	now = datetime.now()
 	time_string = now.strftime("(%d-%m-%Y) %H-%M-%S")
 	the_file_name = download_directory + "S1 Weekly Check_" + time_string + ".txt"
-	f= open(the_file_name,"w+")
+	f= open(the_file_name,"w+", encoding="utf-8")
 	f.write("-Number of ScholarOne Excel Export files found: " + str(len(excel_exports)) + "\n\n\n\n")	
 	f.write("(1) MANUSCRIPTS INCLUDED IN ScholarOne EXPORT FILES:\n")
 
