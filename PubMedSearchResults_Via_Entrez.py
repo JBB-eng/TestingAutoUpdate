@@ -68,11 +68,32 @@ xml = result.read()
 print(xml)
 
 """
+import os
+def GetDownloadPath():
+	"""Returns the default downloads path for linux or windows"""
+	if os.name == 'nt':
+		import winreg
+		sub_key = r'SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders'
+		downloads_guid = '{374DE290-123F-4565-9164-39C4925E467B}'
+		with winreg.OpenKey(winreg.HKEY_CURRENT_USER, sub_key) as key:
+			location = winreg.QueryValueEx(key, downloads_guid)[0]
+		return location
+	else:
+		return os.path.join(os.path.expanduser('~'), 'downloads')
+
+
+#search pubmed
+
+jias = 1
 search_string = r'("J Int AIDS Soc"[jour]) AND ("2018"[Date - Publication] : "3000"[Date - Publication])) AND ((((Stigma[Title/Abstract]) OR Discrimination[Title/Abstract]) OR Criminalization[Title/Abstract]) OR "Human Rights"[Title/Abstract])'
 
 from Bio import Entrez
-Entrez.email = "A.N.Other@example.com"  # Always tell NCBI who you are
-handle = Entrez.egquery(term=search_string)#"blah blah")
+from Bio import Medline
+import openpyxl
+from openpyxl import load_workbook
+
+Entrez.email = "hello_world@example.com"  
+handle = Entrez.egquery(term=search_string)
 record = Entrez.read(handle)
 count = 0
 for row in record["eGQueryResult"]:
@@ -81,34 +102,68 @@ for row in record["eGQueryResult"]:
 			count = row["Count"]
 
 
-Entrez.email = "A.N.Other@example.com"  # Always tell NCBI who you are
-from Bio import Entrez
 handle = Entrez.esearch(db="pubmed", term=search_string, retmax=count)
 record = Entrez.read(handle)
 handle.close()
 idlist = record["IdList"]
 
-#print(idlist)
-#print(len(idlist))
-
-
-from Bio import Medline
 handle = Entrez.efetch(db="pubmed", id=idlist, rettype="medline", retmode="text")
 records = Medline.parse(handle)
 
 records = list(records)
-#print(records[1:2])
+
 x=1
 for record in records:
 	print("(" + str(x) + ")")
 	print("Title:", record.get("TI", "?"))
-	#print("Authors: ", *record.get("AU", "?"), sep=", ")
 	print("Authors: ", ", ".join(record.get("AU", "?")))
-	print("Pub Date:", record.get("DP", "?"))
+	print("Pub Date: " + record.get("DP", "?")[5:] + " " + record.get("DP", "?")[:-4])
 	print("Journal:", record.get("JT", "?"))
-	#if record.get("LID", "?") == "?":
-	#print("doi (A):", record.get("AID", "?"))#[:-6])
-	#else:
 	print("DOI:", record.get("LID", "?")[:-6])
+	if jias:
+		print("Wiley Link: " + "https://onlinelibrary.wiley.com/doi/full/" + record.get("LID", "?")[:-6])
 	print("\n")
 	x += 1
+
+#testing adding data to excel file
+x=1
+filepath = GetDownloadPath() + "\\test_keyword_search.xlsx"
+try:
+	book = load_workbook(filepath)
+except:
+	print("creating excel file....")
+	wb = openpyxl.Workbook()
+	wb.save(filepath)
+	book = load_workbook(filepath)
+	sheet = book.active
+	sheet['A1'] = "No."
+	sheet['B1'] = "Title"
+	sheet['C1'] = "Authors"
+	sheet['D1'] = "Publication Date"
+	sheet['E1'] = "DOI"
+	sheet['F1'] = "Wiley Link"
+
+ws = book.worksheets[0]
+for record in records:
+	for cell in ws["A"]:
+		if cell.value is None:
+			emptyRow = cell.row
+			break
+	else:
+		emptyRow = cell.row + 1
+
+	title = record.get("TI", "?")
+	authors = ", ".join(record.get("AU", "?"))
+	pub_date = record.get("DP", "?")[5:] + " " + record.get("DP", "?")[:-4]
+	journal_name = record.get("JT", "?")
+	doi = record.get("LID", "?")[:-6]
+	wiley_link = "https://onlinelibrary.wiley.com/doi/full/" + record.get("LID", "?")[:-6]
+
+	excel_data = [str(x), title, authors, pub_date, doi, wiley_link]
+	x += 1
+
+	for row in excel_data:
+		ws.append(excel_data)
+		break
+
+	book.save(filepath)
