@@ -26,38 +26,8 @@ from openpyxl import load_workbook
 global jias_bool, citation_bool
 jias_bool = 1 #set to True if looking for JIAS publications
 citation_bool = 1 #set to True to include citation amount for JIAS publications **SIGNIFICANTLY INCREASES PROCESSING TIME***
-
 #SEARCH STRING
 search_string = r'("J Int AIDS Soc"[jour]) AND ("2018"[Date - Publication] : "3000"[Date - Publication])) AND ((((Stigma[Title/Abstract]) OR Discrimination[Title/Abstract]) OR Criminalization[Title/Abstract]) OR "Human Rights"[Title/Abstract])'
-
-#https://stackoverflow.com/questions/16745507/tkinter-how-to-use-threads-to-preventing-main-event-loop-from-freezing
-class GUI:
-    # ...
-
-    def tb_click(self):
-        self.progress()
-        self.prog_bar.start()
-        self.queue = Queue.Queue()
-        ThreadedTask(self.queue).start()
-        self.master.after(100, self.process_queue)
-
-    def process_queue(self):
-        try:
-            msg = self.queue.get(0)
-            # Show result of the task if needed
-            self.prog_bar.stop()
-        except Queue.Empty:
-            self.master.after(100, self.process_queue)
-
-class ThreadedTask(threading.Thread):
-    def __init__(self, queue):
-        threading.Thread.__init__(self)
-        self.queue = queue
-    def run(self):
-        time.sleep(5)  # Simulate long running process
-        self.queue.put("Task finished")
-
-
 
 def GetDownloadPath():
 	"""Returns the default downloads path for linux or windows"""
@@ -93,9 +63,9 @@ def GetCitationNumber(url):
 	return citation_number
 
 
-
 def PubMedSearch(search_keyword):
 	#search Pubmed...
+	#search_keyword = PubMed_Keyword_string.get()
 	Entrez.email = "hello_world@example.com"  
 	handle = Entrez.egquery(term=search_keyword)
 	record = Entrez.read(handle)
@@ -183,18 +153,64 @@ def AddDateToExcelFile(PubMed_Records):
 		book.save(filepath)
 
 
-def DoSearchThread(search_keyword):
-	t1 = threading.Thread(target=DoSearch(search_keyword))
-	t1.start()
-
-def DoSearch(search_keyword):
-	data = PubMedSearch(search_keyword)
+def DoSearch(search_phrase):
+	data = PubMedSearch(search_phrase)
 	AddDateToExcelFile(data)
+
+
 
 #process data without gui
 #data = PubMedSearch(search_string)
 #AddDateToExcelFile(data)
 
+#import time
+#import threading
+
+class App:
+	def __init__(self, master):
+		
+		self.label = Label(master, text="PubMed Search Keyword:")
+		self.label.pack()
+
+		self.keyword_text = Entry(master, width=50)
+		self.keyword_text.pack()
+
+		self.button_text = tk.StringVar()
+		self.button_text.set("Search PubMed and Create Excel Table")
+		self.search_button = Button(master, textvariable=self.button_text, command=lambda:threading.Thread(target=self.DoSearch2).start())
+		self.search_button.pack()
+
+	def DoSearch2(self):
+		self.button_text.set("Please wait...")
+		self.search_button.configure(state=DISABLED)
+		keyword = self.keyword_text.get()
+		data = PubMedSearch(keyword)
+		AddDateToExcelFile(data)
+		self.button_text.set("Completed!!")
+		self.search_button.configure(state=NORMAL)
+
+
+mainwindow = Tk()
+app = App(mainwindow)
+mainwindow.title("JIAS PubMed Search Tool")
+
+#label = Label(mainwindow, text="PubMed Search Keyword:")
+#label.pack()
+
+#button = tkinter.Button(mainwindow, text="Do Search", command=threading.Thread(target=func).start())
+#button.pack()
+
+#keyword_text = Entry(mainwindow, width=30)
+#keyword_text.pack()#ring.grid(row=0, column=0)
+
+#search_button = Button(mainwindow, text="Search PubMed and Create Excel Table with Results", command=threading.Thread(target=lambda:DoSearch(keyword_text.get())).start())
+#search_button.pack()#PubMed_Search_Button.grid(row=1, column=0)
+
+
+mainwindow.mainloop()
+
+
+"""
 
 
 class Main:
@@ -205,7 +221,7 @@ class Main:
 			pass
 
 		def StartApp():
-			global display_message
+			global display_message, PubMed_Keyword_string
 
 			#CheckUpdates()
 			menubar = tk.Menu(parent)
@@ -238,7 +254,7 @@ class Main:
 			PubMed_Keyword_string = Entry(parent, width=30)
 			PubMed_Keyword_string.grid(row=0, column=0)
 
-			PubMed_Search_Button = Button(parent, text="Search PubMed and Create Excel Table with Results", command=lambda:DoSearchThread(PubMed_Keyword_string.get()))
+			PubMed_Search_Button = Button(parent, text="Search PubMed and Create Excel Table with Results", command=threading.Thread(target=DoSearch).start())
 			PubMed_Search_Button.grid(row=1, column=0)
 
 
@@ -268,3 +284,5 @@ def main():
 
 if __name__ == '__main__':
 	main()
+
+"""
