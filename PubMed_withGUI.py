@@ -18,7 +18,7 @@ __version__		= '0.1'
 import tkinter as tk
 from tkinter import *
 import urllib.request, urllib.parse
-import re, cloudscraper, os, openpyxl
+import re, cloudscraper, os, openpyxl, threading, queue
 from Bio import Entrez
 from Bio import Medline
 from openpyxl import load_workbook
@@ -29,6 +29,35 @@ citation_bool = 1 #set to True to include citation amount for JIAS publications 
 
 #SEARCH STRING
 search_string = r'("J Int AIDS Soc"[jour]) AND ("2018"[Date - Publication] : "3000"[Date - Publication])) AND ((((Stigma[Title/Abstract]) OR Discrimination[Title/Abstract]) OR Criminalization[Title/Abstract]) OR "Human Rights"[Title/Abstract])'
+
+#https://stackoverflow.com/questions/16745507/tkinter-how-to-use-threads-to-preventing-main-event-loop-from-freezing
+class GUI:
+    # ...
+
+    def tb_click(self):
+        self.progress()
+        self.prog_bar.start()
+        self.queue = Queue.Queue()
+        ThreadedTask(self.queue).start()
+        self.master.after(100, self.process_queue)
+
+    def process_queue(self):
+        try:
+            msg = self.queue.get(0)
+            # Show result of the task if needed
+            self.prog_bar.stop()
+        except Queue.Empty:
+            self.master.after(100, self.process_queue)
+
+class ThreadedTask(threading.Thread):
+    def __init__(self, queue):
+        threading.Thread.__init__(self)
+        self.queue = queue
+    def run(self):
+        time.sleep(5)  # Simulate long running process
+        self.queue.put("Task finished")
+
+
 
 def GetDownloadPath():
 	"""Returns the default downloads path for linux or windows"""
@@ -154,6 +183,10 @@ def AddDateToExcelFile(PubMed_Records):
 		book.save(filepath)
 
 
+def DoSearchThread(search_keyword):
+	t1 = threading.Thread(target=DoSearch(search_keyword))
+	t1.start()
+
 def DoSearch(search_keyword):
 	data = PubMedSearch(search_keyword)
 	AddDateToExcelFile(data)
@@ -205,7 +238,7 @@ class Main:
 			PubMed_Keyword_string = Entry(parent, width=30)
 			PubMed_Keyword_string.grid(row=0, column=0)
 
-			PubMed_Search_Button = Button(parent, text="Search PubMed and Create Excel Table with Results", command=lambda:DoSearch(PubMed_Keyword_string.get()))
+			PubMed_Search_Button = Button(parent, text="Search PubMed and Create Excel Table with Results", command=lambda:DoSearchThread(PubMed_Keyword_string.get()))
 			PubMed_Search_Button.grid(row=1, column=0)
 
 
