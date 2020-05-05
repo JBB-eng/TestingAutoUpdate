@@ -6,9 +6,10 @@ import re, cloudscraper, os, openpyxl
 from Bio import Entrez
 from Bio import Medline
 from openpyxl import load_workbook
+from bs4 import BeautifulSoup
 
 jias_bool = 1 #set to True if looking for JIAS publications
-citation_bool = 1 #set to True to include citation amount for JIAS publications **SIGNIFICANTLY INCREASES PROCESSING TIME***
+citation_bool = 0 #set to True to include citation amount for JIAS publications **SIGNIFICANTLY INCREASES PROCESSING TIME***
 
 #SEARCH STRING
 search_string = r'("J Int AIDS Soc"[jour]) AND ("2018"[Date - Publication] : "3000"[Date - Publication])) AND ((((Stigma[Title/Abstract]) OR Discrimination[Title/Abstract]) OR Criminalization[Title/Abstract]) OR "Human Rights"[Title/Abstract])'
@@ -25,10 +26,52 @@ def GetDownloadPath():
 	else:
 		return os.path.join(os.path.expanduser('~'), 'downloads')
 
+
+def Scrap_For_TOC(url):
+	"""scrapes the html for the ToC information"""
+	issue = ""
+	publication_type = ""
+	publication_info = []
+	scraper = cloudscraper.create_scraper()
+	web_text = scraper.get(url).text
+	
+	soup = BeautifulSoup(web_text, features="lxml")
+	temp_soup = soup.get_text().replace('\n\n', '')
+	temp_soup = ''.join(temp_soup)
+	temp_soup = temp_soup.split('\n')
+	parsed_soup = []
+	start_stop_parsing = 0
+	start_stop_pub_info = 0
+	#x=0
+	for line in temp_soup:#soup.get_text():
+		#print(line)
+		if 'Facebook pageRSS FeedsMost recent' in line:
+			start_stop_parsing = 1
+			#print("start_stop = 1")
+		elif 'ToolsSubmit an Article' in line:
+			start_stop_parsing = 0
+			#print("start_stop = 0")
+		if start_stop_parsing == 1:
+			parsed_soup.append(str(line))
+			#print(line)
+		if 'Select / Deselect allExport Citation(s)Export' in line:
+			issue = line
+		if 'Open Access' in line:
+			start_stop_pub_info = 1
+		elif 'Full text' in line:
+			start_stop_pub_info = 0
+		if start_stop_pub_info == 1 and start_stop_parsing == 1:
+			publication_info.append(line)
+			#x += 1
+	print(issue)
+	print(publication_info)
+
+
 def GetCitationNumber(url):
 	"""Gets number of citations for JIAS publications from Wiley's website"""
 	scraper = cloudscraper.create_scraper()
 	web_text = scraper.get(url).text
+	
 	citation_text = 'Citations: <a href="#citedby-section">'
 
 	for line in web_text.splitlines():
@@ -125,3 +168,6 @@ for record in records:
 		break
 
 	book.save(filepath)
+
+
+Scrap_For_TOC("https://onlinelibrary.wiley.com/toc/17582652/2020/23/4")
