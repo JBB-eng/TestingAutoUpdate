@@ -38,7 +38,7 @@ from docx.shared import Pt
 from ctypes import c_int, WINFUNCTYPE, windll
 from ctypes.wintypes import HWND, LPCWSTR, UINT
 
-
+mod=0
 
 prototype = WINFUNCTYPE(c_int, HWND, LPCWSTR, LPCWSTR, UINT)
 paramflags = (1, "hwnd", 0), (1, "text", "Hi"), (1, "caption", "Hello from ctypes"), (1, "flags", 0)
@@ -49,7 +49,7 @@ MessageBox = prototype(("MessageBoxW", windll.user32), paramflags)
 #########
 
 
-tab_names = ["New MS", "Revised MS", "Extra Tab", "blah Blah"] #add more to increase amount of tabs
+tab_names = ["New MS", "Extra Tab"] #add more to increase amount of tabs
 tabs = [None]*len(tab_names) #holds the tab variables
 download_switch = [None]*len(tab_names) #holds whether files are DLed via yes/no radio button for each tab
 ms_textbox = [None]*len(tab_names) #holds the textboxes for each individual tab
@@ -401,7 +401,10 @@ class MSInfo:
 
 	def CopyExcelFormatToClipboard(self):
 		try:
-			data = self.authors + "	" + self.first_au + "	" + "	" + self.ms_id + "	" + self.title + "	" + self.date + "	" + self.ms_type + "	" + self.discipline + "	"  + "	" + "Editorial Assessment"  + "	"  + "	"  + "	"  + "	"  + "	"  + "	" + self.first_co + "	" + self.sub_co + "	" + self.last_co + "	" + ', '.join(self.all_co) + "	"  + "	"  + "	"  + "	"  + "	"  + "	" + str(self.ithenticate)
+			if mod==1:
+				data = self.first_co + "	" + self.sub_co + "	" + self.last_co + "	" + ', '.join(self.all_co)
+			else:
+				data = self.authors + "	" + self.first_au + "	" + "	" + self.ms_id + "	" + self.title + "	" + self.date + "	" + self.ms_type + "	" + self.discipline + "	"  + "	" + "Editorial Assessment"  + "	"  + "	"  + "	"  + "	"  + "	"  + "	" + self.first_co + "	" + self.sub_co + "	" + self.last_co + "	" + ', '.join(self.all_co) + "	"  + "	"  + "	"  + "	"  + "	"  + "	" + str(self.ithenticate)
 			pyperclip.copy(data)
 		except Exception as e:
 			print('failed to copy data to clipboard in excel format. ERROR:', e)
@@ -508,12 +511,37 @@ def Parser():
 	parse.ParseText()
 	parse.PostProcessParsedData()
 	parse.CreateCoiString()
-	parse.CreateFolderForManuscript()
-	parse.CreateCoverLetterAndPlaceInFolder()
-	parse.CreateMSDetailsAndPlaceInFolder()
-	parse.PrintParsingResults()
-	parse.FindFilesInDownloadFolder(*files_to_ignore_in_download_folder)
-	parse.CopyExcelFormatToClipboard()
+	if mod is not 1:
+		parse.CreateFolderForManuscript()
+		parse.CreateCoverLetterAndPlaceInFolder()
+		parse.CreateMSDetailsAndPlaceInFolder()
+		parse.FindFilesInDownloadFolder(*files_to_ignore_in_download_folder)
+		parse.PrintParsingResults()
+		parse.CopyExcelFormatToClipboard()
+		#update gui text boxes with MS data
+		text_update = [parse.ms_id, parse.date, parse.title, parse.authors, parse.ms_type, \
+					parse.extra, parse.discipline, parse.ithenticate, parse.first_au, parse.short_id, \
+					parse.first_co, parse.last_co, ', '.join(parse.all_co), parse.sub_co, parse.coi]
+
+		for i in range(15):
+			entry_parsed_data[0][i].configure(state="normal")
+			entry_parsed_data[0][i].delete(0, 'end')
+			entry_parsed_data[0][i].insert(0, text_update[i])
+			entry_parsed_data[0][i].configure(state="readonly")
+
+		#		lbl_list = ['ID:', 'Date:', 'Title:', 'Authors:', 'Type:', \
+		#	'Extra:', 'Disci:', 'iThent:', '1st AU: ', \
+		#	'ShortID:', '1AU CO:', 'LastAU CO:', 'AllAU CO:', \
+		#	'SubmitAu CO:', 'SearchCOI:']
+
+
+		#for i in range(15):
+		#	tk.Label(tabs[tab_no], text=lbl_list[i], anchor='e', width=15).grid(column=2, row=i, sticky='w')
+		#	entry_parsed_data[tab_no][i] = tk.Entry(tabs[tab_no], width=35)
+		#	entry_parsed_data[tab_no][i].grid(column=3, row=i, sticky='w')
+	else:
+		parse.CopyExcelFormatToClipboard()
+		parse.PrintParsingResults()
 
 def RenameFilesAndAddToMsFolder():
 	for x in range(len(entry1_files[method_parsed])):
@@ -1260,7 +1288,7 @@ class DisplayAboutMe(tk.Toplevel):
 def main():
 	root = tk.Tk()
 	root.title(__AppName__+' '+str(__version__))
-	w=650; h=525
+	w=750; h=525
 	sw = root.winfo_screenwidth()
 	sh = root.winfo_screenheight()
 	x = (sw - w) / 2
