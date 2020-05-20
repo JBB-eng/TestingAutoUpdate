@@ -9,10 +9,14 @@ from openpyxl import load_workbook
 from bs4 import BeautifulSoup
 
 jias_bool = 1 #set to True if looking for JIAS publications
-citation_bool = 0 #set to True to include citation amount for JIAS publications **SIGNIFICANTLY INCREASES PROCESSING TIME***
+citation_bool = 1 #set to True to include citation amount for JIAS publications **SIGNIFICANTLY INCREASES PROCESSING TIME***
 
 #SEARCH STRING
 search_string = r'("J Int AIDS Soc"[jour]) AND ("2018"[Date - Publication] : "3000"[Date - Publication])) AND ((((Stigma[Title/Abstract]) OR Discrimination[Title/Abstract]) OR Criminalization[Title/Abstract]) OR "Human Rights"[Title/Abstract])'
+search_string = r'("J Int AIDS Soc"[jour]) AND ("2019/01/01"[Date - Publication] : "2020/01/01"[Date - Publication])'
+search_string = r'("J Int AIDS Soc"[Jour]) AND ("2015"[Date - Publication] : "3000"[Date - Publication]) AND Uganda[Title/Abstract])'
+search_string = r'((J Int AIDS Soc[Jour]) AND ("2010"[Date - Publication] : "3000"[Date - Publication])) AND "South Africa"[Title/Abstract]'
+search_string = r'((J Int AIDS Soc[Jour]) AND ("2012"[Date - Publication] : "3000"[Date - Publication])) AND "South Africa"[Title/Abstract]'
 
 def GetDownloadPath():
 	"""Returns the default downloads path for linux or windows"""
@@ -106,7 +110,10 @@ handle = Entrez.efetch(db="pubmed", id=idlist, rettype="medline", retmode="text"
 records = Medline.parse(handle)
 
 records = list(records)
+#print(records[142].get("SO", "?"))
+#print(records[142].get("DP", "?"))
 
+"""
 #print results (without citation)...
 x=1
 for record in records:
@@ -120,6 +127,8 @@ for record in records:
 		print("Wiley Link: " + "https://onlinelibrary.wiley.com/doi/full/" + record.get("LID", "?")[:-6])
 	print("\n")
 	x += 1
+"""
+
 
 #add results to excel folder (including citations)...
 x=1
@@ -151,7 +160,21 @@ for record in records:
 
 	title = record.get("TI", "?")
 	authors = ", ".join(record.get("AU", "?"))
+	if authors == "?":
+		authors = ", ".join(record.get("IR", "?"))
 	pub_date = record.get("DP", "?")[5:] + " " + record.get("DP", "?")[:-4]
+	#pub_date = re.sub(r'^.*?.', '', record.get("SO","?"))
+	pub_date = re.sub(r'^.*?Soc. ', '', record.get("SO","?"))
+	pub_date = record.get("DP", "?")
+	if len(pub_date) < 9:
+		pub_date = re.sub(r'^.*?Soc. ', '', record.get("SO","?"))
+		pub_date = record.get("SO","?")
+		pub_date = record.get("SO","?").replace(record.get("TA", "?"), '')
+		tmp1 = pub_date.split(". ", 1)
+		tmp2 = tmp1[1].split(";", 1)
+		pub_date = tmp2[0]
+
+	#pub_date = record.get("SO","?")
 	journal_name = record.get("JT", "?")
 	doi = record.get("LID", "?")[:-6]
 	wiley_link = "http://onlinelibrary.wiley.com/doi/full/" + record.get("LID", "?")[:-6]
@@ -170,4 +193,4 @@ for record in records:
 	book.save(filepath)
 
 
-Scrap_For_TOC("https://onlinelibrary.wiley.com/toc/17582652/2020/23/4")
+#Scrap_For_TOC("https://onlinelibrary.wiley.com/toc/17582652/2020/23/4")
