@@ -4,7 +4,7 @@ Reorganizing updater_class_tinker_app into proper OOP style
 
 #JIAS-2020-03-0186 breaks country parsing
 #JIAS-2020-03-0175 causes ROME to be added to country and MS extra data is not captured
-
+#JIAS-2020-05-0335 TITLE IS BLANK!
 
 __author__		= 'Jacob Bursavich'
 __copyright__	= 'Copyright (C) 2020, Jacob Bursavich'
@@ -142,14 +142,22 @@ def table_replace(self, text_value, replace):
 						result = True
 	return result
 
-def findStringsInMiddle(a, b, text): 
-	return re.findall(re.escape(a)+"(.*?)"+re.escape(b),text)
+#def findStringsInMiddle(a, b, text): 
+#	return re.findall(re.escape(a)+"(.*?)"+re.escape(b),text)
+
+def findStringsInMiddle(configure, a, b, text): 
+	if configure == 1:
+		output = re.findall(re.escape(a)+"(.*?)"+re.escape(b),text)
+	elif configure == 2:
+		output = re.findall(re.escape(a)+"(.*?"+re.escape(b) + r"(?:\s*.)?)",text, flags=re.S)
+
+	return output
 
 #MS data stored in a class for easier accessiblity
 class MSInfo:
 	
 	#Initializer / Instance Attributes
-	def __init__(self, method, authors, first_au, ms_id, title, date, ms_type, discipline, ithenticate, extra, first_co, last_co, all_co, sub_co, short_id, coi, cover_letter, parse_text, files):
+	def __init__(self, method, authors, first_au, ms_id, title, date, ms_type, discipline, ithenticate, extra, first_co, last_co, all_co, sub_co, short_id, coi, coi2, cover_letter, parse_text, files):
 		self.method = method
 		self.authors = authors
 		self.first_au = first_au 	
@@ -165,7 +173,8 @@ class MSInfo:
 		self.all_co = all_co
 		self.sub_co = sub_co
 		self.short_id = short_id
-		self.coi = coi
+		self.coi = coi #coi with author last name only
+		self.coi2 = coi2 #coi with author last name and first initial (useful for Asian authors)
 		self.cover_letter = []
 		self.parse_text = parse_text
 		self.files = []
@@ -192,6 +201,7 @@ class MSInfo:
 			self.sub_co = "sub_co"
 			self.short_id = "short_id"
 			self.coi = "coi"
+			self.coi2 = "coi2"
 			self.cover_letter = []
 			self.parse_text = "parse_text"
 			self.files = []
@@ -382,9 +392,11 @@ class MSInfo:
 
 	def CreateCoiString(self):
 		try:
-			temp_coi = '; ' + self.authors
-			temp_coi = findStringsInMiddle(';',',', temp_coi)
+			#get coi1
 
+			temp_coi = '; ' + self.authors
+			temp_coi = findStringsInMiddle(1, ';',',', temp_coi)
+			
 			self.coi = ''
 			k=0
 			while k < len(temp_coi):
@@ -396,6 +408,25 @@ class MSInfo:
 
 			self.coi = self.coi + ("[AU]")
 			self.coi = self.coi[1:]
+
+			#get coi2
+			temp_coi = '; ' + self.authors
+			temp_coi = findStringsInMiddle(2, ';',',', temp_coi)
+
+			self.coi2 = ''
+			k=0
+			while k < len(temp_coi):
+				self.coi2 = self.coi2 + temp_coi[k] + "[AU] OR"
+				k = k + 1
+
+			if self.coi2.endswith('[AU] OR'):
+				self.coi2 = self.coi2[:-7]
+
+			self.coi2 = self.coi2 + ("[AU]")
+			self.coi2 = self.coi2[1:]
+			self.coi2 = self.coi2.replace(',' , '')
+
+
 		except Exception as e:
 			print('could not generate COI search parameters. ERROR TYPE:', e)
 
@@ -442,7 +473,7 @@ class MSInfo:
 
 			replace_entries_with_this = [self.authors, self.first_au, self.short_id, self.title, \
 					self.date, self.discipline, str_all_co, self.ms_type, \
-					"study_design", "n=", "study_period", self.coi + '\r']
+					"study_design", "n=", "study_period", self.coi + '\r\r' + self.coi2 +'\r']
 
 			filename = os.getcwd() + '\\Document Templates\\' + "NEW MS Details TEMPLATE.docx"
 
@@ -506,7 +537,7 @@ class MSInfo:
 
 def Parser():
 	global method_parsed
-	parse = MSInfo(0,'','','','','','','','','','','','','','','','','','')
+	parse = MSInfo(0,'','','','','','','','','','','','','','','','','','', '')
 	method_parsed = int(parse.method)
 	parse.ParseText()
 	parse.PostProcessParsedData()
