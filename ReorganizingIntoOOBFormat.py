@@ -153,6 +153,51 @@ def findStringsInMiddle(configure, a, b, text):
 
 	return output
 
+#converts discpline into a shortened version (i.e., Operational and Implementation Sciences = OI)
+def applyAcronymToDiscipline (discipline_phrase):
+	discipline_dict = {
+	'Basic and Biomedical Sciences' : 'BB',
+	'Behavioural Sciences' : 'BE',
+	'Clinical Sciences' : 'CS',
+	'Epidemiology' : 'BE',
+	'Health Economics' : 'HE',
+	'Health Policy' : 'HE',
+	'Humanities' : 'SH',
+	'Social Sciences' : 'SH',
+	'Operational and Implementation Sciences' : 'OI'
+	}
+
+	if discipline_phrase in discipline_dict:
+		short_phrase = discipline_dict[discipline_phrase]
+	else:
+		short_phrase = discipline_phrase
+
+	return short_phrase
+
+
+#converts ms_type into a shortened version (i.e., Research Article = Res)
+def applyAcronymToMsType (msType_phrase):
+	mstype_dict = {
+	'Research Article':'Res',
+	'Short Report':'SR',
+	'Review':'Rw',
+	'Commentary':'Com',
+	'Viewpoint':'VP',
+	'Editorial':'Editorial material - Editorial',
+	'Letter to the Editor':'Editorial material - Letter to editor',
+	'Debate':'Editorial Material - Debate',
+	'Corrigendum':'Editorial material - Corrigendum'
+	}
+
+	if msType_phrase in mstype_dict:
+		short_phrase = mstype_dict[msType_phrase]
+	else:
+		short_phrase = msType_phrase
+
+	return short_phrase
+
+
+
 #MS data stored in a class for easier accessiblity
 class MSInfo:
 	
@@ -183,8 +228,7 @@ class MSInfo:
 
 		if self.method is 0:	 #New MS parsing
 			
-			#display_message.set("Parsing " + tab_names[method] + " Text!")
-
+			
 			#set default names for each revelant data variable
 			self.authors = "authors"
 			self.first_au = "first_au" 	
@@ -213,37 +257,44 @@ class MSInfo:
 			# add the text from the GUI textbox to a variable
 			self.parse_text = io.StringIO(ms_textbox[self.method].get('1.0', 'end-1c'))
 
-			# BEGIN PARSING TEXT
-			# IF SCHOLAR ONE CHANGES THEIR FORMAT, THEN THIS SECTION
-			# CAN BE ADJUSTED TO FIT THE CHANGES
-			# THE parsing_values[] VARIABLE, SHOULD MAKE THIS PROCESS EASIER
+# BEGIN PARSING TEXT
+# IF SCHOLAR ONE CHANGES THEIR FORMAT, THEN THIS SECTION
+# CAN BE ADJUSTED TO FIT THE CHANGES
+# THE parsing_values[] VARIABLE, SHOULD MAKE THIS PROCESS EASIER
 
 			for line in self.parse_text:
 				line = line.rstrip()
 
+#get MS ID
 				if parsing_values[self.method][0] in line or "JIAS-2019" in line:
 					self.ms_id = line #ms id
 
+#get MS Date
 				elif parsing_values[self.method][1] in line:
 					self.date = line #ms date
 
+#get MS Title
 				elif parsing_values[self.method][2] in line:
 					for line in islice(self.parse_text, 2):
 						self.title = line.rstrip() #ms title
 
+#get MS Authors
 				elif parsing_values[self.method][3] in line:
 					self.authors = line #ms authors
 
+#get MS type
 				elif parsing_values[self.method][4] in line:
 					for line in islice(self.parse_text, 2):
 						self.ms_type = line.rstrip() #ms type
 
+#get MS Extra Info
 				elif parsing_values[self.method][5] in line:
 					self.extra = line #ms extra data
 
 				elif "Select Reviewers" in line:
 					self.extra = line #ms extra data
 
+#Get Ms Author Countries
 				#bool check for whether to parse for country information
 				if line.startswith(parsing_values[self.method][6]):
 					country_bool = 1
@@ -266,7 +317,7 @@ class MSInfo:
 							if re.search('\\b'+d+'\\b', line):
 								self.all_co.append(d) #these values will be reassigned after the parsing is completed
 
-
+#Get MS Cover Letter
 				#bool check for whether to parse for cover letter information
 				if line.startswith(parsing_values[self.method][8]):
 					cover_letter_bool = 1
@@ -282,16 +333,20 @@ class MSInfo:
 						print(cover_letter_error)
 						display_message.set(cover_letter_error)
 
-				#parsing for ms discipline value
+#Get MS Discpline
 				if re.match(parsing_values[self.method][10], line):
 					try:
 						for line in islice(self.parse_text, 2):
 							self.discipline = line.rstrip() #ms discipline
+						self.discipline = applyAcronymToDiscipline(self.discipline)
 					except:
 						discipline_error = "Error: could not parse discipline value!"
 						print(discipline_error)
 						display_message.set(discipline_error)
-				#parsing for ms ithenticate value (needs post-processing)
+
+
+
+#Get MS Ithenticate Score (needs post-processing)
 				try:
 					if re.match(parsing_values[self.method][11], line):
 						self.ithenticate = line 	#ms ithenticate
@@ -432,10 +487,11 @@ class MSInfo:
 
 	def CopyExcelFormatToClipboard(self):
 		try:
+			short_ms_type = applyAcronymToMsType(self.ms_type)
 			if mod==1:
 				data = self.first_co + "	" + self.sub_co + "	" + self.last_co + "	" + ', '.join(self.all_co)
 			else:
-				data = self.authors + "	" + self.first_au + "	" + "	" + self.ms_id + "	" + self.title + "	" + self.date + "	" + self.ms_type + "	" + self.discipline + "	"  + "	" + "Editorial Assessment"  + "	"  + "	"  + "	"  + "	"  + "	"  + "	" + self.first_co + "	" + self.sub_co + "	" + self.last_co + "	" + ', '.join(self.all_co) + "	"  + "	"  + "	"  + "	"  + "	"  + "	" + str(self.ithenticate)
+				data = self.authors + "	" + self.first_au + "	" + "	" + self.ms_id + "	" + self.title + "	" + self.date + "	" + short_ms_type + "	" + self.discipline + "	"  + "	" + "Editorial Assessment"  + "	"  + "	"  + "	"  + "	"  + "	"  + "	" + self.first_co + "	" + self.sub_co + "	" + self.last_co + "	" + ', '.join(self.all_co) + "	"  + "	"  + "	"  + "	"  + "	"  + "	" + str(self.ithenticate)
 			pyperclip.copy(data)
 		except Exception as e:
 			print('failed to copy data to clipboard in excel format. ERROR:', e)
@@ -469,11 +525,11 @@ class MSInfo:
 			entries_within_doc_template = ['<<authors>>', '<<author>>', '<<id>>', 		\
 			'<<title>>', '<<date>>', '<<discipline>>',	\
 			'<<countries>>', '<<type>>', '<<study_design>>', \
-			'<<n>>', '<<study_period>>', '<<coi_string>>']
+			'<<n>>', '<<study_period>>', '<<coi_string>>', '<<ithenticate>>']
 
 			replace_entries_with_this = [self.authors, self.first_au, self.short_id, self.title, \
 					self.date, self.discipline, str_all_co, self.ms_type, \
-					"study_design", "n=", "study_period", self.coi + '\r\r' + self.coi2 +'\r']
+					"study_design", "n=", "study_period", self.coi + '\r\r' + self.coi2 +'\r', str(self.ithenticate) + '\r']
 
 			filename = os.getcwd() + '\\Document Templates\\' + "NEW MS Details TEMPLATE.docx"
 
