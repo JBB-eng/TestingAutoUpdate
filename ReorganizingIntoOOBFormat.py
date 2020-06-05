@@ -631,9 +631,20 @@ def Parser():
 		parse.PrintParsingResults()
 
 def RenameFilesAndAddToMsFolder():
+	file_size_limit = 1000000 #this is in BYTES, i.e., 1000 = 1KB
+	alert = 0
 	for x in range(len(entry1_files[method_parsed])):
 		if entry1_files[method_parsed][x].get() is not "" and entry3_checkboxes[method_parsed][x].get() is True:
 			try:
+
+				#if any of the files are larger than the file_size_limit, the task will continue, but a popup will notify the user
+				if os.path.getsize(GetDownloadPath() + '/' + entry1_files[method_parsed][x].get()) >= file_size_limit:
+					alert = 1
+
+				#debugging
+				#messagebox.showinfo('File Size!', str(GetDownloadPath() + '/' + entry1_files[method_parsed][x].get()) + ' filesize is ' + str(os.path.getsize(GetDownloadPath() + '/' + entry1_files[method_parsed][x].get())))
+				#debugging
+
 				file_name1, file_extension1 = os.path.splitext(entry1_files[method_parsed][x].get())
 				file_name2, file_extension2 = os.path.splitext(entry2_files[method_parsed][x].get())
 				os.rename(GetDownloadPath() + '/' + entry1_files[method_parsed][x].get(), ms_folder + entry2_files[method_parsed][x].get() + file_extension1)
@@ -641,10 +652,14 @@ def RenameFilesAndAddToMsFolder():
 				entry1_files[method_parsed][x].delete(0, 'end')
 				entry2_files[method_parsed][x].delete(0, 'end')
 				entry3_checkboxes[method_parsed][x].set(False)
+
 			except Exception as e:
 				print ('RenameFilesAndAssToMsFolder failed. ERROR:', e)
 		else:
 			pass
+	if alert == 1:
+		messagebox.showinfo('Warning: Manuscript File Sizes!','Some of the manuscrpt files are larger than ' + str(round(file_size_limit/1000000)) + ' MB')
+			
 
 
 
