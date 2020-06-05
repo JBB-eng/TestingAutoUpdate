@@ -26,13 +26,24 @@ location_updated_release = "https://github.com/JBB-eng/TestingAutoUpdate/release
 #imports
 import tkinter as tk
 import pandas as pd
+import os
+import webbrowser
+import cgi
+import threading
+import ctypes
+import subprocess
+import time
+import io
+import re
+import pyperclip
+import docx
+
 from tkinter import ttk, font, scrolledtext, filedialog, messagebox
 from PIL import ImageTk, Image, ImageOps
 from urllib.request import urlopen
 from MessageBox import *
 from itertools import islice
 from datetime import datetime
-import os, webbrowser, cgi, threading, ctypes, subprocess, time, io, re, pyperclip, time, docx
 from docx import Document
 from docx.shared import Pt
 from ctypes import c_int, WINFUNCTYPE, windll
@@ -83,7 +94,15 @@ files_to_ignore_in_download_folder = ["Elisa to Check Pivot Table Setups", "JAID
 parsing_values[0][:] = "JIAS-2020", "Submitted: ", "Title:", " (proxy) (contact)", "Wiley - Manuscript type:", "previous submission:", "Submitting Author:", "Running Head:", "Author's Cover Letter:", "If you have been invited to submit an article for a supplement, please select the title of the supplement:", "Discipline:", "Overall Similarity Index Percentage:"
 #################################################
 
+def resource_path(relative_path):
+    """ Get absolute path to resource, works for dev and for PyInstaller """
+    try:
+        # PyInstaller creates a temp folder and stores path in _MEIPASS
+        base_path = sys._MEIPASS
+    except Exception:
+        base_path = os.path.abspath(".")
 
+    return os.path.join(base_path, relative_path)
 
 def intersperse(lst, item):
 	result = [item] * (len(lst) * 2 - 1)
@@ -641,10 +660,6 @@ def RenameFilesAndAddToMsFolder():
 				if os.path.getsize(GetDownloadPath() + '/' + entry1_files[method_parsed][x].get()) >= file_size_limit:
 					alert = 1
 
-				#debugging
-				#messagebox.showinfo('File Size!', str(GetDownloadPath() + '/' + entry1_files[method_parsed][x].get()) + ' filesize is ' + str(os.path.getsize(GetDownloadPath() + '/' + entry1_files[method_parsed][x].get())))
-				#debugging
-
 				file_name1, file_extension1 = os.path.splitext(entry1_files[method_parsed][x].get())
 				file_name2, file_extension2 = os.path.splitext(entry2_files[method_parsed][x].get())
 				os.rename(GetDownloadPath() + '/' + entry1_files[method_parsed][x].get(), ms_folder + entry2_files[method_parsed][x].get() + file_extension1)
@@ -657,6 +672,7 @@ def RenameFilesAndAddToMsFolder():
 				print ('RenameFilesAndAssToMsFolder failed. ERROR:', e)
 		else:
 			pass
+
 	if alert == 1:
 		messagebox.showinfo('Warning: Manuscript File Sizes!','Some of the manuscrpt files are larger than ' + str(round(file_size_limit/1000000)) + ' MB')
 			
@@ -1246,7 +1262,8 @@ class UpdateManager(tk.Toplevel):
 		self.geometry('{0}x{1}+{2}+{3}'.format(w, h, int(x), int(y)))
 		self.resizable(width=False, height=False)
 		self.title('Update Manager')
-		self.wm_iconbitmap('robot.ico')
+		#self.wm_iconbitmap('robot.ico')
+		self.wm_iconbitmap(resource_path('robot.ico'))
 
 		#image = Image.open('update.png')
 		#photo = ImageTk.PhotoImage(image)
@@ -1359,9 +1376,11 @@ class DisplayAboutMe(tk.Toplevel):
 		self.geometry('{0}x{1}+{2}+{3}'.format(w, h, int(x), int(y)))
 		self.resizable(width=False, height=False)
 		self.title('About')
-		self.wm_iconbitmap('robot.ico')
+		#self.wm_iconbitmap('robot.ico')
+		self.wm_iconbitmap(resource_path('robot.ico'))
 
-		self.image = Image.open('jias_robot1.png')
+		#self.image = Image.open('jias_robot1.png')
+		self.image = Image.open(resource_path('jias_robot1.png'))
 		self.size = (100, 100)
 		self.thumb = ImageOps.fit(self.image, self.size, Image.ANTIALIAS)
 		self.photo = ImageTk.PhotoImage(self.thumb)
@@ -1397,7 +1416,8 @@ def main():
 	y = (sh - h) / 2
 	root.geometry('{0}x{1}+{2}+{3}'.format(w, h, int(x), int(y)))
 	root.resizable(width=False, height=False)
-	root.wm_iconbitmap('robot.ico')
+	#root.wm_iconbitmap('robot.ico')
+	root.wm_iconbitmap(resource_path('robot.ico'))
 	win = Main(root)
 	root.mainloop()	
 
