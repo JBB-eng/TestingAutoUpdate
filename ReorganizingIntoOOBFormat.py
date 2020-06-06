@@ -1191,6 +1191,24 @@ class Main:
 
 			global display_message
 
+			#check for older versions of the app in the current working directory and delete them
+			#a simple 'hack' to do this, as it tries to also delete the current version but fails to do so since the file is open and so only deletes old versions.  
+			f = []
+			list_of_files = os.listdir(os.getcwd())
+
+			for fname in list_of_files:
+				f.append(fname)
+
+			for file in f:
+				if file.startswith(__AppName__+"_v") and file.endswith(".exe"):
+					app_file_name = os.getcwd() + "\\" + file
+					try:
+						os.remove(app_file_name)
+						print("Removed file: " + app_file_name)
+					except:
+						print("Did not modify the following file: " + app_file_name)
+						pass
+
 			CheckUpdates()
 			menubar = tk.Menu(parent)
 			filemenu = tk.Menu(menubar, tearoff=0)
