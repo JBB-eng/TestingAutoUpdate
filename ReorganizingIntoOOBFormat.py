@@ -469,7 +469,7 @@ class MSInfo:
 	def CreateCoiString(self):
 		try:
 			#get coi1
-
+			"""
 			temp_coi = '; ' + self.authors
 			temp_coi = findStringsInMiddle(1, ';',',', temp_coi)
 			
@@ -484,23 +484,23 @@ class MSInfo:
 
 			self.coi = self.coi + ("[AU]")
 			self.coi = self.coi[1:]
-
+			"""
 			#get coi2
 			temp_coi = '; ' + self.authors
 			temp_coi = findStringsInMiddle(2, ';',',', temp_coi)
 
-			self.coi2 = ''
+			self.coi = ''
 			k=0
 			while k < len(temp_coi):
-				self.coi2 = self.coi2 + temp_coi[k] + "[AU] OR"
+				self.coi = self.coi + temp_coi[k] + "[AU] OR"
 				k = k + 1
 
-			if self.coi2.endswith('[AU] OR'):
-				self.coi2 = self.coi2[:-7]
+			if self.coi.endswith('[AU] OR'):
+				self.coi = self.coi[:-7]
 
-			self.coi2 = self.coi2 + ("[AU]")
-			self.coi2 = self.coi2[1:]
-			self.coi2 = self.coi2.replace(',' , '')
+			self.coi = self.coi + ("[AU]")
+			self.coi = self.coi[1:]
+			self.coi = self.coi.replace(',' , '')
 
 
 		except Exception as e:
@@ -550,7 +550,7 @@ class MSInfo:
 
 			replace_entries_with_this = [self.authors, self.first_au, self.short_id, self.title, \
 					self.date, self.discipline, str_all_co, self.ms_type, \
-					"study_design", "n=", "study_period", self.coi + '\r\r' + self.coi2 +'\r', str(self.ithenticate) + '\r']
+					"study_design", "n=", "study_period", self.coi +'\r', str(self.ithenticate) + '\r']
 
 			filename = os.getcwd() + '\\Document Templates\\' + "NEW MS Details TEMPLATE.docx"
 
