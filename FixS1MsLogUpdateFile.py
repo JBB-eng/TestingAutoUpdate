@@ -1,3 +1,5 @@
+#updating git check
+
 """
 This script automatically updates the MsLog file. 
 
