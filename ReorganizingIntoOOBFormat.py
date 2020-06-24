@@ -14,12 +14,12 @@ __maintainer__	= 'Jacob Bursavich'
 __email__		= 'jbursavich@gmail.com'
 __status__		= 'Beta'
 
-__AppName__		= 'JIAS Automation Assistant'
-__version__		= '0.2'
+__AppName__		= 'JIAS_Automation_Assistant'
+__version__		= '0.21'
 
 #LOCATION OF NEW RELEASE AND VERSION CHECK FILEs####################################################################################
 location_version_check = "http://raw.githubusercontent.com/JBB-eng/TestingAutoUpdate/master/Version"
-location_updated_release = "https://github.com/JBB-eng/TestingAutoUpdate/releases/download/0.2/JIAS-Automation_build0_1.exe"
+location_updated_release = "https://github.com/JBB-eng/TestingAutoUpdate/releases/download/0.2/JIAS_Automation_Assistant_v0.2.1.exe"
 ####################################################################################################################################
 
 
@@ -674,7 +674,7 @@ def RenameFilesAndAddToMsFolder():
 			pass
 
 	if alert == 1:
-		messagebox.showinfo('Warning: Manuscript File Sizes!','Some of the manuscrpt files are larger than ' + str(round(file_size_limit/1000000)) + ' MB')
+		messagebox.showinfo('Warning: Manuscript File Sizes!','Some of the manuscript files are larger than ' + str(round(file_size_limit/1000000)) + ' MB')
 			
 
 
@@ -785,6 +785,16 @@ def delete_lines_with_word(file_name, word):
     """Delete lines from a file that contains a given word / sub-string """
     delete_lines_by_condition(file_name, lambda x : word in x )
 
+def walklevel(some_dir, level=1):
+    some_dir = some_dir.rstrip(os.path.sep)
+    assert os.path.isdir(some_dir)
+    num_sep = some_dir.count(os.path.sep)
+    for root, dirs, files in os.walk(some_dir):
+        yield root, dirs, files
+        num_sep_this = root.count(os.path.sep)
+        if num_sep + level <= num_sep_this:
+            del dirs[:]
+
 
 def check_for_s1_ms_in_editorial_folders():
 	global missing_ms
@@ -803,13 +813,16 @@ def check_for_s1_ms_in_editorial_folders():
 
 	start_time = time.time()
 
-	for subdir, dirs, files in os.walk(excel_file_dir):
+	#for subdir, dirs, files in os.walk(excel_file_dir):
+	for subdir, dirs, files in walklevel(excel_file_dir, level=0):	
 		for file in files:
 			#print (os.path.join(subdir, file))
 			filepath = subdir + os.sep + file
 
 			if "export" in filepath:
 				excel_exports.append(filepath)
+
+			#continue #this should keep the search within the folder selected, and exclude all of the subdirectories.
 
 	print("Number of Excel export files found:", len(excel_exports))
 
@@ -819,6 +832,8 @@ def check_for_s1_ms_in_editorial_folders():
 	
 	clean_JIAS = lambda x : (x.replace("JIAS-", ""))
 	clean_AUTHOR = lambda x : (x.split(", ", 1))[0]
+
+	print("excel export number of files:", str(len(excel_exports)))
 
 	x=0
 	while x < len(excel_exports):
@@ -1200,14 +1215,14 @@ class Main:
 				f.append(fname)
 
 			for file in f:
-				if file.startswith(__AppName__+"_v") and file.endswith(".exe"):
+				if file.startswith(__AppName__) and file.endswith(".exe"):
 					app_file_name = os.getcwd() + "\\" + file
 					try:
 						os.remove(app_file_name)
 						print("Removed file: " + app_file_name)
 					except:
 						print("Did not modify the following file: " + app_file_name)
-						pass
+						#pass
 
 			CheckUpdates()
 			menubar = tk.Menu(parent)
