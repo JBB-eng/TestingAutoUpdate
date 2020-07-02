@@ -68,6 +68,8 @@ ms_cover_letter = [[None] * 1 for i in range(len(tab_names))] #cover letters for
 display_message = None #message that shows user processing messages, error messages, etc
 
 folders_for_S1_check = [None]*10 #stores variables used in the S1_manuscript_check_Tool
+folder_for_MSLogUpdate = [None]*10 #stores location of the MsLog files for the MsLog Updater Tool
+
 
 #all countries in the world
 all_countries = "Afghanistan, Albania, Algeria, Andorra, Angola, Antigua & Deps, Argentina, Armenia, Australia, Austria, Azerbaijan, Bahamas, Bahrain, Bangladesh, Barbados, Belarus, Belgium, Belize, Benin, Bhutan, Bolivia, Bosnia Herzegovina, Botswana, Brazil, Brunei, Bulgaria, Burkina, Burma, Burundi, Cambodia, Cameroon, Canada, Cape Verde, Central African Rep, Chad, Chile, China, Republic of China,Colombia, Comoros, Democratic Republic of the Congo, Republic of the Congo, Costa Rica, Côte d’Ivoire, Ivory Coast, Republic of Côte d'Ivoire, Croatia, Cuba, Cyprus, Czech Republic, Danzig, Denmark, Djibouti, Dominica, Dominican Republic, East Timor, Ecuador, Egypt, El Salvador, Equatorial Guinea, Eritrea, Estonia, Ethiopia, Fiji, Finland, France, Gabon, Gaza Strip, The Gambia, Georgia, Germany, Ghana, Greece, Grenada, Guatemala, Guinea, Guinea-Bissau, Guyana, Haiti, Holy Roman Empire, Honduras, Hungary, Iceland, India, Indonesia, Iran, Iraq, Republic of Ireland, Israel, Italy, Ivory Coast, Jamaica, Japan, Jordan, Kazakhstan, Kenya, Kiribati, North Korea, South Korea, Kosovo, Kuwait, Kyrgyzstan, Laos, Latvia, Lebanon, Lesotho, Liberia, Libya, Liechtenstein, Lithuania, Luxembourg, Macedonia, Madagascar, Malawi, Malaysia, Maldives, Mali, Malta, Marshall Islands, Mauritania, Mauritius, Mexico, Micronesia, Moldova, Monaco, Mongolia, Montenegro, Morocco, Mount Athos, Mozambique, Namibia, Nauru, Nepal, Newfoundland, Netherlands, New Zealand, Nicaragua, Niger, Nigeria, Norway, Oman, Ottoman Empire, Pakistan, Palau, Panama, Papua New Guinea,Paraguay, Peru, Philippines, Poland, Portugal, Prussia, Qatar, Romania, Russian Federation, Rwanda, St Kitts & Nevis, St Lucia, Saint Vincent & the Grenadines, Samoa, San Marino, Sao Tome & Principe, Saudi Arabia, Senegal, Serbia, Seychelles, Sierra Leone, Singapore, Slovakia, Slovenia, Solomon Islands, Somalia, South Africa, Spain, Sri Lanka, Sudan, Suriname, Swaziland, Sweden, Switzerland, Syria, Taiwan, Tajikistan, Tanzania, Thailand, Togo, Tonga, Trinidad & Tobago, Tunisia, Turkey, Turkmenistan, Tuvalu, Uganda, Ukraine, United Arab Emirates, United Kingdom, United States, Uruguay, Uzbekistan, Vanuatu, Vatican City, Venezuela, Vietnam, Yemen, Zambia, Zimbabwe".split(', ')
@@ -742,6 +744,15 @@ def get_editorial_folder():
 	folders_for_S1_check[1].configure(state="readonly")
 	s1_window.lift()
 
+def get_MsLog_folder():
+	global MSLog_directory
+	MSLog_directory = filedialog.askdirectory() + "/"
+	folder_for_MSLogUpdate[0].configure(state="normal")
+	folder_for_MSLogUpdate[0].delete(0, 'end')
+	folder_for_MSLogUpdate[0].insert(0, MSLog_directory)
+	folder_for_MSLogUpdate[0].configure(state="readonly")
+	msLog_window.lift()
+
 def slice_folder_name(my_str, sub):
 	index=my_str.find(sub)
 	if index != -1 :
@@ -806,6 +817,264 @@ def walklevel(some_dir, level=1):
         num_sep_this = root.count(os.path.sep)
         if num_sep + level <= num_sep_this:
             del dirs[:]
+
+
+def updateMsLog():
+
+	#Imports
+	from openpyxl import load_workbook
+	from openpyxl.worksheet.datavalidation import DataValidation
+	from openpyxl.utils import quote_sheetname
+	
+	#File names
+	UpdateMSLog_File = "UpdateMSlog_2019.12.03.xlsx"
+	UpdateMSLog_File = MSLog_directory + "UpdateMSlog_2019.12.03.xlsx"
+	
+	UpdateMSLog_File_New_Temp = "tmp.xlsx"
+	UpdateMSLog_File_New_Temp = MSLog_directory + "temp.xlsx"
+	
+	MSLogFor2018_2020_File = "MS log for 2018-2020_fixed.xlsx"
+	MSLogFor2018_2020_File = MSLog_directory + "MS log for 2018-2020_fixed.xlsx"
+	
+	MSLogFor2018_2020_UPDATED_FILE = "MS log for 2018-2020_updated.xlsx"
+	MSLogFor2018_2020_UPDATED_FILE = MSLog_directory + "MS log for 2018-2020_updated.xlsx"
+
+	#Load the updateLog file
+	print("Loading \"%s\"" % (UpdateMSLog_File))
+	wb2 = load_workbook(filename=UpdateMSLog_File, data_only=True)
+	ws2 = wb2.active
+
+	#Clean the headers in the updateLog file
+	try:
+		ws2.unmerge_cells('A1:G1')
+	except:
+		pass
+
+	print("\t-Renaming headers")
+	ws2.delete_rows(1)
+	ws2["D1"].value = "Status" 
+	ws2["E1"].value = "Peer review"
+	ws2["F1"].value = "1st decision"
+	ws2["G1"].value = "Final decision"
+
+	#Remove all entries earlier than 2018 and any blank ones from the updateLog file
+	print("\t-Removing all rows prior to 2018 (and blank entries) [takes about 30 seconds]")
+	i=1
+	del_rows = []
+	unwanted_entries = ["2017", "2016", "2015"]
+	for row in ws2.iter_rows(min_col=2, max_col=2, min_row=2):
+		i += 1
+		for cell in row:
+			str_cell = str(cell.value)
+
+			for x in unwanted_entries:
+				if str_cell.startswith(x):
+					del_rows.append(i)
+
+			if cell.value is None:
+				del_rows.append(i)
+
+	for r in reversed(del_rows):
+		ws2.delete_rows(r)
+
+	#If "blank" Status values, then rename as Manuscript Status values in updateLog file
+	print("\t-Renaming empty Status column values with Manuscript Status values")
+	i=1
+	row_num = []
+	for row in ws2.iter_rows(min_col=4, max_col=4, min_row=2):
+		for cell in row:
+			i += 1
+			if cell.value is None:
+				row_num.append(i)
+
+	for r in row_num:
+		cell_with_value = "C" + str(r)
+		cell_that_is_blank = "D" + str(r)
+		ws2[cell_that_is_blank].value = ws2[cell_with_value].value
+
+
+	#Remove all entries that have "Pending Payment Agreements", "Complete Checklist" or "Draft" values in the Manuscript Status column in the updateLog file
+	print("\t-Removing rows with Pending Payment, etc., values in the Manuscript Status column")
+	i=1
+	del_rows = []
+	for row in ws2.iter_rows(min_col=3, max_col=3, min_row=2):
+		i += 1
+		for cell in row:
+			str_cell = str(cell.value)
+			if str_cell.startswith("Pending Payment Agreements"):
+				del_rows.append(i)
+
+			if str_cell.startswith("Complete Checklist"):
+				del_rows.append(i)
+
+			if str_cell.startswith("Draft"):
+				del_rows.append(i)
+
+	for r in reversed(del_rows):
+		ws2.delete_rows(r)
+
+
+	#Rename all "status" column values to "Editorial Assessment", "Rejected", "Withdrawn", or "Accepted" in the updateLog file
+	print("\t-Renaming all Status entries to: Editorial Assessment, Rejected, Withdrawn, or Accepted")
+	accept = ["Accept"]
+	editorial_assessment = ["Reviewer", "Invite", "Make", "Revision" ]
+	withdrawn = [""]
+	rejected = ["Reject"]
+
+	for row in ws2.iter_rows(min_col=4, max_col=4, min_row=2):
+		for cell in row:
+			for x in rejected:
+				if x in cell.value:
+					cell.value = "Rejected"
+			for x in editorial_assessment:
+				if x in cell.value:
+					cell.value = "Editorial Assessment"
+			for x in accept:
+				if x in cell.value:
+					cell.value = "Accepted"	
+
+	#Rename all "Peer review" column values to "Yes" or "No" in the updateLog file
+	print("\t-Renaming Peer review values to: Yes or No")
+	for row in ws2.iter_rows(min_col=5, max_col=5, min_row=2):
+		for cell in row:
+			
+			try:
+				cell.value = int(cell.value)
+			except:
+				pass
+			
+			if cell.value > 0:
+				cell.value = "Yes"
+			else:
+				cell.value = "No"
+
+	#Save the modifications made to the updateLog file as a new temporary file
+	print("\t-Saving all modifications to: \"%s\"" % (UpdateMSLog_File_New_Temp))
+	wb2.save(filename=UpdateMSLog_File_New_Temp)
+
+	#Load the MSLogfor2018-2020 file
+	print("\nLoading: \"%s\"" % (MSLogFor2018_2020_File))
+	wb1 = load_workbook(filename=MSLogFor2018_2020_File)
+
+	#Identify the sheets within the MSLogfor2018-2020 file
+	print("\t-Sheets found in the MSLogFor2018-2020 file: " + ', '.join(wb1.sheetnames))
+	ms_update_sheet = wb1["LogUpdate"]
+	validation_sheet = wb1["Dropdowns and documentation"]
+	ms_log_sheet = wb1["2018-2020"]
+	countries_sheet = wb1["Countries"]
+
+	#Clear all cell values from the LogUpdate sheet in the MSLogfor2018-2020 file
+	print("\t-Clearing content from the LogUpdate sheet")
+	for row in ms_update_sheet:
+		for cell in row:
+			cell.value = None
+
+	#Load the temporary updateLog file created:
+	print("\t-Loading temp file: %s" % (UpdateMSLog_File_New_Temp))
+	wb2 = load_workbook(filename=UpdateMSLog_File_New_Temp)
+	ws2 = wb2.active
+
+	mr = ws2.max_row
+	mc = ws2.max_column
+
+	#Copy the modified contents of the temporary updateLog file to the LogUpdate sheet of the MSLogfor2018-2020 file
+	print("\t-Copying new LogUpdate values from %s to the LogUpdate sheet of the MSLogfor2018-2020 file" % (UpdateMSLog_File_New_Temp))
+	for i in range (1, mr + 1):
+		for j in range (1, mc + 1):
+			c = ws2.cell(row = i, column = j)
+
+			ms_update_sheet.cell(row = i, column = j).value = c.value
+
+
+
+	#If there are matches between the MS-IDs of the two files, then update the columns of the MSLogfor2018-2020 2018-2020 sheet to match the values within the columns of the updated LogUpdate sheet
+	print("\t-Performing MATCH function and updating values for Status, Peer Review, 1st Decision, Final Decision in the MSLogfor2018-2020 file")
+	list_of_MS_IDs = []
+	for row in ms_update_sheet.iter_rows(min_col=1, max_col=1, min_row=2):
+		for cell in row:
+			list_of_MS_IDs.append(cell.value)
+
+	row_num = 1
+	for row in ms_log_sheet.iter_rows(min_col=4, max_col=4, min_row=2):
+		row_num += 1
+		for cell in row:
+			for x in list_of_MS_IDs:
+				if x == cell.value:
+					y = list_of_MS_IDs.index(x) + 2
+					
+					stat_cell = ms_update_sheet.cell(row = y, column = 4)
+					peerRev_cell = ms_update_sheet.cell(row= y, column= 5)
+					firstDec_cell = ms_update_sheet.cell(row= y, column= 6)
+					lastDec_cell = ms_update_sheet.cell(row= y, column= 7)
+					
+					ms_log_sheet.cell(row = row_num, column = 10).value = stat_cell.value
+					ms_log_sheet.cell(row = row_num, column = 11).value = peerRev_cell.value
+					ms_log_sheet.cell(row = row_num, column = 12).value = firstDec_cell.value
+					ms_log_sheet.cell(row = row_num, column = 13).value = lastDec_cell.value
+
+
+	#Update 2018-2020 Status column if there is anything in the "DOI" column so that the status value is "Published" instead of "Accepted"
+	print("\t-Updating MsLog Status values to \"Published\" if a DOI value has been added")
+	row_num = 1
+	for row in ms_log_sheet.iter_rows(min_col = 10, max_col = 10, min_row = 2):
+		row_num += 1
+		for cell in row:
+			doi_status = ms_log_sheet.cell(row = row_num, column = 15).value
+			if doi_status is not None:
+				ms_log_sheet.cell(row = row_num, column = 10).value = "Published"
+			else:
+				pass
+
+
+
+	#Adding data validation to the 2018-2020 sheet of the MSLogfor2018-2020 file
+	print("\t-Adding Data Validation lists to the various columns of the 2018-2020 Sheet in the MSLogfor2018-2020 file")
+	dv_Status = DataValidation(type="list", formula1="='Dropdowns and documentation'!$A$3:$A$9", showDropDown = 0, allow_blank = 1)
+	ms_log_sheet.add_data_validation(dv_Status)
+	dv_Status.add('J2:J1048576')
+
+	dv_ArticleCategory = DataValidation(type="list", formula1="='Dropdowns and documentation'!$B$3:$B$12", showDropDown = 0, allow_blank = 1)
+	ms_log_sheet.add_data_validation(dv_ArticleCategory)
+	dv_ArticleCategory.add('G2:G1048576')
+
+	dv_Disciple = DataValidation(type="list", formula1="='Dropdowns and documentation'!$C$3:$C$9", showDropDown = 0, allow_blank = 1)
+	ms_log_sheet.add_data_validation(dv_Disciple)
+	dv_Disciple.add('H2:H1048576')
+
+	dv_PartOfASupplement = DataValidation(type="list", formula1="='Dropdowns and documentation'!$D$3:$D$4", showDropDown = 0, allow_blank = 1)
+	ms_log_sheet.add_data_validation(dv_PartOfASupplement)
+	dv_PartOfASupplement.add('I2:I1048576')
+
+	dv_GenderInclusion = DataValidation(type="list", formula1="='Dropdowns and documentation'!$E$3:$E$9", showDropDown = 0, allow_blank = 1)
+	ms_log_sheet.add_data_validation(dv_GenderInclusion)
+	dv_GenderInclusion.add('Z2:Z1048576')
+
+	dv_CountryClassification = DataValidation(type="list", formula1="='Dropdowns and documentation'!$F$3:$F$5", showDropDown = 0, allow_blank = 1)
+	ms_log_sheet.add_data_validation(dv_CountryClassification)
+	dv_CountryClassification.add('W2:W1048576')
+
+	dv_AuthorCountry = DataValidation(type="list", formula1="='Dropdowns and documentation'!$G$3:$G$4", showDropDown = 0, allow_blank = 1)
+	ms_log_sheet.add_data_validation(dv_AuthorCountry)
+	dv_AuthorCountry.add('T2:T1048576')
+	dv_AuthorCountry.add('U2:U1048576')
+	dv_AuthorCountry.add('V2:V1048576')
+
+	dv_Countries = DataValidation(type="list", formula1="='Countries'!$A$2:$A$219", showDropDown = 0, allow_blank = 1)
+	ms_log_sheet.add_data_validation(dv_Countries)
+	dv_Countries.add('P2:P1048576')
+	dv_Countries.add('Q2:Q1048576')
+	dv_Countries.add('R2:R1048576')
+
+	#Save the modifications made to the MSLogfor2018-2020 file to a new file
+	print("\t-Saving as: \"%s\"" % (MSLogFor2018_2020_UPDATED_FILE))
+	wb1.save(filename=MSLogFor2018_2020_UPDATED_FILE)
+
+	#delete the tmp.xlsx file that was created 
+	print("\t-Deleting tmp file: \"%s\"" % (UpdateMSLog_File_New_Temp))
+	os.remove(UpdateMSLog_File_New_Temp)
+
+	#print success message
+	print("\n\t-Successfully updated the MSLog!")
 
 
 def check_for_s1_ms_in_editorial_folders():
@@ -1042,6 +1311,41 @@ def check_for_s1_ms_in_editorial_folders():
 
 
 
+def MsLogUpdate_popup():
+	"""Generate a pop-up window for special messages."""
+	global msLog_window
+	#global results_label_text
+	#results_label_text = StringVar()
+	
+	msLog_window = tk.Tk()
+	msLog_window.title("MSLog Updater")
+	msLog_window.geometry('550x125')
+	rows = 0
+	while rows < 50:
+		msLog_window.rowconfigure(rows, weight=1)
+		msLog_window.columnconfigure(rows, weight=1)
+		rows += 1
+
+	#msLog_window.wm_attributes("-topmost", 1)
+	
+	download_folder_button = tk.Button(msLog_window, height = "1", width = "25", text="Select Folder containing Log Files", command=get_MsLog_folder)
+	run_check_button = tk.Button(msLog_window, height = "2", width = "25", text="Create an Updated MSLog File", command=updateMsLog)
+	
+
+	download_folder_button.grid(column=0, row=1, columnspan = 5,)
+	run_check_button.grid(column=0, row=10, columnspan=5,)
+
+	folder_for_MSLogUpdate[0] = tk.Entry(msLog_window, width= 50)
+	folder_for_MSLogUpdate[0].insert(0, "No download folder selected!")
+	folder_for_MSLogUpdate[0].configure(state="readonly")
+	folder_for_MSLogUpdate[0].grid(column=5, row=1, sticky='e')
+
+	folder_for_MSLogUpdate[1] = tk.Label(msLog_window, text="This takes about 1 minutes...").grid(column=2, row=12,)
+	#results_label_text.set("This may take a few minutes...")
+
+	tk.mainloop()
+
+
 def S1_check_popup():
 	"""Generate a pop-up window for special messages."""
 	global s1_window
@@ -1244,6 +1548,7 @@ class Main:
 			
 			toolsmenu = tk.Menu(menubar, tearoff=0)
 			toolsmenu.add_command(label='Weekly S1/SP MS Check', command=S1_check_popup)
+			toolsmenu.add_command(label='Update MSLog', command=MsLogUpdate_popup)
 			menubar.add_cascade(label='Tools', menu=toolsmenu)
 
 
