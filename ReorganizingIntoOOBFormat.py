@@ -328,24 +328,22 @@ class MSInfo:
 
 				#band-aid fix for certain issues that appear when search for countries, such as "Georgia" and "Rome"
 				if country_bool:
-					for c in cdc_who_strings:
-						if re.search('\\b'+c+'\\b', line):
+					for a in cdc_who_strings:
+						if re.search('\\b'+a+'\\b', line):
 							self.cdc_check = True
 							#print("cdc_is true! because of the following line:", str(line))
 
-					for d in all_countries:
-						if "Georgia" and "Atlanta," in line:
-							self.all_co.append("United States")
-						elif "Georgia" and "Atlanta" in line:
-							self.all_co.append("United States")
-						elif "Georgia" and "Athens," in line:
-							self.all_co.append("United States")
-						elif "Georgia" and "Athens" in line:
-							self.all_co.append("United States")
-						else:
-							#after the band-aid fix, grab country names in the normal way
-							if re.search('\\b'+d+'\\b', line):
-								self.all_co.append(d) #these values will be reassigned after the parsing is completed
+					catch_error_list = ["Atlanta", "Athens"]
+					for b in catch_error_list:
+						if re.search('\\b'+b+'\\b', line):
+							if re.search('Georgia', line):
+								self.all_co.append("United States")
+							else:
+								self.all_co.append("Georgia")
+
+					for c in all_countries:
+						if re.search('\\b'+c+'\\b', line):
+							self.all_co.append(c) #these values will be reassigned after the parsing is completed
 
 
 #Get MS Cover Letter
