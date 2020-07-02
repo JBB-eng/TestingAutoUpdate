@@ -51,8 +51,6 @@ from docx.shared import Pt
 from ctypes import c_int, WINFUNCTYPE, windll
 from ctypes.wintypes import HWND, LPCWSTR, UINT
 
-mod=0
-
 prototype = WINFUNCTYPE(c_int, HWND, LPCWSTR, LPCWSTR, UINT)
 paramflags = (1, "hwnd", 0), (1, "text", "Hi"), (1, "caption", "Hello from ctypes"), (1, "flags", 0)
 MessageBox = prototype(("MessageBoxW", windll.user32), paramflags)
@@ -71,9 +69,11 @@ display_message = None #message that shows user processing messages, error messa
 
 folders_for_S1_check = [None]*10 #stores variables used in the S1_manuscript_check_Tool
 
-
 #all countries in the world
 all_countries = "Afghanistan, Albania, Algeria, Andorra, Angola, Antigua & Deps, Argentina, Armenia, Australia, Austria, Azerbaijan, Bahamas, Bahrain, Bangladesh, Barbados, Belarus, Belgium, Belize, Benin, Bhutan, Bolivia, Bosnia Herzegovina, Botswana, Brazil, Brunei, Bulgaria, Burkina, Burma, Burundi, Cambodia, Cameroon, Canada, Cape Verde, Central African Rep, Chad, Chile, China, Republic of China,Colombia, Comoros, Democratic Republic of the Congo, Republic of the Congo, Costa Rica, Côte d’Ivoire, Ivory Coast, Republic of Côte d'Ivoire, Croatia, Cuba, Cyprus, Czech Republic, Danzig, Denmark, Djibouti, Dominica, Dominican Republic, East Timor, Ecuador, Egypt, El Salvador, Equatorial Guinea, Eritrea, Estonia, Ethiopia, Fiji, Finland, France, Gabon, Gaza Strip, The Gambia, Georgia, Germany, Ghana, Greece, Grenada, Guatemala, Guinea, Guinea-Bissau, Guyana, Haiti, Holy Roman Empire, Honduras, Hungary, Iceland, India, Indonesia, Iran, Iraq, Republic of Ireland, Israel, Italy, Ivory Coast, Jamaica, Japan, Jordan, Kazakhstan, Kenya, Kiribati, North Korea, South Korea, Kosovo, Kuwait, Kyrgyzstan, Laos, Latvia, Lebanon, Lesotho, Liberia, Libya, Liechtenstein, Lithuania, Luxembourg, Macedonia, Madagascar, Malawi, Malaysia, Maldives, Mali, Malta, Marshall Islands, Mauritania, Mauritius, Mexico, Micronesia, Moldova, Monaco, Mongolia, Montenegro, Morocco, Mount Athos, Mozambique, Namibia, Nauru, Nepal, Newfoundland, Netherlands, New Zealand, Nicaragua, Niger, Nigeria, Norway, Oman, Ottoman Empire, Pakistan, Palau, Panama, Papua New Guinea,Paraguay, Peru, Philippines, Poland, Portugal, Prussia, Qatar, Romania, Russian Federation, Rwanda, St Kitts & Nevis, St Lucia, Saint Vincent & the Grenadines, Samoa, San Marino, Sao Tome & Principe, Saudi Arabia, Senegal, Serbia, Seychelles, Sierra Leone, Singapore, Slovakia, Slovenia, Solomon Islands, Somalia, South Africa, Spain, Sri Lanka, Sudan, Suriname, Swaziland, Sweden, Switzerland, Syria, Taiwan, Tajikistan, Tanzania, Thailand, Togo, Tonga, Trinidad & Tobago, Tunisia, Turkey, Turkmenistan, Tuvalu, Uganda, Ukraine, United Arab Emirates, United Kingdom, United States, Uruguay, Uzbekistan, Vanuatu, Vatican City, Venezuela, Vietnam, Yemen, Zambia, Zimbabwe".split(', ')
+
+#CDC/WHO string check
+cdc_who_strings = ["CDC", "C.D.C", "Center for Disease Control", "Centre for Disease Control", "WHO", "W.H.O.", "World Health Organization", "World Health Organisation"]
 
 #multidimensional lists that hold the relevant parsed and collected data for each tab
 #example: list[n][m] (n=rows, m=columns) --> list[len(tabs_names), m=?]
@@ -223,7 +223,7 @@ def applyAcronymToMsType (msType_phrase):
 class MSInfo:
 	
 	#Initializer / Instance Attributes
-	def __init__(self, method, authors, first_au, ms_id, title, date, ms_type, discipline, ithenticate, extra, first_co, last_co, all_co, sub_co, short_id, coi, coi2, cover_letter, parse_text, files):
+	def __init__(self, method, authors, first_au, ms_id, title, date, ms_type, discipline, ithenticate, extra, first_co, last_co, all_co, sub_co, short_id, coi, coi2, cover_letter, parse_text, files, cdc_check):
 		self.method = method
 		self.authors = authors
 		self.first_au = first_au 	
@@ -243,6 +243,7 @@ class MSInfo:
 		self.coi2 = coi2 #coi with author last name and first initial (useful for Asian authors)
 		self.cover_letter = []
 		self.parse_text = parse_text
+		self.cdc_check = cdc_check
 		self.files = []
 
 	def ParseText(self):
@@ -269,6 +270,7 @@ class MSInfo:
 			self.coi2 = "coi2"
 			self.cover_letter = []
 			self.parse_text = "parse_text"
+			self.cdc_check = False
 			self.files = []
 
 			#bools for parsing
@@ -324,6 +326,11 @@ class MSInfo:
 
 				#band-aid fix for certain issues that appear when search for countries, such as "Georgia" and "Rome"
 				if country_bool:
+					for c in cdc_who_strings:
+						if re.search('\\b'+c+'\\b', line):
+							self.cdc_check = True
+							#print("cdc_is true! because of the following line:", str(line))
+
 					for d in all_countries:
 						if "Georgia" and "Atlanta," in line:
 							self.all_co.append("United States")
@@ -337,6 +344,7 @@ class MSInfo:
 							#after the band-aid fix, grab country names in the normal way
 							if re.search('\\b'+d+'\\b', line):
 								self.all_co.append(d) #these values will be reassigned after the parsing is completed
+
 
 #Get MS Cover Letter
 				#bool check for whether to parse for cover letter information
@@ -509,10 +517,7 @@ class MSInfo:
 	def CopyExcelFormatToClipboard(self):
 		try:
 			short_ms_type = applyAcronymToMsType(self.ms_type)
-			if mod==1:
-				data = self.first_co + "	" + self.sub_co + "	" + self.last_co + "	" + ', '.join(self.all_co)
-			else:
-				data = self.authors + "	" + self.first_au + "	" + "	" + self.ms_id + "	" + self.title + "	" + self.date + "	" + short_ms_type + "	" + self.discipline + "	"  + "	" + "Editorial Assessment"  + "	"  + "	"  + "	"  + "	"  + "	"  + "	" + self.first_co + "	" + self.sub_co + "	" + self.last_co + "	" + ', '.join(self.all_co) + "	"  + "	"  + "	"  + "	"  + "	"  + "	" + str(self.ithenticate)
+			data = self.authors + "	" + self.first_au + "	" + "	" + self.ms_id + "	" + self.title + "	" + self.date + "	" + short_ms_type + "	" + self.discipline + "	"  + "	" + "Editorial Assessment"  + "	"  + "	"  + "	"  + "	"  + "	"  + "	" + self.first_co + "	" + self.sub_co + "	" + self.last_co + "	" + ', '.join(self.all_co) + "	"  + "	"  + "	"  + "	"  + "	"  + "	" + str(self.ithenticate)
 			pyperclip.copy(data)
 		except Exception as e:
 			print('failed to copy data to clipboard in excel format. ERROR:', e)
@@ -546,11 +551,18 @@ class MSInfo:
 			entries_within_doc_template = ['<<authors>>', '<<author>>', '<<id>>', 		\
 			'<<title>>', '<<date>>', '<<discipline>>',	\
 			'<<countries>>', '<<type>>', '<<study_design>>', \
-			'<<n>>', '<<study_period>>', '<<coi_string>>', '<<ithenticate>>']
+			'<<n>>', '<<study_period>>', '<<coi_string>>', '<<ithenticate>>','<<cdc_check>>']
+
+			cdc_result_string = ""
+			if self.cdc_check == 1:
+				cdc_result_string = "CDC or WHO affiliation found!"
+			elif self.cdc_check == 0:
+				cdc_result_string = "None"
+				
 
 			replace_entries_with_this = [self.authors, self.first_au, self.short_id, self.title, \
 					self.date, self.discipline, str_all_co, self.ms_type, \
-					"study_design", "n=", "study_period", self.coi +'\r', str(self.ithenticate) + '\r']
+					"study_design", "n=", "study_period", self.coi +'\r', str(self.ithenticate) + '\r', cdc_result_string]
 
 			filename = os.getcwd() + '\\Document Templates\\' + "NEW MS Details TEMPLATE.docx"
 
@@ -614,28 +626,28 @@ class MSInfo:
 
 def Parser():
 	global method_parsed
-	parse = MSInfo(0,'','','','','','','','','','','','','','','','','','', '')
+	parse = MSInfo(0,'','','','','','','','','','','','','','','','','','', '', 0)
 	method_parsed = int(parse.method)
 	parse.ParseText()
 	parse.PostProcessParsedData()
 	parse.CreateCoiString()
-	if mod is not 1:
-		parse.CreateFolderForManuscript()
-		parse.CreateCoverLetterAndPlaceInFolder()
-		parse.CreateMSDetailsAndPlaceInFolder()
-		parse.FindFilesInDownloadFolder(*files_to_ignore_in_download_folder)
-		parse.PrintParsingResults()
-		parse.CopyExcelFormatToClipboard()
-		#update gui text boxes with MS data
-		text_update = [parse.ms_id, parse.date, parse.title, parse.authors, parse.ms_type, \
-					parse.extra, parse.discipline, parse.ithenticate, parse.first_au, parse.short_id, \
-					parse.first_co, parse.last_co, ', '.join(parse.all_co), parse.sub_co, parse.coi]
 
-		for i in range(15):
-			entry_parsed_data[0][i].configure(state="normal")
-			entry_parsed_data[0][i].delete(0, 'end')
-			entry_parsed_data[0][i].insert(0, text_update[i])
-			entry_parsed_data[0][i].configure(state="readonly")
+	parse.CreateFolderForManuscript()
+	parse.CreateCoverLetterAndPlaceInFolder()
+	parse.CreateMSDetailsAndPlaceInFolder()
+	parse.FindFilesInDownloadFolder(*files_to_ignore_in_download_folder)
+	parse.PrintParsingResults()
+	parse.CopyExcelFormatToClipboard()
+	#update gui text boxes with MS data
+	text_update = [parse.ms_id, parse.date, parse.title, parse.authors, parse.ms_type, \
+				parse.extra, parse.discipline, parse.ithenticate, parse.first_au, parse.short_id, \
+				parse.first_co, parse.last_co, ', '.join(parse.all_co), parse.sub_co, parse.coi]
+
+	for i in range(15):
+		entry_parsed_data[0][i].configure(state="normal")
+		entry_parsed_data[0][i].delete(0, 'end')
+		entry_parsed_data[0][i].insert(0, text_update[i])
+		entry_parsed_data[0][i].configure(state="readonly")
 
 		#		lbl_list = ['ID:', 'Date:', 'Title:', 'Authors:', 'Type:', \
 		#	'Extra:', 'Disci:', 'iThent:', '1st AU: ', \
@@ -647,9 +659,7 @@ def Parser():
 		#	tk.Label(tabs[tab_no], text=lbl_list[i], anchor='e', width=15).grid(column=2, row=i, sticky='w')
 		#	entry_parsed_data[tab_no][i] = tk.Entry(tabs[tab_no], width=35)
 		#	entry_parsed_data[tab_no][i].grid(column=3, row=i, sticky='w')
-	else:
-		parse.CopyExcelFormatToClipboard()
-		parse.PrintParsingResults()
+
 
 def RenameFilesAndAddToMsFolder():
 	file_size_limit = 1000000 #this is in BYTES, i.e., 1000 = 1KB
