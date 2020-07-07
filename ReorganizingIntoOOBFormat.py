@@ -60,7 +60,7 @@ MessageBox = prototype(("MessageBoxW", windll.user32), paramflags)
 #########
 
 
-tab_names = ["New MS", "Extra Tab"] #add more to increase amount of tabs
+tab_names = ["New Manuscript Processing"] #add more to increase amount of tabs
 tabs = [None]*len(tab_names) #holds the tab variables
 download_switch = [None]*len(tab_names) #holds whether files are DLed via yes/no radio button for each tab
 ms_textbox = [None]*len(tab_names) #holds the textboxes for each individual tab
@@ -69,7 +69,6 @@ display_message = None #message that shows user processing messages, error messa
 
 folders_for_S1_check = [None]*10 #stores variables used in the S1_manuscript_check_Tool
 folder_for_MSLogUpdate = [None]*10 #stores location of the MsLog files for the MsLog Updater Tool
-
 
 #all countries in the world
 all_countries = "Afghanistan, Albania, Algeria, Andorra, Angola, Antigua & Deps, Argentina, Armenia, Australia, Austria, Azerbaijan, Bahamas, Bahrain, Bangladesh, Barbados, Belarus, Belgium, Belize, Benin, Bhutan, Bolivia, Bosnia Herzegovina, Botswana, Brazil, Brunei, Bulgaria, Burkina, Burma, Burundi, Cambodia, Cameroon, Canada, Cape Verde, Central African Rep, Chad, Chile, China, Republic of China,Colombia, Comoros, Democratic Republic of the Congo, Republic of the Congo, Costa Rica, Côte d’Ivoire, Ivory Coast, Republic of Côte d'Ivoire, Croatia, Cuba, Cyprus, Czech Republic, Danzig, Denmark, Djibouti, Dominica, Dominican Republic, East Timor, Ecuador, Egypt, El Salvador, Equatorial Guinea, Eritrea, Estonia, Ethiopia, Fiji, Finland, France, Gabon, Gaza Strip, The Gambia, Georgia, Germany, Ghana, Greece, Grenada, Guatemala, Guinea, Guinea-Bissau, Guyana, Haiti, Holy Roman Empire, Honduras, Hungary, Iceland, India, Indonesia, Iran, Iraq, Republic of Ireland, Israel, Italy, Ivory Coast, Jamaica, Japan, Jordan, Kazakhstan, Kenya, Kiribati, North Korea, South Korea, Kosovo, Kuwait, Kyrgyzstan, Laos, Latvia, Lebanon, Lesotho, Liberia, Libya, Liechtenstein, Lithuania, Luxembourg, Macedonia, Madagascar, Malawi, Malaysia, Maldives, Mali, Malta, Marshall Islands, Mauritania, Mauritius, Mexico, Micronesia, Moldova, Monaco, Mongolia, Montenegro, Morocco, Mount Athos, Mozambique, Namibia, Nauru, Nepal, Newfoundland, Netherlands, New Zealand, Nicaragua, Niger, Nigeria, Norway, Oman, Ottoman Empire, Pakistan, Palau, Panama, Papua New Guinea,Paraguay, Peru, Philippines, Poland, Portugal, Prussia, Qatar, Romania, Russian Federation, Rwanda, St Kitts & Nevis, St Lucia, Saint Vincent & the Grenadines, Samoa, San Marino, Sao Tome & Principe, Saudi Arabia, Senegal, Serbia, Seychelles, Sierra Leone, Singapore, Slovakia, Slovenia, Solomon Islands, Somalia, South Africa, Spain, Sri Lanka, Sudan, Suriname, Swaziland, Sweden, Switzerland, Syria, Taiwan, Tajikistan, Tanzania, Thailand, Togo, Tonga, Trinidad & Tobago, Tunisia, Turkey, Turkmenistan, Tuvalu, Uganda, Ukraine, United Arab Emirates, United Kingdom, United States, Uruguay, Uzbekistan, Vanuatu, Vatican City, Venezuela, Vietnam, Yemen, Zambia, Zimbabwe".split(', ')
@@ -566,7 +565,6 @@ class MSInfo:
 			short_ms_type = applyAcronymToMsType(self.ms_type)
 			data = self.authors + "	" + self.first_au + "	" + "	" + self.ms_id + "	" + self.title + "	" + self.date + "	" + short_ms_type + "	" + self.discipline + "	"  + "	" + "Editorial Assessment"  + "	"  + "	"  + "	"  + "	"  + "	"  + "	" + self.first_co + "	" + self.sub_co + "	" + self.last_co + "	" + ', '.join(self.all_co) + "	"  + "	"  + "	"  + "	"  + "	"  + "	" + str(self.ithenticate)
 			global_copy_pasta = data
-			#print(global_copy_pasta)
 			pyperclip.copy(data)
 		except Exception as e:
 			print('failed to copy data to clipboard in excel format. ERROR:', e)
@@ -1459,66 +1457,55 @@ def parseText(method):
 		#print("This will call the", tab_names[method], "function.")
 
 def generate_copypaste_section(tab_no):
-	tk.Label(tabs[tab_no], text="Add Text to Parse:", width=15, height=2).grid(column=0, row=0, sticky="w")
-	ms_textbox[tab_no] =  scrolledtext.ScrolledText(tabs[tab_no], height=0, width=30)
-	ms_textbox[tab_no].grid(column=0, row=1)
 
-	#Label for DL files
-	tk.Label(tabs[tab_no], text="Files downloaded?", height=1, width = 15).grid(column=0, row=2, sticky="w")
-	download_switch[tab_no] = tk.IntVar()
-	download_yes = tk.Radiobutton(tabs[tab_no], text="yes", value=1, variable=download_switch[tab_no])
-	download_no = tk.Radiobutton(tabs[tab_no], text="no", value=0, variable=download_switch[tab_no])
-	download_yes.grid(column=0, row=3, sticky="w")
-	#download_yes.place(relx = 0.01, rely = 0.275)
-	download_no.grid(column=0, row=3)
+	tk.Label(tabs[tab_no], text="Paste Text from ScholarOne here:", height=1).grid(column=0, row=0, sticky="w", pady=10, padx=10)
+	ms_textbox[tab_no] =  scrolledtext.ScrolledText(tabs[tab_no], height=4, width=30, wrap=tk.WORD)
+	ms_textbox[tab_no].grid(column=0, row=0, rowspan=5, sticky='w', padx=10)
 
 	#Button for parsing text
-	parse_button = tk.Button(tabs[tab_no], text="Parse text", command=Parser)
-	parse_button.grid(column=0, row=3, sticky="e")
+	parse_button = tk.Button(tabs[tab_no], text="(1) Process MS Info", bg='#0052cc', fg='#ffffff', anchor="w", command=Parser)
+	parse_button.grid(column=0, row=4, sticky="w", ipadx= 67, padx=10)
+
 
 	#Button for recopying the configured MS info to the clipboard  (I often need this!)
-	clipboard_button = tk.Button(tabs[tab_no], text="ClipBoard", command=globalClipboardPasta)
-	clipboard_button.grid(column=0, row=4, sticky="e")
-
+	clipboard_button = tk.Button(tabs[tab_no], anchor="e", text="MSLog ClipBoard", command=globalClipboardPasta)
+	clipboard_button.grid(column=3, row=15, sticky="e")
 
 
 def generate_main_app_section(tab_no):
 	if tab_no is 0:
-		tk.Label(tabs[tab_no], text="Files to Rename:", width=15, height=1).grid(column=0, row=5, sticky="w")
+		tk.Label(tabs[tab_no], text="Files to Rename:", width=15, height=1).grid(column=0, row=6, sticky="w")
 		for i in range(8):
-			entry1_files[tab_no][i] = tk.Entry(tabs[tab_no], width=20)
-			entry1_files[tab_no][i].grid(column=0, row=6+i, sticky='w')
+			entry1_files[tab_no][i] = tk.Entry(tabs[tab_no], width=17)
+			entry1_files[tab_no][i].grid(column=0, row=7+i, sticky='w', padx=10)
 
-			entry2_files[tab_no][i] = tk.Entry(tabs[tab_no], width=20)
-			entry2_files[tab_no][i].grid(column=0, row=6+i, sticky='e')
+			entry2_files[tab_no][i] = tk.Entry(tabs[tab_no], width=22)
+			entry2_files[tab_no][i].grid(column=0, row=7+i, sticky='e', ipadx=11)
 
 			entry3_checkboxes[tab_no][i] = tk.BooleanVar()
-
-			tk.Checkbutton(tabs[tab_no], var=entry3_checkboxes[tab_no][i]).grid(column=1, row=6+i, sticky='e')
+			tk.Checkbutton(tabs[tab_no], var=entry3_checkboxes[tab_no][i]).grid(column=0, row=7+i, sticky='e')
 		
-		lbl_list = ['ID:', 'Date:', 'Title:', 'Authors:', 'Type:', \
-			'Extra:', 'Disci:', 'iThent:', '1st AU: ', \
-			'ShortID:', '1AU CO:', 'LastAU CO:', 'AllAU CO:', \
-			'SubmitAu CO:', 'SearchCOI:']
+		lbl_list = ['MS-ID:', 'Date:', 'Title:', 'Authors:', 'Type:', \
+			'Extra:', 'Discipline:', 'iThenticate:', '1st AU: ', \
+			'Short-ID:', '1st_AU CO:', 'Last_AU CO:', 'All_AUs CO:', \
+			'Submitting_Au CO:', 'PUBMED_COI:']
 
-
-		for i in range(15):
-			tk.Label(tabs[tab_no], text=lbl_list[i], anchor='e', width=15).grid(column=2, row=i, sticky='w')
+		tk.Label(tabs[tab_no], text=lbl_list[0], anchor='e', width=20).grid(column=2, row=0, sticky='w', pady=10)
+		entry_parsed_data[tab_no][0] = tk.Entry(tabs[tab_no], width=35)
+		entry_parsed_data[tab_no][0].grid(column=3, row=0, sticky='w', pady=10)
+		
+		for i in range(1,15):
+			tk.Label(tabs[tab_no], text=lbl_list[i], anchor='e', width=20).grid(column=2, row=i, sticky='w')
 			entry_parsed_data[tab_no][i] = tk.Entry(tabs[tab_no], width=35)
 			entry_parsed_data[tab_no][i].grid(column=3, row=i, sticky='w')
 
-		ttk.Button(tabs[tab_no], text='OK', command=RenameFilesAndAddToMsFolder).grid(column=1, sticky='e', row=16)	
-
-def RenameFiles():
-	pass
-
-
+		changefiles_button = tk.Button(tabs[tab_no], text='(2) Rename Files', bg='#0052cc', fg='#ffffff', anchor="w",command=RenameFilesAndAddToMsFolder) #style='raised.TButton'
+		changefiles_button.grid(column=0, row=15, sticky="w", ipadx= 74, padx=10)
 
 def show_results_in_labels(tab_no):
 	for i in range(15):
 		entry_parsed_data[tab_no][i].delete(0, 'end')
 		entry_parsed_data[tab_no][i].insert(0, ms_variables_values[tab_no][i])
-
 
 
 class Main:
@@ -1570,14 +1557,6 @@ class Main:
 			CallDisplayAboutMe = DisplayAboutMe(parent)
 			pass
 
-		def runBinary():
-			#runs an .exe file
-			pass
-
-		def UpdateUsingManager():
-			#data = urllib
-			#another update version
-			pass
 
 		def StartApp():
 
@@ -1820,7 +1799,7 @@ class DisplayAboutMe(tk.Toplevel):
 def main():
 	root = tk.Tk()
 	root.title(__AppName__+' '+str(__version__))
-	w=750; h=525
+	w=665; h=480
 	sw = root.winfo_screenwidth()
 	sh = root.winfo_screenheight()
 	x = (sw - w) / 2
