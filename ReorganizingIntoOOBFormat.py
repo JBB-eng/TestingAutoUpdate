@@ -586,18 +586,25 @@ class MSInfo:
 			entries_within_doc_template = ['<<authors>>', '<<author>>', '<<id>>', 		\
 			'<<title>>', '<<date>>', '<<discipline>>',	\
 			'<<countries>>', '<<type>>', '<<study_design>>', \
-			'<<n>>', '<<study_period>>', '<<coi_string>>', '<<ithenticate>>','<<cdc_check>>']
+			'<<n>>', '<<study_period>>', '<<coi_string>>', '<<ithenticate>>','<<cdc_check>>', '<<resubmission>>']
 
 			cdc_result_string = ""
 			if self.cdc_check == 1:
 				cdc_result_string = "CDC or WHO affiliation found!"
 			elif self.cdc_check == 0:
 				cdc_result_string = "None"
-				
+			
+			resubmission_string = ""
+			if "JIAS-" in self.extra:
+				resubmission_string = self.extra + '\r'
+			else:
+				pass
+
 
 			replace_entries_with_this = [self.authors, self.first_au, self.short_id, self.title, \
 					self.date, self.discipline, str_all_co, self.ms_type, \
-					"study_design", "n=", "study_period", self.coi +'\r', str(self.ithenticate) + '\r', cdc_result_string]
+					"study_design", "n=", "study_period", self.coi +'\r', str(self.ithenticate) + '\r', \
+					cdc_result_string, resubmission_string]
 
 			filename = os.getcwd() + '\\Document Templates\\' + "NEW MS Details TEMPLATE.docx"
 
