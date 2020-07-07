@@ -77,6 +77,7 @@ all_countries = "Afghanistan, Albania, Algeria, Andorra, Angola, Antigua & Deps,
 #CDC/WHO string check/country error catch (Atlanta, Georgia = USA, not Georgia (country))
 cdc_who_strings = ["Centers for Disease Control", "CDC", "C.D.C", "Center for Disease Control", "Centre for Disease Control", "WHO", "W.H.O.", "World Health Organization", "World Health Organisation"]
 catch_error_list = ["Atlanta", "Athens"]
+global_copy_pasta = "" #global variable to hold the configured clipboard string from the MS.  I know not good practices, but easier to have as global right now
 
 #multidimensional lists that hold the relevant parsed and collected data for each tab
 #example: list[n][m] (n=rows, m=columns) --> list[len(tabs_names), m=?]
@@ -86,9 +87,7 @@ m=20
 entry1_files = [[None] * 8 for i in range(len(tab_names))] 
 entry2_files = [[None] * 8 for i in range(len(tab_names))]
 entry3_checkboxes = [[None] * 8 for i in range(len(tab_names))]
-
 entry_parsed_data = [[None] * 15 for i in range(len(tab_names))]
-
 parsing_values = [[None] * m for i in range(len(tab_names))]
 parsing_bools = [[None] * m for i in range(len(tab_names))]
 
@@ -125,6 +124,10 @@ def GetDownloadPath():
 		return location
 	else:
 		return os.path.join(os.path.expanduser('~'), 'downloads')
+
+def globalClipboardPasta():
+	""" Cheap and easy way to get access to a self.variable for the tkinter button command in the UI""" 
+	pyperclip.copy(global_copy_pasta)
 
 def clear_paragraph(self, paragraph):
 	p_element = paragraph._p
@@ -558,12 +561,16 @@ class MSInfo:
 			print('could not generate COI search parameters. ERROR TYPE:', e)
 
 	def CopyExcelFormatToClipboard(self):
+		global global_copy_pasta
 		try:
 			short_ms_type = applyAcronymToMsType(self.ms_type)
 			data = self.authors + "	" + self.first_au + "	" + "	" + self.ms_id + "	" + self.title + "	" + self.date + "	" + short_ms_type + "	" + self.discipline + "	"  + "	" + "Editorial Assessment"  + "	"  + "	"  + "	"  + "	"  + "	"  + "	" + self.first_co + "	" + self.sub_co + "	" + self.last_co + "	" + ', '.join(self.all_co) + "	"  + "	"  + "	"  + "	"  + "	"  + "	" + str(self.ithenticate)
+			global_copy_pasta = data
+			#print(global_copy_pasta)
 			pyperclip.copy(data)
 		except Exception as e:
 			print('failed to copy data to clipboard in excel format. ERROR:', e)
+
 
 	def CreateFolderForManuscript(self):
 		global ms_folder
@@ -1469,19 +1476,25 @@ def generate_copypaste_section(tab_no):
 	parse_button = tk.Button(tabs[tab_no], text="Parse text", command=Parser)
 	parse_button.grid(column=0, row=3, sticky="e")
 
+	#Button for recopying the configured MS info to the clipboard  (I often need this!)
+	clipboard_button = tk.Button(tabs[tab_no], text="ClipBoard", command=globalClipboardPasta)
+	clipboard_button.grid(column=0, row=4, sticky="e")
+
+
+
 def generate_main_app_section(tab_no):
 	if tab_no is 0:
-		tk.Label(tabs[tab_no], text="Files to Rename:", width=15, height=1).grid(column=0, row=4, sticky="w")
+		tk.Label(tabs[tab_no], text="Files to Rename:", width=15, height=1).grid(column=0, row=5, sticky="w")
 		for i in range(8):
 			entry1_files[tab_no][i] = tk.Entry(tabs[tab_no], width=20)
-			entry1_files[tab_no][i].grid(column=0, row=8+i, sticky='w')
+			entry1_files[tab_no][i].grid(column=0, row=6+i, sticky='w')
 
 			entry2_files[tab_no][i] = tk.Entry(tabs[tab_no], width=20)
-			entry2_files[tab_no][i].grid(column=0, row=8+i, sticky='e')
+			entry2_files[tab_no][i].grid(column=0, row=6+i, sticky='e')
 
 			entry3_checkboxes[tab_no][i] = tk.BooleanVar()
 
-			tk.Checkbutton(tabs[tab_no], var=entry3_checkboxes[tab_no][i]).grid(column=1, row=8+i, sticky='e')
+			tk.Checkbutton(tabs[tab_no], var=entry3_checkboxes[tab_no][i]).grid(column=1, row=6+i, sticky='e')
 		
 		lbl_list = ['ID:', 'Date:', 'Title:', 'Authors:', 'Type:', \
 			'Extra:', 'Disci:', 'iThent:', '1st AU: ', \
