@@ -74,8 +74,9 @@ folder_for_MSLogUpdate = [None]*10 #stores location of the MsLog files for the M
 #all countries in the world
 all_countries = "Afghanistan, Albania, Algeria, Andorra, Angola, Antigua & Deps, Argentina, Armenia, Australia, Austria, Azerbaijan, Bahamas, Bahrain, Bangladesh, Barbados, Belarus, Belgium, Belize, Benin, Bhutan, Bolivia, Bosnia Herzegovina, Botswana, Brazil, Brunei, Bulgaria, Burkina, Burma, Burundi, Cambodia, Cameroon, Canada, Cape Verde, Central African Rep, Chad, Chile, China, Republic of China,Colombia, Comoros, Democratic Republic of the Congo, Republic of the Congo, Costa Rica, Côte d’Ivoire, Ivory Coast, Republic of Côte d'Ivoire, Croatia, Cuba, Cyprus, Czech Republic, Danzig, Denmark, Djibouti, Dominica, Dominican Republic, East Timor, Ecuador, Egypt, El Salvador, Equatorial Guinea, Eritrea, Estonia, Ethiopia, Fiji, Finland, France, Gabon, Gaza Strip, The Gambia, Georgia, Germany, Ghana, Greece, Grenada, Guatemala, Guinea, Guinea-Bissau, Guyana, Haiti, Holy Roman Empire, Honduras, Hungary, Iceland, India, Indonesia, Iran, Iraq, Republic of Ireland, Israel, Italy, Ivory Coast, Jamaica, Japan, Jordan, Kazakhstan, Kenya, Kiribati, North Korea, South Korea, Kosovo, Kuwait, Kyrgyzstan, Laos, Latvia, Lebanon, Lesotho, Liberia, Libya, Liechtenstein, Lithuania, Luxembourg, Macedonia, Madagascar, Malawi, Malaysia, Maldives, Mali, Malta, Marshall Islands, Mauritania, Mauritius, Mexico, Micronesia, Moldova, Monaco, Mongolia, Montenegro, Morocco, Mount Athos, Mozambique, Namibia, Nauru, Nepal, Newfoundland, Netherlands, New Zealand, Nicaragua, Niger, Nigeria, Norway, Oman, Ottoman Empire, Pakistan, Palau, Panama, Papua New Guinea,Paraguay, Peru, Philippines, Poland, Portugal, Prussia, Qatar, Romania, Russian Federation, Rwanda, St Kitts & Nevis, St Lucia, Saint Vincent & the Grenadines, Samoa, San Marino, Sao Tome & Principe, Saudi Arabia, Senegal, Serbia, Seychelles, Sierra Leone, Singapore, Slovakia, Slovenia, Solomon Islands, Somalia, South Africa, Spain, Sri Lanka, Sudan, Suriname, Swaziland, Sweden, Switzerland, Syria, Taiwan, Tajikistan, Tanzania, Thailand, Togo, Tonga, Trinidad & Tobago, Tunisia, Turkey, Turkmenistan, Tuvalu, Uganda, Ukraine, United Arab Emirates, United Kingdom, United States, Uruguay, Uzbekistan, Vanuatu, Vatican City, Venezuela, Vietnam, Yemen, Zambia, Zimbabwe".split(', ')
 
-#CDC/WHO string check
+#CDC/WHO string check/country error catch (Atlanta, Georgia = USA, not Georgia (country))
 cdc_who_strings = ["CDC", "C.D.C", "Center for Disease Control", "Centre for Disease Control", "WHO", "W.H.O.", "World Health Organization", "World Health Organisation"]
+catch_error_list = ["Atlanta", "Athens"]
 
 #multidimensional lists that hold the relevant parsed and collected data for each tab
 #example: list[n][m] (n=rows, m=columns) --> list[len(tabs_names), m=?]
@@ -278,6 +279,7 @@ class MSInfo:
 			#bools for parsing
 			cover_letter_bool = 0
 			country_bool = 0
+			msID_bool = 0
 
 			# add the text from the GUI textbox to a variable
 			self.parse_text = io.StringIO(ms_textbox[self.method].get('1.0', 'end-1c'))
@@ -291,8 +293,20 @@ class MSInfo:
 				line = line.rstrip()
 
 #get MS ID
-				if parsing_values[self.method][0] in line or "JIAS-2019" in line:
-					self.ms_id = line #ms id
+				if line.startswith("ScholarOne Manuscripts"):
+				 	msID_bool = 1
+				elif line.startswith("Submitted:"):
+					msID_bool = 0
+
+				if msID_bool:
+					if parsing_values[self.method][0] in line or "JIAS-2019" in line:
+						self.ms_id = line #ms id
+
+#if resubmission, get resubmission ID
+				if "Manuscript id of previous submission: JIAS" in line:
+					self.extra = line
+					self.extra = self.extra[8:-5]
+					
 
 #get MS Date
 				elif parsing_values[self.method][1] in line:
@@ -313,11 +327,11 @@ class MSInfo:
 						self.ms_type = line.rstrip() #ms type
 
 #get MS Extra Info
-				elif parsing_values[self.method][5] in line:
-					self.extra = line #ms extra data
-
-				elif "Select Reviewers" in line:
-					self.extra = line #ms extra data
+#				elif parsing_values[self.method][5] in line:
+#					self.extra = line #ms extra data
+#
+#				elif "Select Reviewers" in line:
+#					self.extra = line #ms extra data
 
 #Get Ms Author Countries
 				#bool check for whether to parse for country information
@@ -328,22 +342,43 @@ class MSInfo:
 
 				#band-aid fix for certain issues that appear when search for countries, such as "Georgia" and "Rome"
 				if country_bool:
+					#print(self.all_co)
+
 					for a in cdc_who_strings:
 						if re.search('\\b'+a+'\\b', line):
 							self.cdc_check = True
 							#print("cdc_is true! because of the following line:", str(line))
 
-					catch_error_list = ["Atlanta", "Athens"]
-					for b in catch_error_list:
-						if re.search('\\b'+b+'\\b', line):
-							if re.search('Georgia', line):
-								self.all_co.append("United States")
-							else:
-								self.all_co.append("Georgia")
+					exceptions_to_avoid = ["Georgia", "Athens", "Rome"] #Georgia, the US state and other relevant stuff for the main code
+					for a in exceptions_to_avoid:
+						if a in line:
+							print("Possible Country EXCEPTION Found Here:", line)
+							break
+						else:
+							for b in all_countries:
+								if b in line:
+									self.all_co.append(b)					
+					
 
-					for c in all_countries:
-						if re.search('\\b'+c+'\\b', line):
-							self.all_co.append(c) #these values will be reassigned after the parsing is completed
+#					for b in catch_error_list:
+#						if re.search('\\b'+b+'\\b', line):
+#							if re.search('Georgia', line):
+#								self.all_co.append("United States")
+#							else:
+#								self.all_co.append("Georgia")
+#
+#					for c in all_countries:
+#						if re.search('\\b'+c+'\\b', line):
+#							self.all_co.append(c) #these values will be reassigned after the parsing is completed
+#
+#					for i in range(len(self.all_co) - 1):
+#					    if self.all_co[i] is "Georgia" and self.all_co[i+1] is "United States":
+#					        try:
+#					        	self.all_co.remove(i)
+#					        except Exception as a:
+#					        	print("the problem:", a)
+
+							        
 
 
 #Get MS Cover Letter
