@@ -1529,7 +1529,7 @@ class Main:
 					#messagebox.showinfo('Software Update','No Updates are Available.')
 					pass
 			except Exception as e:
-				messagebox.showinfo('Software Update','Unable to Check for Update, Error:' + str(e))
+				messagebox.showinfo('Software Update','Unable to Check for Updates!\nTry checking your internet connection...\n\nActual Error Message:' + str(e))
 				#CallUpdateManager = UpdateManager(parent)
 
 		def CheckUpdatesViaMenu():
