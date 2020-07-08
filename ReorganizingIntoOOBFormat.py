@@ -17,11 +17,11 @@ __email__		= 'jbursavich@gmail.com'
 __status__		= 'Beta'
 
 __AppName__		= 'JIAS_Automation_Assistant'
-__version__		= '0.2'
+__version__		= '0.3'
 
 #LOCATION OF NEW RELEASE AND VERSION CHECK FILEs####################################################################################
 location_version_check = "http://raw.githubusercontent.com/JBB-eng/TestingAutoUpdate/master/Version"
-location_updated_release = "https://github.com/JBB-eng/TestingAutoUpdate/releases/download/0.2/JIAS_Automation_Assistant_v" + "0.3" + ".exe"
+location_updated_release = "https://github.com/JBB-eng/TestingAutoUpdate/releases/download/0.2/JIAS_Automation_Assistant.exe"
 location_msdetails_template = "https://github.com/JBB-eng/TestingAutoUpdate/releases/download/0.2/NEW_MS_Details_TEMPLATE.docx"
 location_peerreview_template = "https://github.com/JBB-eng/TestingAutoUpdate/releases/download/0.2/Author_Reviewers_Template.docx"
 
@@ -44,7 +44,6 @@ import io
 import re
 import pyperclip
 import docx
-import requests
 
 from tkinter import ttk, font, scrolledtext, filedialog, messagebox
 from PIL import ImageTk, Image, ImageOps
@@ -316,7 +315,6 @@ class MSInfo:
 					self.extra = line
 					self.extra = self.extra[8:-5]
 					
-
 #get MS Date
 				elif parsing_values[self.method][1] in line:
 					self.date = line #ms date
@@ -748,9 +746,6 @@ def RenameFilesAndAddToMsFolder():
 
 	if alert == 1:
 		messagebox.showinfo('Warning: Manuscript File Sizes!','Some of the manuscript files are larger than ' + str(round(file_size_limit/1000000)) + ' MB')
-			
-
-
 
 
 def RenameFilesAndAddToFolder(shortid, method, files, firstAuthor):
@@ -1472,7 +1467,6 @@ def generate_copypaste_section(tab_no):
 	parse_button = tk.Button(tabs[tab_no], text="(1) Process MS Info", bg='#0052cc', fg='#ffffff', anchor="w", command=Parser)
 	parse_button.grid(column=0, row=4, sticky="w", ipadx= 67, padx=10)
 
-
 	#Button for recopying the configured MS info to the clipboard  (I often need this!)
 	clipboard_button = tk.Button(tabs[tab_no], anchor="e", text="MSLog ClipBoard", command=globalClipboardPasta)
 	clipboard_button.grid(column=3, row=15, sticky="e")
@@ -1583,8 +1577,17 @@ class Main:
 						os.remove(app_file_name)
 						print("Removed file: " + app_file_name)
 					except:
-						print("Did not modify the following file: " + app_file_name)
+						print("Did not modify: " + app_file_name)
 						#pass
+
+			doc_path = os.getcwd() + "\\Document Templates"
+			is_directory = os.path.isdir(doc_path)
+			if is_directory:
+				#print("Checking for Document Template folder...OK!!")
+				pass
+			else:
+				print("Document Template folder not found...folder created!!")
+				os.mkdir(os.getcwd() + "\\Document Templates")
 
 			CheckUpdates()
 			menubar = tk.Menu(parent)
@@ -1725,6 +1728,7 @@ class UpdateManager(tk.Toplevel):
 			params = cgi.parse_header(self.data.headers.get('Content-Disposition', ''))
 			filename = params[-1].get('filename')
 			self.appname = filename
+			print(self.appname)
 			self.tempdir = os.environ.get('temp')
 			self.tempdir = os.getcwd()
 			#print('temp folder:', self.tempdir)
