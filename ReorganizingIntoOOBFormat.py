@@ -17,11 +17,11 @@ __email__		= 'jbursavich@gmail.com'
 __status__		= 'Beta'
 
 __AppName__		= 'JIAS_Automation_Assistant'
-__version__		= '0.3'
+__version__		= '0.2'
 
 #LOCATION OF NEW RELEASE AND VERSION CHECK FILEs####################################################################################
 location_version_check = "http://raw.githubusercontent.com/JBB-eng/TestingAutoUpdate/master/Version"
-location_updated_release = "https://github.com/JBB-eng/TestingAutoUpdate/releases/download/0.2/JIAS_Automation_Assistant_v0.2.1.exe"
+location_updated_release = "https://github.com/JBB-eng/TestingAutoUpdate/releases/download/0.2/JIAS_Automation_Assistant_v" + "0.3" + ".exe"
 location_msdetails_template = "https://github.com/JBB-eng/TestingAutoUpdate/releases/download/0.2/NEW_MS_Details_TEMPLATE.docx"
 location_peerreview_template = "https://github.com/JBB-eng/TestingAutoUpdate/releases/download/0.2/Author_Reviewers_Template.docx"
 
@@ -1725,7 +1725,7 @@ class UpdateManager(tk.Toplevel):
 			params = cgi.parse_header(self.data.headers.get('Content-Disposition', ''))
 			filename = params[-1].get('filename')
 			self.appname = filename
-			#self.tempdir = os.environ.get('temp')
+			self.tempdir = os.environ.get('temp')
 			self.tempdir = os.getcwd()
 			#print('temp folder:', self.tempdir)
 			self.chunk = 1048576
@@ -1756,18 +1756,23 @@ class UpdateManager(tk.Toplevel):
 
 			
 
-
+				
 		#also download and update the document templates
 		for x in document_templates_to_update:
 			try:
 				url = x
 				name_of_file = str(x.split("/")[-1])
-				r = requests.get(url, allow_redirects=True)
-				open(os.getcwd() + "\\Document Templates\\" + name_of_file, 'wb').write(r.content)
+				#r = requests.get(url, allow_redirects=True)
+				#open(os.getcwd() + "\\Document Templates\\" + name_of_file, 'wb').write(r.content)
+				# Download the file from `url` and save it locally under `file_name`:
+				with urlopen(url) as response, open(os.getcwd() + "\\Document Templates\\" + name_of_file, 'wb') as out_file:
+					data = response.read() # a `bytes` object
+					out_file.write(data)
+
 				print("Updating the document templates:", name_of_file)
 			except Exception as e:
 				print("There was an error:", str(e))
-
+		
 
 		self.t1 = threading.Thread(target=StartUpdateManager)
 		self.t1.start()	
