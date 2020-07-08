@@ -17,11 +17,16 @@ __email__		= 'jbursavich@gmail.com'
 __status__		= 'Beta'
 
 __AppName__		= 'JIAS_Automation_Assistant'
-__version__		= '0.21'
+__version__		= '0.3'
 
 #LOCATION OF NEW RELEASE AND VERSION CHECK FILEs####################################################################################
 location_version_check = "http://raw.githubusercontent.com/JBB-eng/TestingAutoUpdate/master/Version"
 location_updated_release = "https://github.com/JBB-eng/TestingAutoUpdate/releases/download/0.2/JIAS_Automation_Assistant_v0.2.1.exe"
+location_msdetails_template = "https://github.com/JBB-eng/TestingAutoUpdate/releases/download/0.2/NEW_MS_Details_TEMPLATE.docx"
+location_peerreview_template = "https://github.com/JBB-eng/TestingAutoUpdate/releases/download/0.2/Author_Reviewers_Template.docx"
+
+#if you are adding more document templates, then include the variable in this list and it will be downloaded also
+document_templates_to_update = [location_peerreview_template, location_msdetails_template]
 ####################################################################################################################################
 
 
@@ -39,6 +44,7 @@ import io
 import re
 import pyperclip
 import docx
+import requests
 
 from tkinter import ttk, font, scrolledtext, filedialog, messagebox
 from PIL import ImageTk, Image, ImageOps
@@ -619,7 +625,7 @@ class MSInfo:
 					"study_design", "n=", "study_period", self.coi +'\r', str(self.ithenticate) + '\r', \
 					cdc_result_string, resubmission_string]
 
-			filename = os.getcwd() + '\\Document Templates\\' + "NEW MS Details TEMPLATE.docx"
+			filename = os.getcwd() + '\\Document Templates\\' + "NEW_MS_Details_TEMPLATE.docx"
 
 			ms_details_document = Document(filename)
 			for x in range(len(entries_within_doc_template)):
@@ -1519,11 +1525,11 @@ class Main:
 				if float(__version__) < float(latest_version):
 					mb = MessageBox(None,__AppName__+' '+ str(__version__)+' needs to update to version '+str(latest_version),'Update Available',flags.MB_YESNO | flags.MB_ICONQUESTION)
 					if mb ==  6:
-						print("picked YES")
+						print("\n\nUser Chose to Update the App...\n\n")
 						CallUpdateManager = UpdateManager(parent)
 						pass
 					elif mb == 7:
-						print("Picked NO")
+						print("\n\nUser Chose to Not Update the App...\n\n")
 						pass
 				else:
 					#messagebox.showinfo('Software Update','No Updates are Available.')
@@ -1539,11 +1545,11 @@ class Main:
 				if float(__version__) < float(latest_version):
 					mb = MessageBox(None,__AppName__+' '+ str(__version__)+' needs to update to version '+str(latest_version),'Update Available',flags.MB_YESNO | flags.MB_ICONQUESTION)
 					if mb ==  6:
-						print("picked YES")
+						print("\n\nUser Chose to Update the App...\n\n")
 						CallUpdateManager = UpdateManager(parent)
 						pass
 					elif mb == 7:
-						print("Picked NO")
+						print("\n\nUser Chose to Not Update the App...\n\n")
 						pass
 				else:
 					messagebox.showinfo('Software Update','No Updates are Available.')
@@ -1685,6 +1691,7 @@ class UpdateManager(tk.Toplevel):
 				self.label0.config(text=str(str("{:.2f}".format(self.progressbar['value'] * 0.000001)) + '/' + str("{:.2f}".format(self.filesize_text * 0.001))+' MBs'))
 				self.label2.config(text='Please wait a moment while application is updated...')
 				self.label1.config(text='Success!')
+				print("Finished updating main file...")
 				InstallUpdate()
 							
 
@@ -1711,6 +1718,7 @@ class UpdateManager(tk.Toplevel):
 		#self.chunk = 1048576
 
 		try:
+			print("Beginning updating for the main file...")
 			self.data = urlopen(location_updated_release)
 			self.filesize = cgi.parse_header(self.data.headers.get('Content-Length', ''))[0]
 
@@ -1719,9 +1727,10 @@ class UpdateManager(tk.Toplevel):
 			self.appname = filename
 			#self.tempdir = os.environ.get('temp')
 			self.tempdir = os.getcwd()
-			print('temp folder:', self.tempdir)
+			#print('temp folder:', self.tempdir)
 			self.chunk = 1048576
-								
+
+									
 		except Exception as e:
 			messagebox.showerror('Error', str(e))
 			self.destroy()
@@ -1746,8 +1755,23 @@ class UpdateManager(tk.Toplevel):
 			self.label2.place(relx=0.5, rely=0.8, anchor=tk.CENTER)
 
 			
+
+
+		#also download and update the document templates
+		for x in document_templates_to_update:
+			try:
+				url = x
+				name_of_file = str(x.split("/")[-1])
+				r = requests.get(url, allow_redirects=True)
+				open(os.getcwd() + "\\Document Templates\\" + name_of_file, 'wb').write(r.content)
+				print("Updating the document templates:", name_of_file)
+			except Exception as e:
+				print("There was an error:", str(e))
+
+
 		self.t1 = threading.Thread(target=StartUpdateManager)
 		self.t1.start()	
+
 
 
 
