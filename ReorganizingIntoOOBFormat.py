@@ -7,6 +7,7 @@ Reorganizing updater_class_tinker_app into proper OOP style
 #JIAS-2020-03-0186 breaks country parsing
 #JIAS-2020-03-0175 causes ROME to be added to country and MS extra data is not captured
 #JIAS-2020-05-0335 TITLE IS BLANK!
+#JIAS-2020-07-0484 CDC/WHO CHECK FAILS!
 
 __author__		= 'Jacob Bursavich'
 __copyright__	= 'Copyright (C) 2020, Jacob Bursavich'
@@ -79,7 +80,7 @@ folder_for_MSLogUpdate = [None]*10 #stores location of the MsLog files for the M
 all_countries = "Afghanistan, Albania, Algeria, Andorra, Angola, Antigua & Deps, Argentina, Armenia, Australia, Austria, Azerbaijan, Bahamas, Bahrain, Bangladesh, Barbados, Belarus, Belgium, Belize, Benin, Bhutan, Bolivia, Bosnia Herzegovina, Botswana, Brazil, Brunei, Bulgaria, Burkina, Burma, Burundi, Cambodia, Cameroon, Canada, Cape Verde, Central African Rep, Chad, Chile, China, Republic of China,Colombia, Comoros, Democratic Republic of the Congo, Republic of the Congo, Costa Rica, Côte d’Ivoire, Ivory Coast, Republic of Côte d'Ivoire, Croatia, Cuba, Cyprus, Czech Republic, Danzig, Denmark, Djibouti, Dominica, Dominican Republic, East Timor, Ecuador, Egypt, El Salvador, Equatorial Guinea, Eritrea, Estonia, Ethiopia, Fiji, Finland, France, Gabon, Gaza Strip, The Gambia, Georgia, Germany, Ghana, Greece, Grenada, Guatemala, Guinea, Guinea-Bissau, Guyana, Haiti, Holy Roman Empire, Honduras, Hungary, Iceland, India, Indonesia, Iran, Iraq, Republic of Ireland, Israel, Italy, Ivory Coast, Jamaica, Japan, Jordan, Kazakhstan, Kenya, Kiribati, North Korea, South Korea, Kosovo, Kuwait, Kyrgyzstan, Laos, Latvia, Lebanon, Lesotho, Liberia, Libya, Liechtenstein, Lithuania, Luxembourg, Macedonia, Madagascar, Malawi, Malaysia, Maldives, Mali, Malta, Marshall Islands, Mauritania, Mauritius, Mexico, Micronesia, Moldova, Monaco, Mongolia, Montenegro, Morocco, Mount Athos, Mozambique, Namibia, Nauru, Nepal, Newfoundland, Netherlands, New Zealand, Nicaragua, Niger, Nigeria, Norway, Oman, Ottoman Empire, Pakistan, Palau, Panama, Papua New Guinea,Paraguay, Peru, Philippines, Poland, Portugal, Prussia, Qatar, Romania, Russian Federation, Rwanda, St Kitts & Nevis, St Lucia, Saint Vincent & the Grenadines, Samoa, San Marino, Sao Tome & Principe, Saudi Arabia, Senegal, Serbia, Seychelles, Sierra Leone, Singapore, Slovakia, Slovenia, Solomon Islands, Somalia, South Africa, Spain, Sri Lanka, Sudan, Suriname, Swaziland, Sweden, Switzerland, Syria, Taiwan, Tajikistan, Tanzania, Thailand, Togo, Tonga, Trinidad & Tobago, Tunisia, Turkey, Turkmenistan, Tuvalu, Uganda, Ukraine, United Arab Emirates, United Kingdom, United States, Uruguay, Uzbekistan, Vanuatu, Vatican City, Venezuela, Vietnam, Yemen, Zambia, Zimbabwe".split(', ')
 
 #CDC/WHO string check/country error catch (Atlanta, Georgia = USA, not Georgia (country))
-cdc_who_strings = ["Centers for Disease Control", "CDC", "C.D.C", "Center for Disease Control", "Centre for Disease Control", "WHO", "W.H.O.", "World Health Organization", "World Health Organisation"]
+cdc_who_strings = ["Center for Disease Control", "Centers for Disease Control", "CDC", "C.D.C", "Center for Disease Control", "Centre for Disease Control", "WHO", "W.H.O.", "World Health Organization", "World Health Organisation"]
 catch_error_list = ["Atlanta", "Athens"]
 global_copy_pasta = "" #global variable to hold the configured clipboard string from the MS.  I know not good practices, but easier to have as global right now
 
@@ -339,7 +340,7 @@ class MSInfo:
 #
 #				elif "Select Reviewers" in line:
 #					self.extra = line #ms extra data
-				if line.startswith("Funding Information:"): #starts at beginning of funding information (and continues into author affiliations)
+				if line.startswith("- Author-Supplied Data"): #starts at beginning of funding information (and continues into author affiliations)
 					cdc_bool = 1
 				elif line.startswith(parsing_values[self.method][7]): #ends at same line as end of author affiliations
 					cdc_bool = 0
@@ -349,7 +350,10 @@ class MSInfo:
 						#if re.search('\\b'+a+'\\b', line):
 						if a in line:
 							self.cdc_check = True
-							#print("cdc_is true! because of the following line:", str(line))
+							print("CDC")
+							continue
+							#print("cdc_is true! because of the following line:", str(line))					
+
 
 
 #Get Ms Author Countries
