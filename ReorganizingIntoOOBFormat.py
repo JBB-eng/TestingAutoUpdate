@@ -351,7 +351,7 @@ class MSInfo:
 						if a in line:
 							self.cdc_check = True
 							print("CDC")
-							continue
+							break
 							#print("cdc_is true! because of the following line:", str(line))					
 
 
