@@ -328,7 +328,11 @@ class MSInfo:
 
 #get MS Authors
 				elif parsing_values[self.method][3] in line:
-					self.authors = line #ms authors
+					tmp_all_au = (line.lower()).title()
+					#self.authors = line #ms authors
+					self.authors = tmp_all_au #ms authors
+
+
 
 #get MS type
 				elif parsing_values[self.method][4] in line:
@@ -459,7 +463,12 @@ class MSInfo:
 		#post processing of first author			
 		try:
 			temp_authors = self.authors.split(',')
-			self.first_au = temp_authors[0]
+			tmp_au = temp_authors[0]
+			tmp_au = (tmp_au.lower()).title()
+
+			#self.first_au = temp_authors[0]
+			self.first_au = tmp_au
+
 		except Exception as e:
 			print("failed to post process first author. ERROR:",e)
 		
