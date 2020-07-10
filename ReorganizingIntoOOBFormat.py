@@ -8,7 +8,8 @@ Reorganizing updater_class_tinker_app into proper OOP style
 #JIAS-2020-03-0175 causes ROME to be added to country and MS extra data is not captured
 #JIAS-2020-05-0335 TITLE IS BLANK!
 #JIAS-2020-07-0484 CDC/WHO CHECK FAILS!
-
+#JIAS-2020-07-0475 adds Israel as a country because of "Beth Israel Deaconess Medical Center"
+#JIAS-2020-07-0468 country is "NIGER" instead of "NIGERIA"
 __author__		= 'Jacob Bursavich'
 __copyright__	= 'Copyright (C) 2020, Jacob Bursavich'
 __credits__		= ['Jacob Bursavich']
@@ -77,11 +78,11 @@ folders_for_S1_check = [None]*10 #stores variables used in the S1_manuscript_che
 folder_for_MSLogUpdate = [None]*10 #stores location of the MsLog files for the MsLog Updater Tool
 
 #all countries in the world
-all_countries = "Afghanistan, Albania, Algeria, Andorra, Angola, Antigua & Deps, Argentina, Armenia, Australia, Austria, Azerbaijan, Bahamas, Bahrain, Bangladesh, Barbados, Belarus, Belgium, Belize, Benin, Bhutan, Bolivia, Bosnia Herzegovina, Botswana, Brazil, Brunei, Bulgaria, Burkina, Burma, Burundi, Cambodia, Cameroon, Canada, Cape Verde, Central African Rep, Chad, Chile, China, Republic of China,Colombia, Comoros, Democratic Republic of the Congo, Republic of the Congo, Costa Rica, Côte d’Ivoire, Ivory Coast, Republic of Côte d'Ivoire, Croatia, Cuba, Cyprus, Czech Republic, Danzig, Denmark, Djibouti, Dominica, Dominican Republic, East Timor, Ecuador, Egypt, El Salvador, Equatorial Guinea, Eritrea, Estonia, Ethiopia, Fiji, Finland, France, Gabon, Gaza Strip, The Gambia, Georgia, Germany, Ghana, Greece, Grenada, Guatemala, Guinea, Guinea-Bissau, Guyana, Haiti, Holy Roman Empire, Honduras, Hungary, Iceland, India, Indonesia, Iran, Iraq, Republic of Ireland, Israel, Italy, Ivory Coast, Jamaica, Japan, Jordan, Kazakhstan, Kenya, Kiribati, North Korea, South Korea, Kosovo, Kuwait, Kyrgyzstan, Laos, Latvia, Lebanon, Lesotho, Liberia, Libya, Liechtenstein, Lithuania, Luxembourg, Macedonia, Madagascar, Malawi, Malaysia, Maldives, Mali, Malta, Marshall Islands, Mauritania, Mauritius, Mexico, Micronesia, Moldova, Monaco, Mongolia, Montenegro, Morocco, Mount Athos, Mozambique, Namibia, Nauru, Nepal, Newfoundland, Netherlands, New Zealand, Nicaragua, Niger, Nigeria, Norway, Oman, Ottoman Empire, Pakistan, Palau, Panama, Papua New Guinea,Paraguay, Peru, Philippines, Poland, Portugal, Prussia, Qatar, Romania, Russian Federation, Rwanda, St Kitts & Nevis, St Lucia, Saint Vincent & the Grenadines, Samoa, San Marino, Sao Tome & Principe, Saudi Arabia, Senegal, Serbia, Seychelles, Sierra Leone, Singapore, Slovakia, Slovenia, Solomon Islands, Somalia, South Africa, Spain, Sri Lanka, Sudan, Suriname, Swaziland, Sweden, Switzerland, Syria, Taiwan, Tajikistan, Tanzania, Thailand, Togo, Tonga, Trinidad & Tobago, Tunisia, Turkey, Turkmenistan, Tuvalu, Uganda, Ukraine, United Arab Emirates, United Kingdom, United States, Uruguay, Uzbekistan, Vanuatu, Vatican City, Venezuela, Vietnam, Yemen, Zambia, Zimbabwe".split(', ')
+all_countries = "Afghanistan, Albania, Algeria, Andorra, Angola, Antigua & Deps, Argentina, Armenia, Australia, Austria, Azerbaijan, Bahamas, Bahrain, Bangladesh, Barbados, Belarus, Belgium, Belize, Benin, Bhutan, Bolivia, Bosnia Herzegovina, Botswana, Brazil, Brunei, Bulgaria, Burkina, Burma, Burundi, Cambodia, Cameroon, Canada, Cape Verde, Central African Rep, Chad, Chile, China, Republic of China,Colombia, Comoros, Democratic Republic of the Congo, Republic of the Congo, Costa Rica, Côte d’Ivoire, Ivory Coast, Republic of Côte d'Ivoire, Croatia, Cuba, Cyprus, Czech Republic, Danzig, Denmark, Djibouti, Dominica, Dominican Republic, East Timor, Ecuador, Egypt, El Salvador, Equatorial Guinea, Eritrea, Estonia, Ethiopia, Fiji, Finland, France, Gabon, Gaza Strip, The Gambia, Georgia, Germany, Ghana, Greece, Grenada, Guatemala, Guinea, Guinea-Bissau, Guyana, Haiti, Holy Roman Empire, Honduras, Hungary, Iceland, India, Indonesia, Iran, Iraq, Republic of Ireland, Israel, Italy, Ivory Coast, Jamaica, Japan, Jordan, Kazakhstan, Kenya, Kiribati, North Korea, South Korea, Kosovo, Kuwait, Kyrgyzstan, Laos, Latvia, Lebanon, Lesotho, Liberia, Libya, Liechtenstein, Lithuania, Luxembourg, Macedonia, Madagascar, Malawi, Malaysia, Maldives, Mali, Malta, Marshall Islands, Mauritania, Mauritius, Mexico, Micronesia, Moldova, Monaco, Mongolia, Montenegro, Morocco, Mount Athos, Mozambique, Namibia, Nauru, Nepal, Newfoundland, Netherlands, New Zealand, Nicaragua, Nigeria, Norway, Oman, Ottoman Empire, Pakistan, Palau, Panama, Papua New Guinea,Paraguay, Peru, Philippines, Poland, Portugal, Prussia, Qatar, Romania, Russian Federation, Rwanda, St Kitts & Nevis, St Lucia, Saint Vincent & the Grenadines, Samoa, San Marino, Sao Tome & Principe, Saudi Arabia, Senegal, Serbia, Seychelles, Sierra Leone, Singapore, Slovakia, Slovenia, Solomon Islands, Somalia, South Africa, Spain, Sri Lanka, Sudan, Suriname, Swaziland, Sweden, Switzerland, Syria, Taiwan, Tajikistan, Tanzania, Thailand, Togo, Tonga, Trinidad & Tobago, Tunisia, Turkey, Turkmenistan, Tuvalu, Uganda, Ukraine, United Arab Emirates, United Kingdom, United States, Uruguay, Uzbekistan, Vanuatu, Vatican City, Venezuela, Vietnam, Yemen, Zambia, Zimbabwe".split(', ')
 
 #CDC/WHO string check/country error catch (Atlanta, Georgia = USA, not Georgia (country))
 cdc_who_strings = ["Center for Disease Control", "Centers for Disease Control", "CDC", "C.D.C", "Center for Disease Control", "Centre for Disease Control", "WHO", "W.H.O.", "World Health Organization", "World Health Organisation"]
-catch_error_list = ["Atlanta", "Athens"]
+catch_error_list = ["Atlanta", "Athens", "Beth Israel"]
 global_copy_pasta = "" #global variable to hold the configured clipboard string from the MS.  I know not good practices, but easier to have as global right now
 
 #multidimensional lists that hold the relevant parsed and collected data for each tab
@@ -302,7 +303,7 @@ class MSInfo:
 				line = line.rstrip()
 
 #get MS ID
-				if line.startswith("ScholarOne Manuscripts"):
+				if line.startswith("ScholarOne Manuscripts") or line.startswith("Add A Note"):
 				 	msID_bool = 1
 				elif line.startswith("Submitted:"):
 					msID_bool = 0
@@ -367,15 +368,18 @@ class MSInfo:
 				if country_bool:
 					#print(self.all_co)
 
-					exceptions_to_avoid = ["Georgia", "Athens", "Rome"] #Georgia, the US state and other relevant stuff for the main code
+					exceptions_to_avoid = ["Georgia", "Athens", "Rome", "Beth Israel"] #Georgia, the US state and other relevant stuff for the main code
 					for a in exceptions_to_avoid:
 						if a in line:
 							print("Possible Country EXCEPTION Found Here:", line)
+							while "Georgia" in self.all_co: self.all_co.remove("Georgia")
+							while "Israel" in self.all_co: self.all_co.remove("Israel")
 							break
 						else:
 							for b in all_countries:
 								if b in line:
-									self.all_co.append(b)					
+									self.all_co.append(b)	
+									#print(self.all_co)				
 					
 
 #					for b in catch_error_list:
