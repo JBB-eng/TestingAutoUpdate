@@ -3,7 +3,8 @@
 #JIAS-2020-03-0175 causes ROME to be added to country and MS extra data is not captured
 #JIAS-2020-05-0335 TITLE IS BLANK!
 #JIAS-2020-07-0484 CDC/WHO CHECK FAILS!
-
+#JIAS-2020-07-0486 AUTHOR NAME HAS "FRANCE" IN IT.  CAUSES FRANCE TO BE INCLUDED IN AUTHOR COUNTRIES!
+ 
 __author__        = 'Jacob Bursavich'
 __copyright__    = 'Copyright (C) 2020, Jacob Bursavich'
 __credits__        = ['Jacob Bursavich']
@@ -528,7 +529,8 @@ class MSInfo:
         global global_copy_pasta
         try:
             short_ms_type = applyAcronymToMsType(self.ms_type)
-            data = self.authors + "    " + self.first_au + "    " + "    " + self.ms_id + "    " + self.title + "    " + self.date + "    " + short_ms_type + "    " + self.discipline + "    "  + "    " + "Editorial Assessment"  + "    "  + "    "  + "    "  + "    "  + "    "  + "    " + self.first_co + "    " + self.sub_co + "    " + self.last_co + "    " + ', '.join(self.all_co) + "    "  + "    "  + "    "  + "    "  + "    "  + "    " + str(self.ithenticate)
+            #data = self.authors + "    " + self.first_au + "    " + "    " + self.ms_id + "    " + self.title + "    " + self.date + "    " + short_ms_type + "    " + self.discipline + "    "  + "    " + "Editorial Assessment"  + "    "  + "    "  + "    "  + "    "  + "    "  + "    " + self.first_co + "    " + self.sub_co + "    " + self.last_co + "    " + ', '.join(self.all_co) + "    "  + "    "  + "    "  + "    "  + "    "  + "    " + str(self.ithenticate)
+            data = self.authors + "	" + self.first_au + "	" + "	" + self.ms_id + "	" + self.title + "	" + self.date + "	" + short_ms_type + "	" + self.discipline + "	"  + "	" + "Editorial Assessment"  + "	"  + "	"  + "	"  + "	"  + "	"  + "	" + self.first_co + "	" + self.sub_co + "	" + self.last_co + "	" + ', '.join(self.all_co) + "	"  + "	"  + "	"  + "	"  + "	"  + "	" + str(self.ithenticate)
             global_copy_pasta = data
             pyperclip.copy(data)
         except Exception as e:
@@ -1715,6 +1717,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-
-
-
