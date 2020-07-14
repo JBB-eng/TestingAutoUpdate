@@ -4,7 +4,7 @@
 #JIAS-2020-05-0335 TITLE IS BLANK!
 #JIAS-2020-07-0484 CDC/WHO CHECK FAILS!
 #JIAS-2020-07-0486 AUTHOR NAME HAS "FRANCE" IN IT.  CAUSES FRANCE TO BE INCLUDED IN AUTHOR COUNTRIES!
- 
+
 __author__        = 'Jacob Bursavich'
 __copyright__    = 'Copyright (C) 2020, Jacob Bursavich'
 __credits__        = ['Jacob Bursavich']
@@ -93,6 +93,9 @@ parsing_bools = [[None] * m for i in range(len(tab_names))]
 
 #Plan was to introduce this as part of a settings section to customize for individual users
 files_to_ignore_in_download_folder = ["Elisa to Check Pivot Table Setups", "JAIDS_reveiw", "desktop.ini", "JIAS All manuscripts from list"] #add as many as you want here
+
+#update this list when you add an udpate for the user with the changes that were made.  It will print out in the console when the app is started 
+updates_for_this_version = ["Created welcome and update console message", "Cleaned up various console output for the user", "Added console output if CDC/WHO affliations were found"]
 
 ###################################################################################################################
 ###################################################################################################################
@@ -238,6 +241,17 @@ def applyAcronymToMsType (msType_phrase):
 
     return short_phrase
 
+def welcomeMessageToUser ():
+	print("\n\t************************************************************")
+	print("\t Welcome to the JIAS Automation Assistant Application v" + str(__version__) +".")
+	print("\t This application was designed in 2020 to assist the JIAS")
+	print("\t team in processing manuscripts and other assorted tasks.")
+	print("\n\t The following updates have been added to this version:")
+	for x in range(len(updates_for_this_version)):
+		print("\t -", updates_for_this_version[x])
+	print("\n\t If you have issues with the application, the original")
+	print("\t developer\'s contact info is: jbursavich@gmail.com.")
+	print("\t************************************************************")
 
 
 #MS data stored in a class for easier accessiblity
@@ -355,7 +369,7 @@ class MSInfo:
                     for a in cdc_who_strings:
                         if a in line:
                             self.cdc_check = True
-                            print("CDC")
+                            #print("CDC")
                             break
 
 #Get Ms Author Countries
@@ -619,6 +633,8 @@ class MSInfo:
             print('Last AU Country:\t', self.last_co)
             print('All AU Countries:\t', self.all_co)
             print('COI parameters:\t\t', self.coi)
+            if self.cdc_check == True:
+            	print('**A CDC/WHO AFFLIATION WAS FOUND**')
         except Exception as e:
             print('failed to print parsing results. ERROR:', e)
 
@@ -1064,6 +1080,8 @@ def updateMsLog():
 
     #print success message
     print("\n\t-Successfully updated the MSLog!")
+    print("\n\n\t*****\nThe MSLog Updater Tool completed its task successfully.\n\tPlease check the folder where the MSLog is located for an _updated.xls version of the MSLog.\n*****\n")
+
 
 
 def check_for_s1_ms_in_editorial_folders():
@@ -1226,7 +1244,6 @@ def check_for_s1_ms_in_editorial_folders():
             #elif files_found[x][:] is 0
                 pass
 
-
     f.close()
     now = datetime.now()
     end_time = time.time()
@@ -1247,6 +1264,8 @@ def check_for_s1_ms_in_editorial_folders():
     folders_for_S1_check[2].delete(0, 'end')
     folders_for_S1_check[2].insert(0, "MS IDs NOT FOUND: " + str(files_not_found))
     folders_for_S1_check[2].configure(state="readonly")
+
+    print("\n\n*****\nThe ScholarOne/SharePoint Manuscript Locator Tool completed its task successfully.\nPlease check your <Downloads> directory for a .txt with the summary of the results.\n*****\n")
 
 
 def MsLogUpdate_popup():
@@ -1449,15 +1468,18 @@ class Main:
             for fname in list_of_files:
                 f.append(fname)
 
+            print("\tChecking for older versions of the application...")
             for file in f:
                 if file.startswith(__AppName__) and file.endswith(".exe"):
                     app_file_name = os.getcwd() + "\\" + file
                     try:
                         os.remove(app_file_name)
-                        print("Removed file: " + app_file_name)
+                        print("\tRemoved file: " + app_file_name)
                     except:
-                        print("Did not modify: " + app_file_name)
+                        print("\tDid not modify: " + app_file_name)
                         #pass
+
+            welcomeMessageToUser()
 
             doc_path = os.getcwd() + "\\Document Templates"
             is_directory = os.path.isdir(doc_path)
